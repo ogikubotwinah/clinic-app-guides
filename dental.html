@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>歯科治療報告書アプリ 自動化ガイド（獣医師向け）</title>
+<style>
+  :root {
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --orange: #ea580c; --orange-bg: #fff7ed;
+    --violet: #7c3aed; --violet-bg: #f5f3ff;
+    --slate: #334155; --line: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .85; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--blue); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-staff{ background: var(--orange-bg); color: var(--orange); border: 1px solid #fed7aa; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--line); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox.vet  { border-color: #93c5fd; background: var(--blue-bg); }
+  .fbox.staff{ border-color: #fdba74; background: var(--orange-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .cols { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cols > div { flex: 1; min-width: 260px; }
+  .page-diagram { border: 2px solid var(--slate); border-radius: 10px; padding: 10px; background: #fff; font-size: .85rem; }
+  .page-diagram .row { border: 2px dashed #cbd5e1; border-radius: 8px; padding: 8px 10px; margin: 6px 0; text-align: center; }
+  .row.xray { background: #eef2ff; border-color: #a5b4fc; }
+  .row.photo { background: #fef2f2; border-color: #fca5a5; }
+  .tag { font-size: .72rem; color: #64748b; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .btn-example { display: inline-block; padding: 4px 14px; border-radius: 8px; font-size: .85rem; font-weight: 700; color: #fff; }
+  .teeth-order { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; margin: 8px 0; }
+  .tooth { border-radius: 6px; padding: 3px 8px; font-size: .78rem; font-weight: 700; border: 1px solid var(--line); background: #f8fafc; }
+  .tooth.r { background: #dbeafe; border-color: #93c5fd; }
+  .tooth.c { background: #ede9fe; border-color: #c4b5fd; }
+  .tooth.l { background: #dcfce7; border-color: #86efac; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>歯科治療報告書アプリ 自動化ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>獣医師向け ｜ 2026年6月13日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+歯科治療報告書アプリが大幅に自動化されました。<b>カルテはコピペ不要</b>（カルテNo.を入れてボタンを押すだけ）、<b>画像は並べる作業が不要</b>（NASに保存すればAIが歯列順に自動配置）になります。獣医師の仕事は「ボタンを押して、AIの下書きを確認・修正する」ことです。
+<div style="margin-top:8px">
+<span class="badge b-vet">青 = 獣医師の操作</span>
+<span class="badge b-staff">橙 = 撮影スタッフ</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+</div>
+</div>
+
+<h2>1. 報告書ができるまでの全体図</h2>
+<div class="flow">
+  <div class="fbox vet"><b>① 初診日：患者を登録する</b>
+  新規患者登録に <b>カルテNo.</b>（例: 1234-5）・飼い主姓・ペット名を入力して登録。<br>
+  <span class="tag">※カルテNo.を入れておくと、後の画像取り込みが確実になります</span></div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>② 治療日：写真・X線を撮影 → NASへ保存</b>
+  撮影ルールは「<b>左から、奥から前、まとめ撮り</b>」（下の §5 参照）。<br>
+  NASの「歯科報告書アプリ」フォルダに「<b>カルテNo. 飼い主姓ペット名</b>」のフォルダ名で保存。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>③ 自動：画像の取り込みと配置</b>
+  毎日 <b>8時・12時・15時・18時</b> にシステムがNASを自動チェック。AIが画像を分類し、報告書に<b>歯列順で自動配置</b>します（待てないときは「画像を取り込む」ボタンで即実行）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>④ 報告書作成：ボタン2つ＋確認</b>
+  「カルテを取得」→「カルテ内容から下書きを作成」→ AIの下書きと画像配置を<b>獣医師が確認・修正</b> → PDF/Gmailで出力。</div>
+</div>
+
+<h2>2. 獣医師の操作手順（5ステップ）</h2>
+<div class="card">
+<table>
+<tr><th style="width:30%">操作</th><th>何が起きるか</th></tr>
+<tr><td><span class="btn-example" style="background:#16a34a">新規患者を登録</span><br>カルテNo.・飼い主姓・ペット名</td><td>症例が作成されます。<b>カルテNo.は必ず入力</b>（画像の自動照合に使われます）。</td></tr>
+<tr><td><span class="btn-example" style="background:#059669">カルテを取得</span></td><td>電子カルテ(Ahrmics)から主観ノート全文を取得。同時に<b>基本情報が自動入力</b>されます（下の §3 参照）。</td></tr>
+<tr><td><span class="btn-example" style="background:#f97316">カルテ内容から下書きを作成</span></td><td>AIがカルテ本文を読んで<b>主訴・初診時・検査処置内容・術後経過・術前検査</b>に振り分け、報告書の文体に整えます。</td></tr>
+<tr><td><span class="btn-example" style="background:#0284c7">画像を取り込む</span></td><td>NASからこの患者の画像を取り込み、<b>その場で歯列順に自動配置</b>（数分かかります。入力済みの文章は消えません）。定時の自動取り込みを待ってもOK。</td></tr>
+<tr><td>確認・修正 → 出力</td><td>下書きと画像配置を確認。X線の左右が逆なら<span class="btn-example" style="background:#7c3aed; font-size:.78rem">⇄ X線の左右入替</span>で一発修正。文章を手直しした後は<span class="btn-example" style="background:#059669; font-size:.78rem">報告文をAIで整える</span>で文体だけ仕上げ直せます（内容は削られません）。最後にPDF印刷 / Gmail送信。</td></tr>
+</table>
+</div>
+
+<h2>3. AIが自動でやっていること（詳細）</h2>
+
+<h3>3-1. カルテ文章の振り分け <span class="badge b-auto">自動</span></h3>
+<div class="card">
+カルテの定型見出しを目印に、AIが報告書の各欄へ振り分けて文章を整えます。
+<table>
+<tr><th>カルテの見出し</th><th>報告書のどこに入るか</th></tr>
+<tr><td>【主訴】</td><td>主訴</td></tr>
+<tr><td>【初診時の口腔内所見】【プラン】</td><td>初診時（プランは治療方針・同意として）</td></tr>
+<tr><td>【処置内容】（処置日のカルテ）</td><td>検査・処置内容</td></tr>
+<tr><td>【術後経過】（処置日のカルテ）</td><td>術後経過</td></tr>
+<tr><td>【術前検査】</td><td><b>別枠</b>（「報告書に載せる」にチェックすると初診時の前に挿入）</td></tr>
+<tr><td>【症状】【既往歴/服用】</td><td>報告書には使いません</td></tr>
+</table>
+<div class="note">AIは<b>カルテに書かれていないことを追加しません</b>（処置の補完・推測は禁止する設定）。定型見出しでカルテを書くほど、振り分けの精度が上がります。</div>
+</div>
+
+<h3>3-2. 基本情報の自動入力 <span class="badge b-auto">自動</span></h3>
+<div class="card">
+「カルテを取得」を押すと、以下が<b>空欄のときだけ</b>自動で入ります（手入力済みの欄は上書きしません）。
+<table>
+<tr><th>報告書の欄</th><th>どこから取るか</th></tr>
+<tr><td>飼い主姓・ペット名</td><td>電子カルテの飼主・ペット情報</td></tr>
+<tr><td>担当獣医師</td><td>カルテ記録の担当医</td></tr>
+<tr><td>初診日</td><td><b>会計が最初に発生した日</b>（ネット予約の事前カルテ作成日は無視）</td></tr>
+<tr><td>全身麻酔日</td><td>【処置内容】が書かれたカルテの日付</td></tr>
+<tr><td>紹介元病院名</td><td>顧客メモの「〇〇動物病院紹介」等をAIが読み取り（<b>飼い主さん同士の紹介は除外</b>）</td></tr>
+</table>
+<div class="note">紹介元病院の<b>メールアドレスも、病院リストに登録済みの病院（一度報告書を送ったことがある病院）なら自動で入ります</b>。初めての病院だけ手入力し、保存すれば次回からは自動です（電子カルテ側にはメールの記録がないため、アプリの病院リストから引いています）。</div>
+</div>
+
+<h3>3-3. 画像の自動分類と配置 <span class="badge b-auto">自動</span></h3>
+<div class="card">
+<div class="cols">
+<div>
+<b>AIの分類パイプライン</b>
+<div class="flow">
+  <div class="fbox auto"><b>① X線か肉眼写真かを判別</b><span class="tag">X線装置の付属ファイルで確実に判定</span></div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>② X線：上顎か下顎かをAIが読影</b><span class="tag">鼻腔・下顎管などの解剖学的特徴で判定</span></div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>③ 左右：撮影順から判定</b><span class="tag">「片側をまとめて撮ってから反対側」という撮影の流れを利用。標準は「左から」</span></div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>④ 歯列順に並べ替え</b><span class="tag">写っている歯（犬歯・裂肉歯など）をAIが特定し、遠心→近心の順で機械的に整列</span></div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>⑤ 肉眼写真：処置前/途中/後 ＋ 右側面/正面/左側面を判定</b><span class="tag">似た重複写真は鮮明な1枚を自動採用</span></div>
+</div>
+</div>
+<div>
+<b>でき上がる配置</b>
+<div class="page-diagram">
+<b>ページ1</b>
+<div class="row xray">1段目：上顎X線（歯列順）</div>
+<div class="row photo">2段目：処置前の肉眼写真<br><span class="tag">右側面 → 正面 → 左側面</span></div>
+<div class="row xray">3段目：下顎X線（歯列順）</div>
+</div>
+<div style="height:8px"></div>
+<div class="page-diagram">
+<b>ページ2</b>
+<div class="row photo">処置後の肉眼写真<br><span class="tag">右側面 → 正面 → 左側面</span></div>
+</div>
+<div style="margin-top:8px"><b>X線の並び（左から）</b></div>
+<div class="teeth-order">
+<span class="tooth r">右M</span><span class="tooth r">右P</span><span class="tooth r">右C</span>
+<span class="tooth c">切歯</span>
+<span class="tooth l">左C</span><span class="tooth l">左P</span><span class="tooth l">左M</span>
+</div>
+<span class="tag">中央＝切歯、両脇＝犬歯、外へ向かって前臼歯→後臼歯。処置途中の写真は未配置（必要ならドラッグで追加）。</span>
+</div>
+</div>
+</div>
+
+<h2>4. 自動で動いているもの</h2>
+<div class="card">
+<table>
+<tr><th>仕組み</th><th>動くタイミング</th><th>内容</th></tr>
+<tr><td>NAS画像の自動取り込み</td><td>毎日 8時・12時・15時・18時</td><td>NASの「歯科報告書アプリ」フォルダを確認し、症例と照合して取り込み→自動配置。処理済みフォルダは「取り込み済み」へ移動。</td></tr>
+<tr><td>「画像を取り込む」ボタン</td><td>押したとき</td><td>上と同じ処理を即時実行（開いている患者向け）。</td></tr>
+<tr><td>撮影順の警告</td><td>取り込み時</td><td>撮影順が標準（左から）と違う可能性をAIが検知すると、編集画面に⚠️の注意が表示されます。</td></tr>
+</table>
+</div>
+
+<h2>5. 撮影スタッフへのお願い <span class="badge b-staff">スタッフ</span></h2>
+<div class="card">
+<b>合言葉：「左から、奥から前、まとめ撮り」</b>
+<ol>
+<li><b>左側から撮影を始める</b>（左上顎 → 左下顎。各部位は奥の臼歯→前の犬歯の順、切歯は区切りで）</li>
+<li>同じ顎・同じ側は<b>まとめて続けて</b>撮る（撮り直しもその場で）</li>
+<li>体位変換して右側（右上顎 → 右下顎）</li>
+</ol>
+<div class="note">守れなくても報告書は作れます。左右の表示が逆になるだけで、獣医師の画面の「⇄ X線の左右入替」ボタンで一発修正できます。</div>
+NASへの保存はフォルダ名「<b>カルテNo. 飼い主姓ペット名</b>」（例：<b>1234-5 山田ポチ</b>）でお願いします。
+</div>
+
+<h2>6. 注意点・よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">Q</th><th>A</th></tr>
+<tr><td>AIの下書きはそのまま送っていい？</td><td><b>必ず獣医師が確認・修正してください。</b>AIはあくまで下書き係です。歯式・処置内容・日付は特に確認を。</td></tr>
+<tr><td>X線の左右が逆に並んだ</td><td>紫の「⇄ X線の左右入替」を1回押せば上顎・下顎の段がまとめて反転します（肉眼写真は変わりません）。</td></tr>
+<tr><td>画像の順番を細かく直したい</td><td>従来どおりドラッグで自由に並べ替えできます。自動配置はあくまで初期配置です。</td></tr>
+<tr><td>処置途中の写真も載せたい</td><td>自動では未配置になっています。画像一覧からドラッグで追加してください。</td></tr>
+<tr><td>「術前検査」を報告書に入れたい</td><td>術前検査欄の「報告書に載せる」にチェックすると、初診時の前に挿入されます（既定はオフ）。</td></tr>
+<tr><td>AIの下書きを手で直した。もう一度きれいにしたい</td><td>緑の「報告文をAIで整える（内容は削りません）」を押すと、<b>手直しした内容を保ったまま</b>文体だけ整えます。「カルテ内容から下書きを作成」を押し直すとカルテから作り直しになるので注意。</td></tr>
+<tr><td>紹介元病院のメールアドレスは自動で入る？</td><td>一度報告書を送ったことのある（病院リストに登録済みの）病院なら、紹介元の自動入力と同時に<b>メールアドレスも自動で入ります</b>。初めての病院は手入力→保存すると次回から自動。</td></tr>
+<tr><td>ボタンを押しても画像が来ない</td><td>NASのフォルダ名（カルテNo.・名前）と症例の登録内容が一致しているか確認してください。照合できないフォルダは「照合待ち」として残ります。</td></tr>
+</table>
+</div>
+
+<footer>荻窪ツイン動物病院 ｜ 歯科治療報告書アプリ 自動化ガイド（2026-06-13版）<br>不明点は院長まで</footer>
+</div>
+</body>
+</html>
