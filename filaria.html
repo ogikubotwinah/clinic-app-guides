@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>フィラリア健診アプリ 運用ガイド（院内スタッフ向け）</title>
+<style>
+  :root {
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --orange: #ea580c; --orange-bg: #fff7ed;
+    --pink: #db2777; --pink-bg: #fdf2f8;
+    --line: #06C755;
+    --slate: #334155; --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #9d2463, #db2777); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .85; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--pink); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-staff{ background: var(--orange-bg); color: var(--orange); border: 1px solid #fed7aa; }
+  .b-owner{ background: var(--pink-bg); color: var(--pink); border: 1px solid #fbcfe8; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox.vet  { border-color: #93c5fd; background: var(--blue-bg); }
+  .fbox.staff{ border-color: #fdba74; background: var(--orange-bg); }
+  .fbox.owner{ border-color: #f9a8d4; background: var(--pink-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .split { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0; }
+  .split > div { flex: 1; min-width: 240px; border: 2px solid var(--border); border-radius: 12px; padding: 10px 14px; background: #fff; font-size: .9rem; }
+  .split .ok   { border-color: #86efac; background: var(--green-bg); }
+  .split .warn { border-color: #fcd34d; background: #fffbeb; }
+  .split .hold { border-color: #cbd5e1; background: #f8fafc; }
+  .cols { display: flex; gap: 14px; flex-wrap: wrap; }
+  .cols > div { flex: 1; min-width: 260px; }
+  .shot { width: 100%; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--pink-bg); border: 1px solid #fbcfe8; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .btn-example { display: inline-block; padding: 4px 14px; border-radius: 8px; font-size: .85rem; font-weight: 700; color: #fff; }
+  /* LINE受信イメージ */
+  .phone { width: 270px; margin: 8px auto; border: 2px solid #d8dee6; border-radius: 24px; padding: 10px; background: #fff; box-shadow: 0 8px 22px rgba(0,0,0,.1); }
+  .phone .head { background: var(--line); color: #fff; border-radius: 12px 12px 0 0; padding: 8px 12px; font-size: .82rem; font-weight: 700; }
+  .phone .scr { background: #8caebd; border-radius: 0 0 12px 12px; padding: 12px 10px; }
+  .bubble { background: #fff; border-radius: 12px; padding: 9px 11px; font-size: .8rem; max-width: 92%; margin-bottom: 8px; }
+  .bubble .link { display: block; margin-top: 6px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 6px 8px; color: var(--blue); font-size: .76rem; word-break: break-all; }
+  .qr { width: 160px; display: block; margin: 8px auto 2px; image-rendering: pixelated; border: 1px solid #eee; border-radius: 10px; padding: 6px; background: #fff; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>フィラリア健診アプリ 運用ガイド
+<small>院内スタッフ向け ｜ 2026年6月13日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+フィラリア健診の血液検査（CBC＋生化学18項目）の結果報告を自動化するアプリです。スタッフが患者を登録しておくだけで、検査結果を自動で取り込み、<b>正常なら獣医師の確認なしで自動的にLINEで飼い主さんへ送信</b>します。異常が疑われるときだけ、AIがコメント下書きを作って獣医師の確認に回します。
+<div style="margin-top:8px">
+<span class="badge b-staff">橙 = 受付・スタッフ</span>
+<span class="badge b-vet">青 = 獣医師</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+<span class="badge b-owner">桃 = 飼い主さん</span>
+</div>
+</div>
+
+<h2>1. 当日の流れ（全体図）</h2>
+<div class="flow">
+  <div class="fbox staff"><b>① 受付・診察：フィラリア健診の採血</b>
+  院内検査機で検査（結果は電子カルテへ自動記録）。フィラリア抗原検査などその場で伝える結果は従来どおり口頭で。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>② スタッフ：アプリに患者を登録（当日中ならいつでもOK）</b>
+  診察券番号・患者名・年齢・担当獣医師・犬種を入力して「登録」（§2参照）。<br>
+  <span style="font-size:.85rem">あわせて、<b>LINE未連携の飼い主さんには受付でQRから連携を案内</b>（§4参照）。</span></div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>③ 自動：検査結果の取り込みと判定</b>
+  毎日 <b>8時・12時・15時・18時</b> にシステムが電子カルテから結果を自動取得。CBC＋生化学が揃ったら自動で判定します（すぐ取り込みたいときは画面右上の「取込」ボタン）。</div>
+  <div class="farrow">▼</div>
+  <div class="split">
+    <div class="ok"><b>正常 →</b> 定型コメントを付けて<b>自動でLINE送信（完了）</b>。獣医師の操作は不要です。</div>
+    <div class="warn"><b>異常の疑い →</b> AIがコメント下書きを作成し<b>「要確認」</b>で保留。獣医師の確認待ちになります（§3参照）。</div>
+    <div class="hold"><b>LINE未連携 →</b> 送信保留。飼い主さんが連携を済ませると<b>自動で送信</b>されます。</div>
+  </div>
+  <div class="farrow">▼</div>
+  <div class="fbox owner"><b>④ 飼い主さん：LINEで結果報告書を受け取る</b>
+  公式LINEに案内が届き、リンクから本人だけが報告書（PDF保存可）を閲覧できます（§4参照）。</div>
+</div>
+
+<h2>2. アプリの操作手順（受付・スタッフ）<span class="badge b-staff" style="margin-left:6px">スタッフ</span></h2>
+<div class="card">
+<p style="margin-top:0">院内PCのブラウザで <b>http://192.168.20.250:3300</b> を開きます。トップにそのまま登録フォームがあります。</p>
+<img class="shot" src="filaria-home.png" alt="フィラリア健診アプリの登録画面">
+<div class="cap">▲ 実際の登録画面（トップページ）</div>
+<table>
+<tr><th style="width:32%">入力項目</th><th>ポイント</th></tr>
+<tr><td>患者ID（診察券番号）</td><td>飼い主番号−ペット番号（例 1234-1）。<b>過去にどちらかのアプリで登録があれば、IDを入れるだけで名前などが自動表示</b>されます（定期健診アプリと患者情報を共有しているため）。</td></tr>
+<tr><td>患者名・年齢</td><td>年齢は 歳／ヶ月。</td></tr>
+<tr><td>担当獣医師</td><td>プルダウンから選択。</td></tr>
+<tr><td>犬種</td><td><b>異常値が出やすい犬種だけ</b>プルダウンに載せています（例：シェルティー・Mシュナウザー・柴/秋田など）。該当しなければ「それ以外」のままでOK。選んでおくとAIが犬種を踏まえて結果を解釈します。</td></tr>
+</table>
+<div class="note">必須項目が埋まるまで「登録」ボタンは押せません（「未入力: ◯◯」と表示されます）。登録後は自動で進むので、<b>スタッフの操作はここまで</b>です。</div>
+</div>
+
+<h2>3. 獣医師の確認（異常の疑いがあるときだけ）<span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+<div class="card">
+<h3 style="margin-top:0">自動判定のルール</h3>
+<table>
+<tr><th style="width:32%">項目</th><th>扱い</th></tr>
+<tr><td>CBC</td><td><b>RBC・HCT・WBC・PLTのみ</b>要確認の対象。その他のCBC項目は基準外でも自動送信（コメントで適切にフォロー）。</td></tr>
+<tr><td>生化学</td><td>基準値外があれば要確認。</td></tr>
+<tr><td>電解質</td><td><b>Kは常に要確認</b>。Na・Clは基準から軽度（±5%以内）の逸脱なら自動送信。</td></tr>
+</table>
+<h3>「要確認」になったら</h3>
+<ol>
+<li>一覧の<b>「AI提案済（要確認）」</b>からレポートを開く</li>
+<li>血液ページの<b>AIコメント下書き</b>を確認・修正（AIは年齢・犬種・既往歴・<b>過去の健診結果（定期健診アプリの分も含む）</b>を踏まえて書きます）</li>
+<li><b>🔍 AI正当性チェック</b>も参考に（AIが自分のコメントを文献基準で自己点検した結果。⚠=要注意・ℹ=参考。<b>最終判断は獣医師</b>）</li>
+<li>「<b>LINEで送る</b>」で送信</li>
+</ol>
+<div class="note"><b>二重送信ガード</b>：直近48時間以内に同じ飼い主さんへ（定期健診アプリ含め）別の結果を送信済みの場合、「送信済みです。重複しますが送りますか？」と確認が出ます。意図的な場合だけOKしてください。</div>
+<p>報告書には「獣医師より」欄としてコメントが印字されます。紙で渡したい場合は印刷も可能です（表紙＋CBC＋生化学の3ページ・桜色デザイン）。</p>
+</div>
+
+<h2>4. 飼い主さんの受け取り（LINE）<span class="badge b-owner" style="margin-left:6px">飼い主</span></h2>
+<div class="card">
+<div class="cols">
+<div>
+<h3 style="margin-top:0">①最初の1回だけ：LINE連携（受付で案内）</h3>
+<ol>
+<li>右のQRコードをスマホで読み取り</li>
+<li>LINEでログインし、<b>公式アカウントを友だち追加</b></li>
+<li><b>診察券番号</b>（例 1234-1）を入力して「連携する」</li>
+<li>「連携が完了しました」と出れば完了 🎉</li>
+</ol>
+<div class="imp"><b>重要</b>：公式アカウントを<b>友だち追加していないと結果が届きません</b>。連携時に必ず追加してもらってください。予約（予約革命）でLINEを使っている方も、<b>結果用の連携はこの手順が別途必要</b>です。</div>
+</div>
+<div style="text-align:center">
+<img class="qr" src="line-qr.png" alt="LINE連携QRコード">
+<div class="cap">連携用QRコード（チラシと同じもの）</div>
+</div>
+</div>
+<h3>②結果はこう届きます</h3>
+<div class="cols">
+<div>
+<div class="phone">
+  <div class="head">荻窪ツイン動物病院</div>
+  <div class="scr">
+    <div class="bubble">ポチちゃんのフィラリア健診の結果ができあがりました🐾<br>下のリンクからご覧いただけます。
+      <span class="link">📄 けんしん結果を見る<br>https://…（本人だけが開けるリンク）</span>
+    </div>
+    <div class="bubble">気になる点があれば、お気軽にご相談ください。</div>
+  </div>
+</div>
+<div class="cap">▲ 届くLINEのイメージ</div>
+</div>
+<div>
+<ul style="margin-top:6px">
+<li>リンクは<b>LINEログインで本人確認</b>するため、連携した本人だけが開けます（転送されても他人は見られません）</li>
+<li>報告書は<b>何度でも見返せて、PDF保存も可能</b></li>
+<li>未連携のまま結果が完成した場合は、<b>連携が済んだ時点で自動送信</b>されます（一覧に「LINE未連携」と表示されている子）</li>
+</ul>
+</div>
+</div>
+<img class="shot" src="flyer-page2.png" alt="飼い主向けチラシ：LINEで届く報告書のイメージ" style="max-width:620px;display:block;margin:14px auto 0">
+<div class="cap">▲ 飼い主向けチラシより：LINEで届く報告書のイメージと2つの健診の違い</div>
+</div>
+
+<h2>5. 定期健康診断アプリとの連携</h2>
+<div class="card">
+<table>
+<tr><th style="width:34%">連携内容</th><th>意味</th></tr>
+<tr><td>患者情報の共有</td><td>どちらかのアプリで登録した患者は、もう一方でも<b>ID入力だけで名前・犬種などが自動表示</b>。二度入力は不要です。</td></tr>
+<tr><td>既往歴の共有</td><td>患者一覧の編集画面で登録した<b>既往歴（診断名・定期検診の内容）</b>は両アプリ共通。AIコメントが既往を踏まえます（例：心エコーで経過観察中なら重複した検査提案をしない）。</td></tr>
+<tr><td>過去レポートの横断参照</td><td>AIは<b>定期健診で過去に飼い主さんへ伝えた内容</b>も参照してコメントを書きます（前回との比較・一貫した説明）。</td></tr>
+<tr><td>LINE送信の共通化</td><td>同じ公式LINE・同じ連携（1回でOK）で両方の結果が届きます。<b>48時間以内の重複送信は自動でガード</b>。</td></tr>
+</table>
+<h3>2つのアプリの使い分け</h3>
+<table>
+<tr><th></th><th>フィラリア健診（このアプリ）</th><th>定期健康診断</th></tr>
+<tr><td>内容</td><td>血液中心で手早く（CBC＋生化学18項目）</td><td>からだ全体をじっくり（身体検査・画像・尿便など）</td></tr>
+<tr><td>結果の送信</td><td><b>正常は自動送信</b>（異常のみ獣医師確認）</td><td><b>必ず獣医師がレビューしてから</b>送信</td></tr>
+<tr><td>アプリのURL</td><td>http://192.168.20.250:3300</td><td>http://192.168.20.250:3100</td></tr>
+</table>
+</div>
+
+<h2>6. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">Q</th><th>A</th></tr>
+<tr><td>登録ボタンが押せない</td><td>「未入力: ◯◯」と表示されている項目を埋めてください。診察券番号は「1234-1」の形式が必要です。</td></tr>
+<tr><td>結果がなかなか送られない</td><td>取り込みは8時・12時・15時・18時の自動実行です。急ぐときは画面右上の「取込」ボタンで即時実行できます。検査結果がまだ電子カルテに揃っていない場合は、揃ってから処理されます。</td></tr>
+<tr><td>「LINE未連携」と出ている</td><td>飼い主さんがまだLINE連携をしていません。受付でQRから連携を案内してください。<b>連携が済むと自動で送信されます</b>。</td></tr>
+<tr><td>正常なのに送信されていない</td><td>Kの異常・Na/Clの大きな逸脱・生化学の基準値外などがあると「要確認」になります。獣医師の確認待ちでないか一覧を見てください。</td></tr>
+<tr><td>間違えて登録した</td><td>患者一覧から編集・削除できます。犬種や既往歴も患者一覧の編集画面からいつでも追加できます。</td></tr>
+<tr><td>紙でも渡せる？</td><td>印刷できます（表紙＋血液結果の3ページ）。LINEと併用も可能です。</td></tr>
+</table>
+</div>
+
+<footer>荻窪ツイン動物病院 ｜ フィラリア健診アプリ 運用ガイド（2026-06-13版）<br>不明点は院長まで</footer>
+</div>
+</body>
+</html>
