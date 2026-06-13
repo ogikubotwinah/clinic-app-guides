@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>定期健康診断アプリ 使い方ガイド（獣医師向け）</title>
+<style>
+  :root {
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #d97706; --amber-bg: #fffbeb;
+    --pink: #db2777; --pink-bg: #fdf2f8;
+    --slate: #334155; --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #0f766e, #14b8a6); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--teal); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-staff{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox.vet  { border-color: #93c5fd; background: var(--blue-bg); }
+  .fbox.staff{ border-color: #fcd34d; background: var(--amber-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .cols { display: flex; gap: 14px; flex-wrap: wrap; }
+  .cols > div { flex: 1; min-width: 260px; }
+  .shot { width: 100%; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.10); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: var(--amber-bg); border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--teal-bg); border: 1px solid #99f6e4; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .status-flow { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  .st { flex: 1; min-width: 130px; border-radius: 10px; padding: 8px 10px; font-size: .85rem; text-align: center; border: 2px solid var(--border); background: #fff; }
+  .st b { display: block; font-size: .92rem; }
+  .st.s1 { border-color: #cbd5e1; } .st.s2 { border-color: #fcd34d; background: var(--amber-bg);} .st.s3 { border-color: #5eead4; background: var(--teal-bg);} .st.s4 { border-color: #86efac; background: var(--green-bg);}
+  .stsep { align-self: center; color: #94a3b8; font-weight: 800; }
+  .btn-example { display: inline-block; padding: 3px 12px; border-radius: 8px; font-size: .82rem; font-weight: 700; color: #fff; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  .tophint { font-size: .8rem; }
+  .tophint a { color: #fff; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>定期健康診断アプリ 使い方ガイド
+<small class="tophint"><a href="./">← ガイド一覧へ</a></small>
+<small>主に獣医師向け ｜ 2026年6月13日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+定期健康診断の結果報告書を作るアプリです。<b>検査データ（血液・尿・便）は電子カルテから自動で取り込まれ、AIが下書き</b>を作ります。獣医師は<b>身体検査・画像所見の入力</b>と、<b>AI下書きの確認・修正</b>を行い、完成させてLINE/印刷で渡します。フィラリア健診と違い、<b>送信前に必ず獣医師がレビュー</b>します。
+<div style="margin-top:8px">
+<span class="badge b-vet">青 = 獣医師の操作</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+<span class="badge b-staff">橙 = 受付・スタッフ</span>
+</div>
+</div>
+
+<div class="card" style="background:var(--teal-bg);border-color:#99f6e4">
+<b>アクセス</b>（院内PC・iPad・院外も可）<br>
+・院内LAN：<b>http://192.168.20.250:3100</b><br>
+・院外（Tailスケール ON）：<b>http://100.111.66.29:3100</b><br>
+・<b>音声入力を使うとき</b>はHTTPSが必要：<b>https://serverpc.tail2de5bb.ts.net:8443</b>（Tailscale ON）
+</div>
+
+<h2>1. 健診の流れ（全体図）</h2>
+<div class="flow">
+  <div class="fbox staff"><b>① 受付・診察：健診の採血・検査</b>
+  院内検査（CBC・電解質・CRP等）＋外注（IDEXX Chem18・proBNP・FT4）＋必要に応じ画像（レントゲン・エコー）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>② アプリに患者を登録（健診日＝登録日）</b>
+  カルテ番号・患者名・<b>プラン</b>（ちょこっと／ベーシック／しっかり／循環器）・担当獣医師を登録（§3-1）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>③ 自動：検査データの取り込みとAI下書き</b>
+  毎日 8/12/15時/18時にAhrmicsから結果を自動取得 → 必須項目が揃うと<b>AIが評価の下書き</b>を作成（§4・§5）。画像はNASフォルダから名前照合で自動取込。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>④ 獣医師：手入力＋AI下書きの確認</b>
+  <b>身体検査</b>（音声＋AI）・<b>画像所見</b>（レントゲン/エコー/心電図）を入力し、<b>AIの評価カードを確認・修正</b>（§3）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>⑤ 完成 → 飼い主へ（LINE／印刷）</b>
+  内容を確認して「完成」。<b>送信前に必ず獣医師レビュー</b>のうえ、LINEで送信または印刷（§6）。</div>
+</div>
+
+<h2>2. ステータスの見方（自動で進みます）</h2>
+<div class="card">
+<div class="status-flow">
+  <div class="st s1"><b>入力中</b>登録直後。結果待ち・手入力中</div>
+  <div class="stsep">▶</div>
+  <div class="st s2"><b>結果待ち</b>必須の検査値がまだ揃っていない</div>
+  <div class="stsep">▶</div>
+  <div class="st s3"><b>AI提案済（要確認）</b>必須が揃いAIが下書き作成。獣医師の確認待ち</div>
+  <div class="stsep">▶</div>
+  <div class="st s4"><b>完成</b>獣医師が確認・確定</div>
+</div>
+<p style="font-size:.88rem;margin-bottom:0">補助バッジ：<b>🖼画像未挿入</b>（NAS画像がまだ）／<b>🧪検査値待ち</b>。画像の有無はAI下書きの条件には含まれません（画像所見は手入力のため）。</p>
+<img class="shot" src="hc-home.png" alt="ホーム画面：ステータス別のレポート一覧" style="margin-top:10px">
+<div class="cap">▲ ホーム画面：上部に4ステータスの件数、各レポートにプランとステータスのバッジ</div>
+</div>
+
+<h2>3. 獣医師の操作手順 <span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+
+<h3>3-1. 新規登録（健診日に）</h3>
+<div class="card">
+<p style="margin-top:0">ホーム右上の<span class="btn-example" style="background:#14b8a6">＋新規登録</span>から、カルテ番号・患者名・年齢・<b>プラン</b>・担当獣医師を登録します。<b>過去にどちらかのアプリで登録があればカルテ番号だけで患者情報が自動表示</b>されます（フィラリア健診と患者情報を共有）。</p>
+<table>
+<tr><th style="width:24%">プラン</th><th>内容（必須の検査）</th></tr>
+<tr><td>ちょこっと</td><td>CBC＋Chem18＋尿検査（画像ページなし）</td></tr>
+<tr><td>ベーシック</td><td>ちょこっとと同じ検査＋画像ページ構成</td></tr>
+<tr><td>しっかり</td><td>共通＋CRP（犬のみ）＋proBNP＋糞便検査</td></tr>
+<tr><td>循環器</td><td>しっかり＋電解質（Na/K/Cl）</td></tr>
+</table>
+<p style="font-size:.88rem">※必須項目は<b>動物種で自動的に出し分け</b>（CRPは犬のみ等）。表紙ではレントゲン・心エコー・腹エコー・心電図/血圧・臓器別評価を<b>オプションでチェック</b>して使う検査ページを出します。</p>
+<img class="shot" src="hc-cover.png" alt="表紙ページ：患者情報・プラン・オプション検査・飼い主メモ">
+<div class="cap">▲ 表紙：患者情報・プラン・オプション検査のチェック・「飼い主の心配している点（院内メモ・非印刷）」</div>
+</div>
+
+<h3>3-2. 身体検査（音声＋AIで振り分け）</h3>
+<div class="card">
+<p style="margin-top:0">体重・BCSと、12項目の所見を入力します。<b>「音声で一括入力（AI振り分け）」</b>に話す（または書く）と、AIが各項目（可視粘膜・骨格筋・歩行・心音・呼吸・皮膚・口腔…）へ自動で振り分けます。記載のない項目は<b>「正常」</b>が既定。<span class="btn-example" style="background:#0d9488; font-size:.78rem">すべて「正常」に変更</span>も使えます。</p>
+<img class="shot" src="hc-bodyexam.png" alt="身体検査ページ：音声入力とAI振り分け、各項目の所見">
+<div class="cap">▲ 身体検査：音声＋AI振り分け／各項目の所見（異常があれば具体的に記載）</div>
+</div>
+
+<h3>3-3. 画像検査の所見（レントゲン・心エコー・腹エコー・心電図/血圧）</h3>
+<div class="card">
+<p style="margin-top:0">各検査ページの<b>所見欄に手入力</b>します（音声可）。画像はNASフォルダから自動取込されて挿入されます。未記入の検査は既定文（「異常を認めませんでした」「特に問題は認められませんでした。」）になります。</p>
+<div class="imp"><b>重要：AIは画像（レントゲン／エコー／心電図）そのものを読影しません。</b>画像系の所見は<b>すべて獣医師の手入力</b>で、評価・総括にもそのままは反映されません。画像の所見をAIの総合評価に踏まえさせたい場合は、評価ページの<b>主観ノート</b>に記載してください。</div>
+</div>
+
+<h3>3-4. 評価（AIの下書きをカードで確認・修正）</h3>
+<div class="card">
+<p style="margin-top:0">検査値が揃うと、AIが<b>「異常点 ⇄ 提案」</b>のカードを自動で下書きします（🟡「自動追加」マーカー付き）。獣医師がテキストを直すか「確認」を押すとマーカーが外れます。複数の所見は<b>「まとめる」</b>で1つの統合診断にできます。</p>
+<ul style="font-size:.92rem">
+<li><b>🔍 AI正当性チェック</b>：AIが自分の下書きを文献基準で自己点検した結果を表示（⚠＝要注意・ℹ＝参考）。過少評価などを検知します。<b>最終判断は獣医師</b>です。</li>
+<li><b>主観ノート</b>：ラフ入力（音声可）。AIが総括を書くときの材料になります。</li>
+<li>手動でやり直したいときは<span class="btn-example" style="background:#0d9488; font-size:.78rem">✦AIで整形</span>。</li>
+</ul>
+<img class="shot" src="hc-eval.png" alt="評価ページ：AI提案カードとAI正当性チェック">
+<div class="cap">▲ 評価：AIの下書きカード（異常点／提案）、上部にAI正当性チェック、右上に印刷・LINE送信</div>
+</div>
+
+<h3>3-5. 検査結果（数値表・前回比較）</h3>
+<div class="card">
+<p style="margin-top:0">血液・尿・便の数値が表で並び、<b>今回／前回／前々回</b>の比較が見られます（基準値またぎは↑↓表示）。取り込みが遅れていれば<span class="btn-example" style="background:#0d9488; font-size:.78rem">再取得</span>で即時取り込み。</p>
+<img class="shot" src="hc-labs.png" alt="検査結果ページ：CBC・生化学・尿の数値と前回比較">
+<div class="cap">▲ 検査結果：CBC・生化学・尿の数値（参考値・日付つき）と経時推移</div>
+</div>
+
+<h3>3-6. 完成・出力</h3>
+<div class="card">
+内容を確認したら、ヘッダの<span class="btn-example" style="background:#6366f1; font-size:.78rem">🖨印刷</span>で報告書PDF、<span class="btn-example" style="background:#16a34a; font-size:.78rem">LINEで送る</span>で飼い主へ送信（§6）。<b>保存ボタンは不要</b>です（編集すると自動保存。「保存中→✓保存済」が表示されます）。
+</div>
+
+<h2>4. AIがやっていること（詳細）</h2>
+<div class="card">
+<table>
+<tr><th style="width:30%">AIの仕事</th><th>内容</th></tr>
+<tr><td>身体検査の振り分け</td><td>音声/ラフ入力 → 12項目へ自動仕分け・文体を整える</td></tr>
+<tr><td>検査値の評価（自動下書き）</td><td>異常のあった検査群（CBC／生化学／電解質／尿…）ごとに「異常点⇄提案」を作成。年齢・犬種・既往歴・<b>過去の所見</b>を踏まえる</td></tr>
+<tr><td>過去との比較</td><td>前回・前々回と比べ、<b>再発なら「前回の健診でも認められましたが」と自然に言及</b></td></tr>
+<tr><td>AI正当性チェック</td><td>下書きを文献ベースで自己点検し、過少評価などを警告</td></tr>
+<tr><td>フレーズ集の自動学習</td><td>採用された提案文を蓄積し、次回以降の下書き精度を高める</td></tr>
+</table>
+<div class="note"><b>AIが見ないもの</b>：レントゲン／エコー／心電図の<b>画像と所見文</b>（＝手入力・読影AIなし）、正常値の項目、画像そのもの。これらをAIの総合評価に踏まえさせたいときは<b>主観ノートに記載</b>してください。AIは<b>カルテにない処置・診断を勝手に足しません</b>（推測・補完は禁止設定）。</div>
+</div>
+
+<h2>5. 自動でやっていること（操作不要）</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">仕組み</th><th>タイミング</th><th>内容</th></tr>
+<tr><td>検査データの定期取込</td><td>8時・12時・15時・18時</td><td>Ahrmicsから結果を取得し、作業中レポートに反映。必須が揃えばAI下書き発火</td></tr>
+<tr><td>NAS画像の取込</td><td>同上</td><td>レントゲン／エコーのNASフォルダを名前（＋フリガナ）で照合し自動挿入。あいまいは取込画面で確認</td></tr>
+<tr><td>自動保存</td><td>編集のたび</td><td>約0.6秒ごとに自動保存（保存ボタン不要）</td></tr>
+</table>
+<p style="font-size:.88rem;margin-bottom:0">急ぐときは、検査結果ページの「再取得」やホーム右上の「取込」で即時実行できます。</p>
+</div>
+
+<h2>6. 飼い主への送信（LINE）<span class="badge b-vet" style="margin-left:6px">獣医師がレビュー必須</span></h2>
+<div class="card">
+<p style="margin-top:0"><b>フィラリア健診と違い、定期健診は必ず獣医師が内容を確認してから送信</b>します（自動送信はしません）。評価ページ右上の<span class="btn-example" style="background:#16a34a; font-size:.78rem">LINEで送る</span>で、連携済みの飼い主さんへ報告書（PDF閲覧可）が届きます。</p>
+<ul style="font-size:.92rem">
+<li>飼い主さんの<b>LINE連携は最初の1回だけ</b>（公式アカウント友だち追加＋診察券番号）。フィラリア健診と<b>同じ連携でOK</b>。</li>
+<li><b>二重送信ガード</b>：直近48時間以内に同じ飼い主さんへ（フィラリア健診含め）別の結果を送信済みなら確認が出ます。</li>
+<li>連携がまだの飼い主さんは受付でQRから案内（フィラリア健診ガイドのQRと共通）。</li>
+</ul>
+</div>
+
+<h2>7. 既往歴の登録（AIの評価精度が上がります）<span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+<div class="card">
+<p style="margin-top:0">患者ごとに<b>既往歴</b>を登録しておくと、AIが評価のときに踏まえます（例：心エコーで経過観察中の子に重複した検査提案をしない）。<b>一度登録すればフィラリア健診と共通</b>で使われます。</p>
+<ol>
+<li>ヘッダの<b>「患者一覧」</b>を開く → 患者の<b>編集</b>を開く</li>
+<li><b>「既往歴（両アプリ共通・AIが参照します）」</b>に入力 →「既往歴を保存」</li>
+</ol>
+<table>
+<tr><th style="width:34%">項目</th><th>書き方</th></tr>
+<tr><td>診断がついている病名（1行に1つ）</td><td>例：<code>僧帽弁閉鎖不全症</code>／<code>慢性腎臓病</code>。確定診断のみ。</td></tr>
+<tr><td>定期的に行っている検診</td><td>血液／レントゲン／心エコー／腹エコー／尿 からチェック＋頻度（例：半年ごと）・目的（例：心臓の経過確認）。</td></tr>
+</table>
+<p style="font-size:.88rem;margin-bottom:0">犬種（異常値が出やすい犬種）も登録すると、よりその犬種に即した評価になります。</p>
+</div>
+
+<h2>8. フィラリア健診アプリとの違い</h2>
+<div class="card">
+<table>
+<tr><th></th><th>定期健康診断（このアプリ）</th><th>フィラリア健診</th></tr>
+<tr><td>内容</td><td>からだ全体（身体検査・血液・画像・尿便・臓器評価）</td><td>血液中心（CBC＋生化学18項目）</td></tr>
+<tr><td>結果の送信</td><td><b>必ず獣医師がレビューしてから</b>送信</td><td>正常は自動送信（異常のみ獣医師確認）</td></tr>
+<tr><td>主な使い手</td><td>獣医師</td><td>受付・スタッフ・獣医師</td></tr>
+<tr><td>URL</td><td>http://192.168.20.250:3100</td><td>http://192.168.20.250:3300</td></tr>
+</table>
+<p style="font-size:.88rem;margin-bottom:0">患者情報・既往歴・過去レポート・LINE連携は<b>両アプリ共通</b>。一度入れた情報はどちらでも使えます。</p>
+</div>
+
+<h2>9. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">Q</th><th>A</th></tr>
+<tr><td>AIの下書きはそのまま送っていい？</td><td><b>必ず獣医師が確認・修正してください。</b>AIは下書き係です。特に「AI正当性チェック」の⚠は確認を。</td></tr>
+<tr><td>画像の所見がAI評価に入っていない</td><td>仕様です（AIは画像を読影しません）。評価に反映したい画像所見は<b>主観ノート</b>に書いてください。</td></tr>
+<tr><td>検査値が取り込まれない</td><td>取込は8/12/15/18時の自動実行。急ぐときは検査結果ページの「再取得」。まだカルテに結果が無い場合は揃ってから入ります。来ない必須項目は受付が「未実施」にできます。</td></tr>
+<tr><td>同じ家にもう1頭いる</td><td>患者一覧の「👪 同じ家にもう1頭」から、枝番違いで別個体として登録できます。</td></tr>
+<tr><td>保存ボタンがない</td><td>自動保存です（「✓保存済」表示）。保存操作は不要。</td></tr>
+<tr><td>音声入力が使えない</td><td>音声はHTTPSが必要です。<b>https://serverpc.tail2de5bb.ts.net:8443</b>（Tailscale ON）を開いてください。</td></tr>
+<tr><td>レポートを間違えて作った</td><td>レポート編集画面のヘッダ「🗑削除」で削除できます（バックアップは残ります）。</td></tr>
+</table>
+</div>
+
+<footer>荻窪ツイン動物病院 ｜ 定期健康診断アプリ 使い方ガイド（2026-06-13版）<br>不明点は院長まで</footer>
+</div>
+</body>
+</html>

@@ -17,6 +17,9 @@
   a.card:active { transform: scale(.99); }
   a.card.dental:hover, a.card.dental:focus { border-color: #93c5fd; }
   a.card.filaria:hover, a.card.filaria:focus { border-color: #f9a8d4; }
+  a.card.health:hover, a.card.health:focus { border-color: #5eead4; }
+  .health .badge { background: #f0fdfa; color: #0d9488; border: 1px solid #99f6e4; }
+  .health .open { color: #0d9488; }
   .cardhead { display: flex; align-items: center; gap: 14px; }
   .icon { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; font-size: 1.6rem; flex: 0 0 auto; }
   .dental .icon { background: #eff6ff; }
@@ -64,6 +67,19 @@
   <div class="desc">フィラリア健診の血液検査結果を自動でLINE報告。患者登録のしかた・当日の流れ・飼い主さんのLINE連携と受け取り・定期健康診断との連携。</div>
   <div class="open">ガイドを開く →</div>
 </a>
+
+<a class="card health" href="health.html">
+  <div class="cardhead">
+    <div class="icon" style="background:#f0fdfa">🩺</div>
+    <div>
+      <h2>定期健康診断アプリ</h2>
+      <span class="badge">主に獣医師向け</span>
+    </div>
+  </div>
+  <div class="desc">からだ全体の健康診断報告書づくり。検査データの自動取込・AI評価下書き・身体検査/画像所見の入力・過去比較・LINE送信（獣医師レビュー必須）。</div>
+  <div class="open">ガイドを開く →</div>
+</a>
+
 
 <footer>荻窪ツイン動物病院 ｜ 院内アプリ 使用方法ガイド<br>ガイドの追加・修正は院長まで</footer>
 </div>
