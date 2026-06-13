@@ -18,8 +18,12 @@
   a.card.dental:hover, a.card.dental:focus { border-color: #93c5fd; }
   a.card.filaria:hover, a.card.filaria:focus { border-color: #f9a8d4; }
   a.card.health:hover, a.card.health:focus { border-color: #5eead4; }
+  a.card.inventory:hover, a.card.inventory:focus { border-color: #fdba74; }
   .health .badge { background: #f0fdfa; color: #0d9488; border: 1px solid #99f6e4; }
   .health .open { color: #0d9488; }
+  .inventory .icon { background: #fff7ed; }
+  .inventory .badge { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+  .inventory .open { color: #ea580c; }
   .cardhead { display: flex; align-items: center; gap: 14px; }
   .icon { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; font-size: 1.6rem; flex: 0 0 auto; }
   .dental .icon { background: #eff6ff; }
@@ -77,6 +81,18 @@
     </div>
   </div>
   <div class="desc">からだ全体の健康診断報告書づくり。検査データの自動取込・AI評価下書き・身体検査/画像所見の入力・過去比較・LINE送信（獣医師レビュー必須）。</div>
+  <div class="open">ガイドを開く →</div>
+</a>
+
+<a class="card inventory" href="inventory.html">
+  <div class="cardhead">
+    <div class="icon">📦</div>
+    <div>
+      <h2>在庫・発注管理アプリ</h2>
+      <span class="badge">受付・スタッフ向け</span>
+    </div>
+  </div>
+  <div class="desc">院内の在庫と発注を1つで管理。在庫一覧・発注の登録／発注先別／納品（未発注→発注中→納品済）・納品履歴・棚卸・発注先/スタッフ/発注アラート/CSV入出力の使い方。</div>
   <div class="open">ガイドを開く →</div>
 </a>
 

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>在庫・発注管理アプリ 使い方ガイド｜荻窪ツイン動物病院</title>
+<style>
+  :root {
+    --amber: #ea580c; --amber-bg: #fff7ed;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --slate: #334155; --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #c2410c, #f97316); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h1 small.tophint a { color: #fff; text-decoration: underline; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--amber); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  code { background: #f1f5f9; padding: 1px 6px; border-radius: 6px; font-size: .88em; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fed7aa; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff{ border-color: #fdba74; background: var(--amber-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+  .tab { border: 2px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: .85rem; background: #fff; flex: 1; min-width: 150px; }
+  .tab b { display: block; font-size: .95rem; }
+  .note { background: var(--amber-bg); border: 1px solid #fed7aa; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--blue-bg); border: 1px solid #bfdbfe; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .warn { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .status-flow { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  .st { flex: 1; min-width: 140px; border-radius: 10px; padding: 8px 10px; font-size: .85rem; text-align: center; border: 2px solid var(--border); background: #fff; }
+  .st b { display: block; font-size: .92rem; }
+  .st.s1 { border-color: #fecaca; background: var(--red-bg); } .st.s2 { border-color: #fdba74; background: var(--amber-bg);} .st.s3 { border-color: #86efac; background: var(--green-bg);}
+  .stsep { align-self: center; color: #94a3b8; font-weight: 800; }
+  .btn-example { display: inline-block; padding: 3px 12px; border-radius: 8px; font-size: .82rem; font-weight: 700; color: #fff; }
+  .shots { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin: 14px 0; }
+  .shotwrap { flex: 0 1 300px; max-width: 320px; }
+  .shot { width: 100%; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,.10); display: block; }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 6px; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>在庫・発注管理アプリ 使い方ガイド
+<small class="tophint"><a href="./">← ガイド一覧へ</a></small>
+<small>受付・スタッフ向け ｜ 2026年6月13日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+院内の<b>在庫</b>と<b>発注</b>を1つで管理するアプリです（バージョン2.2）。足りない商品を<b>「発注を登録」</b>→ 実際に注文したら<b>「発注済み」</b>→ 届いたら<b>「納品済」</b>にすると在庫に反映され、履歴に残ります。ときどき<b>棚卸</b>で実数を合わせ、<b>設定</b>でスタッフ・発注先・発注アラート・Excel/CSVを管理します。商品は現在<b>1,040件</b>登録されています。
+<div style="margin-top:8px">
+<span class="badge b-staff">橙 = スタッフの操作</span>
+<span class="badge b-auto">緑 = 自動</span>
+</div>
+</div>
+
+<div class="card" style="background:var(--amber-bg);border-color:#fed7aa">
+<b>アクセス</b>（院内PC・iPad・スマホ・院外も可）<br>
+・院内LAN：<b>https://192.168.20.250:3000</b><br>
+・院外（Tailscale ON）：<b>https://100.111.66.29:3000</b><br>
+<span style="font-size:.88rem;color:#9a3412">※ 院内ツールのため、初回は「この接続ではプライバシーが保護されません」等の証明書の警告が出ることがあります。<b>「詳細設定 → アクセスする（続行）」</b>で進んで問題ありません。</span><br>
+<span style="font-size:.88rem;color:#9a3412">※ 画面下部の<b>6つのタブ</b>（ホーム／在庫／発注／履歴／棚卸／設定）で切り替えます。</span>
+</div>
+
+<h2>1. 画面の全体像（下部の6タブ）</h2>
+<div class="card">
+<div class="tabs">
+  <div class="tab"><b>🏠 ホーム</b>発注の入口・取り置き確認・件数の一覧</div>
+  <div class="tab"><b>📦 在庫</b>全商品の一覧・検索・商品の登録/編集</div>
+  <div class="tab"><b>🛒 発注</b>発注の管理（未発注→発注中→納品済）</div>
+  <div class="tab"><b>🧾 履歴</b>納品の記録（1か月で自動削除）</div>
+  <div class="tab"><b>✅ 棚卸</b>実在庫数の確認・つき合わせ</div>
+  <div class="tab"><b>⚙️ 設定</b>スタッフ・発注先・アラート・CSV</div>
+</div>
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="inv-home.png" alt="ホーム画面"><div class="cap">▲ ホーム：登録商品／未発注／発注中の件数、「発注を登録する」、取り置き（未発注）</div></div>
+</div>
+</div>
+
+<h2>2. 基本の流れ</h2>
+<div class="flow">
+  <div class="fbox staff"><b>① 足りない商品に気づく</b>
+  「在庫」タブで残数を確認、または最低在庫・発注アラートで気づきます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>② 「発注を登録する」で発注リストに追加</b>
+  ホームの<span class="btn-example" style="background:#2563eb">🛒 発注を登録する</span>から商品・発注先・数量を入れて登録。この時点では<b>「未発注（取り置き）」</b>です。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>③ 実際に注文したら「発注済み」</b>
+  発注先へ注文したら、発注タブで各商品の<span class="btn-example" style="background:#ea580c">🚚 発注済み</span>を押す → ステータスが<b>「発注中」</b>に変わります。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>④ 届いたら「納品済」に</b>
+  納品されたら<b>「納品済」</b>にします。<b>「履歴」</b>に発注者・納品者つきで記録されます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>⑤ ときどき棚卸で実数合わせ</b>
+  「棚卸」タブで、保管場所ごとに実際の在庫数を数えてつき合わせます。</div>
+</div>
+
+<h2>3. 発注のステータス</h2>
+<div class="card">
+<div class="status-flow">
+  <div class="st s1"><b>未発注</b>発注リストに入れただけ。まだ注文していない（取り置き含む）</div>
+  <div class="stsep">▶</div>
+  <div class="st s2"><b>発注中</b>「発注済み」を押した状態。納品待ち</div>
+  <div class="stsep">▶</div>
+  <div class="st s3"><b>納品済</b>届いた。履歴に記録される</div>
+</div>
+<p style="font-size:.88rem;margin-bottom:0">「発注」タブの上部タブで切り替え、<b>担当者</b>・<b>取り置きのみ</b>での絞り込みや、商品名での検索ができます。</p>
+</div>
+
+<h2>4. 在庫タブ（商品の一覧・登録・編集）</h2>
+<div class="card">
+<p style="margin-top:0">全商品の一覧です。上の<b>検索</b>（商品名・発注先）と<b>分類チップ</b>（すべて／サプリメント／注射薬／医療消耗品 …）で絞り込めます。各商品カードには <b>☆お気に入り ／ ✏編集 ／ ✓棚卸対象 ／ 🗑削除</b> のボタンがあります。</p>
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="inv-list.png" alt="在庫一覧"><div class="cap">▲ 在庫一覧：商品名・発注先・分類・最低在庫と、各種ボタン</div></div>
+  <div class="shotwrap"><img class="shot" src="inv-add.png" alt="商品登録フォーム"><div class="cap">▲ 商品登録／編集：必須は「商品名・発注先・分類」</div></div>
+</div>
+
+<h3>商品の新規登録・編集</h3>
+<p>右上の<span class="btn-example" style="background:#2563eb">＋ 商品追加</span>、または各商品の<b>✏編集</b>から、次の項目を設定します（<b>*</b>は必須）。</p>
+<table>
+<tr><th style="width:26%">項目</th><th>内容</th></tr>
+<tr><td>商品名 <b>*</b></td><td>商品の名前。</td></tr>
+<tr><td>発注先 <b>*</b></td><td>どこに注文するか（候補から選択可）。</td></tr>
+<tr><td>分類 <b>*</b></td><td>注射薬・内服薬・医療消耗品・処方食 など。<code>+ 自由入力</code>で新しい分類も追加できます。</td></tr>
+<tr><td>最低在庫数</td><td>これを下回ったら発注の目安。</td></tr>
+<tr><td>単位</td><td>箱／本／個／袋／瓶／枚／缶。</td></tr>
+<tr><td>箱単価（円）・入数（個/箱）</td><td>箱の値段と、1箱に何個入りか。入れると<b>「1個あたり単価」が自動計算</b>されます（例：¥3,010）。</td></tr>
+<tr><td>保管場所</td><td>薬棚・処置室・注射棚（1F/2F）・冷蔵庫（処/ス/2F）・フード棚（処/外）・歯科処置室・歯科準備室・受付 など。棚卸でこの場所ごとに数えます。</td></tr>
+<tr><td>発注アラート</td><td>ONにすると、この商品を発注登録するとき確認ダイアログが出ます。</td></tr>
+<tr><td>棚卸し対象</td><td>ONにすると棚卸の数量確認の対象になります。</td></tr>
+<tr><td>メモ</td><td>自由メモ。</td></tr>
+</table>
+<p style="font-size:.88rem;margin-bottom:0">入力後、右上の<b>「保存」</b>で確定します。</p>
+</div>
+
+<h2>5. 発注を登録する <span class="badge b-staff" style="margin-left:6px">スタッフ</span></h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="inv-order-new.png" alt="発注登録フォーム"><div class="cap">▲ 発注登録：商品名・発注先・発注数量が必須。写真や取り置きも指定可</div></div>
+  <div class="shotwrap"><img class="shot" src="inv-orders.png" alt="発注管理"><div class="cap">▲ 発注管理：未発注／発注中／納品済で切替。「🚚発注済み」で発注中へ</div></div>
+</div>
+<p>ホームの<span class="btn-example" style="background:#2563eb">🛒 発注を登録する</span>（または発注タブの<span class="btn-example" style="background:#2563eb">＋</span>）から登録します。</p>
+<table>
+<tr><th style="width:26%">項目</th><th>内容</th></tr>
+<tr><td>商品名 <b>*</b></td><td>入力すると登録済み商品から候補が出ます。</td></tr>
+<tr><td>発注先 <b>*</b></td><td>候補から選択可。</td></tr>
+<tr><td>発注数量 <b>*</b></td><td>＋ / − で増減。</td></tr>
+<tr><td>発注メモ</td><td>例：急ぎ、次回まとめて、定時発注 等。</td></tr>
+<tr><td>写真</td><td>JPEG / PNG / WebP・15MBまで（任意・1枚）。現物やラベルの撮影に。</td></tr>
+<tr><td>取り置き商品</td><td>飼い主さん用に取り置く商品のときON（後述）。</td></tr>
+<tr><td>入力者 <b>*</b></td><td>自分を選びます（VET／VN／TR のスタッフ一覧から）。</td></tr>
+</table>
+<p style="font-size:.88rem">最後に右上の<b>「登録」</b>。登録直後は<b>未発注</b>です。実際に注文したら発注タブで<b>「🚚発注済み」</b>を押して<b>発注中</b>にします。</p>
+<div class="warn"><b>取り置き商品の注意（顧客情報）：</b>「取り置き商品」では飼い主さん・ペットのお名前を入れることがあります。<b>これは院内限定の情報です。</b>スクリーンショットを外部に共有したり、画面を院外の人に見せたりしないでください。</div>
+</div>
+
+<h2>6. 履歴タブ（納品の記録）</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="inv-history.png" alt="納品履歴"><div class="cap">▲ 納品履歴：発注日・納品日・入力者・発注者・納品者が残る</div></div>
+</div>
+<p style="margin-top:0">「納品済」にした商品の記録（いつ・何が・誰が発注/納品したか）が一覧になります。商品名・発注先で検索できます。</p>
+<div class="note"><b>注意：納品履歴は「納品日から1か月後」に自動で削除されます。</b>古い記録は残りません。残したい場合は設定のExcel/CSVエクスポートで控えておいてください。</div>
+</div>
+
+<h2>7. 棚卸タブ（実在庫の確認）</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="inv-stocktake.png" alt="棚卸"><div class="cap">▲ 棚卸：保管場所・分類で絞り、入数を見ながら在庫数を入力</div></div>
+</div>
+<p style="margin-top:0">定期的に実際の在庫数を数えてつき合わせる画面です。上部に進み具合（<b>棚卸対象／棚卸済み／未登録</b>）が出ます。</p>
+<ul style="font-size:.92rem">
+<li><b>ロケーション（保管場所）で絞り込み</b>：処置室・薬棚・歯科準備室・冷蔵庫…ごとに件数が出るので、<b>場所単位で数える</b>と効率的です。</li>
+<li><b>分類で絞り込み</b>：注射薬・医療消耗品・サプリメント…ごとにも絞れます。</li>
+<li>各商品で <b>入数</b>（例：50個入り）を見ながら<b>在庫数</b>を入力。半端は<b>端数</b>（例：<code>0.5</code> または <code>5/10</code>）で入れられます。</li>
+<li><b>担当者を選択（任意）</b>してから始めると、誰が数えたか分かります。</li>
+<li>数えていて在庫表に無い物が見つかったら<b>「在庫表にないもの」</b>から拾えます（＝未登録の発見）。</li>
+<li>各商品で<b>「保存して完了」</b>を押すと棚卸済みになります。</li>
+</ul>
+</div>
+
+<h2>8. 設定タブ</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="inv-settings.png" alt="設定トップ"><div class="cap">▲ 設定：スタッフ／発注先／アラート／CSV</div></div>
+  <div class="shotwrap"><img class="shot" src="inv-suppliers.png" alt="発注先管理"><div class="cap">▲ 発注先管理：注文方法・送料条件・締め時間などをメモできる</div></div>
+  <div class="shotwrap"><img class="shot" src="inv-csv.png" alt="Excel/CSV操作"><div class="cap">▲ Excel/CSV：一括登録・出力・棚卸データ出力</div></div>
+</div>
+<table>
+<tr><th style="width:32%">項目</th><th>できること</th></tr>
+<tr><td>スタッフ管理</td><td>担当者の追加・編集・削除。発注・棚卸の「担当者／入力者」に出てきます。</td></tr>
+<tr><td>発注先管理</td><td>発注先の<b>連絡先・連絡方法（Web注文など）・メモ</b>を管理。送料無料の条件・締め時間・グループコード等を書いておけます。</td></tr>
+<tr><td>発注アラート設定（分類）</td><td>チェックした分類の商品を発注登録するとき、<b>確認アラート</b>を表示。</td></tr>
+<tr><td>発注アラート設定（商品別）</td><td>商品ごとにアラートを<b>ON/OFF</b>。</td></tr>
+<tr><td>Excel / CSV 操作</td><td><b>インポート</b>（一括登録）／<b>エクスポート</b>（商品データ）／<b>棚卸データエクスポート</b>。フォーマットは <code>CSV(.csv) UTF-8</code>、列は <code>商品名, 商品分類, 発注先, 最低在庫, 現在庫, 箱単価</code>。</td></tr>
+<tr><td>アプリ情報</td><td>アプリ名「在庫・発注管理」／バージョン 2.2 ／用途の表示。</td></tr>
+</table>
+</div>
+
+<h2>9. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:40%">Q</th><th>A</th></tr>
+<tr><td>開くと「安全でない／証明書」の警告が出る</td><td>院内ツールのため正常です。<b>「詳細設定 → アクセスする（続行）」</b>で進んでください。</td></tr>
+<tr><td>「未発注」と「発注中」の違いは？</td><td><b>未発注</b>＝アプリに発注予定を入れただけ。<b>発注中</b>＝実際に発注先へ注文済み（「🚚発注済み」を押した状態）。</td></tr>
+<tr><td>履歴が消えている</td><td>納品履歴は<b>納品日から1か月で自動削除</b>されます（仕様）。残したい記録は設定のCSV/Excelエクスポートで控えてください。</td></tr>
+<tr><td>商品が一覧にない</td><td>在庫タブの<b>「商品追加」</b>から登録、または設定の<b>Excel/CSVインポート</b>で一括登録できます。棚卸中に見つかった未登録品は「在庫表にないもの」から拾えます。</td></tr>
+<tr><td>発注アラートを出したい／消したい</td><td>設定の<b>発注アラート設定（分類）</b>または<b>（商品別）</b>で調整します。</td></tr>
+<tr><td>発注や棚卸の担当者が選べない</td><td>設定の<b>スタッフ管理</b>で担当者を追加してください。</td></tr>
+<tr><td>1個あたりの値段を出したい</td><td>商品編集で<b>箱単価</b>と<b>入数</b>を入れると「1個あたり単価」が自動計算されます。</td></tr>
+<tr><td>院外から使いたい</td><td>Tailscale を ON にして <b>https://100.111.66.29:3000</b> を開きます。</td></tr>
+<tr><td>このアプリの修正・要望は？</td><td>院内ツールです。不具合・追加要望は院長までお伝えください。</td></tr>
+</table>
+</div>
+
+<footer>荻窪ツイン動物病院 ｜ 在庫・発注管理アプリ 使い方ガイド（2026-06-13版）<br>不明点・要望は院長まで</footer>
+</div>
+</body>
+</html>
