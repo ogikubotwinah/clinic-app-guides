@@ -19,11 +19,15 @@
   a.card.filaria:hover, a.card.filaria:focus { border-color: #f9a8d4; }
   a.card.health:hover, a.card.health:focus { border-color: #5eead4; }
   a.card.inventory:hover, a.card.inventory:focus { border-color: #fdba74; }
+  a.card.petty:hover, a.card.petty:focus { border-color: #86efac; }
   .health .badge { background: #f0fdfa; color: #0d9488; border: 1px solid #99f6e4; }
   .health .open { color: #0d9488; }
   .inventory .icon { background: #fff7ed; }
   .inventory .badge { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
   .inventory .open { color: #ea580c; }
+  .petty .icon { background: #f0fdf4; }
+  .petty .badge { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .petty .open { color: #16a34a; }
   .cardhead { display: flex; align-items: center; gap: 14px; }
   .icon { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; font-size: 1.6rem; flex: 0 0 auto; }
   .dental .icon { background: #eff6ff; }
@@ -93,6 +97,18 @@
     </div>
   </div>
   <div class="desc">院内の在庫と発注を1つで管理。在庫一覧・発注の登録／発注先別／納品（未発注→発注中→納品済）・納品履歴・棚卸・発注先/スタッフ/発注アラート/CSV入出力の使い方。</div>
+  <div class="open">ガイドを開く →</div>
+</a>
+
+<a class="card petty" href="petty-cash.html">
+  <div class="cardhead">
+    <div class="icon">💰</div>
+    <div>
+      <h2>小口管理アプリ（病院小口）</h2>
+      <span class="badge">受付・スタッフ向け</span>
+    </div>
+  </div>
+  <div class="desc">病院の小口現金を管理。領収書を撮るとAIが金額・店名・カテゴリを自動入力。補充の記録、現金が足りない時の「保留」と銀行からの引き出し目安、月次まとめ・CSV出力の使い方。</div>
   <div class="open">ガイドを開く →</div>
 </a>
 

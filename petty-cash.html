@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>小口管理アプリ 使い方ガイド｜荻窪ツイン動物病院</title>
+<style>
+  :root {
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --amber: #d97706; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --slate: #334155; --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #15803d, #22c55e); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h1 small.tophint a { color: #fff; text-decoration: underline; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--green); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  code { background: #f1f5f9; padding: 1px 6px; border-radius: 6px; font-size: .88em; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff{ background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-cash { background: #f1f5f9; color: var(--slate); border: 1px solid #cbd5e1; }
+  .b-card { background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff{ border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+  .tab { border: 2px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: .85rem; background: #fff; flex: 1; min-width: 150px; }
+  .tab b { display: block; font-size: .95rem; }
+  .note { background: var(--green-bg); border: 1px solid #bbf7d0; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--blue-bg); border: 1px solid #bfdbfe; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .warn { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .hold-flow { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  .st { flex: 1; min-width: 150px; border-radius: 10px; padding: 8px 10px; font-size: .85rem; text-align: center; border: 2px solid var(--border); background: #fff; }
+  .st b { display: block; font-size: .92rem; }
+  .st.s1 { border-color: #fde68a; background: var(--amber-bg); } .st.s2 { border-color: #86efac; background: var(--green-bg);}
+  .stsep { align-self: center; color: #94a3b8; font-weight: 800; }
+  .btn-example { display: inline-block; padding: 3px 12px; border-radius: 8px; font-size: .82rem; font-weight: 700; color: #fff; }
+  .shots { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin: 14px 0; }
+  .shotwrap { flex: 0 1 300px; max-width: 320px; }
+  .shot { width: 100%; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,.10); display: block; }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 6px; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>小口管理アプリ 使い方ガイド
+<small class="tophint"><a href="./">← ガイド一覧へ</a></small>
+<small>受付・スタッフ向け（病院小口） ｜ 2026年6月16日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+病院の小口現金（<b>病院小口</b>）を管理するアプリです。買い物をしたら<b>「領収書を追加」</b>でレシートを撮影 → <b>AIが日付・店名・金額・カテゴリを自動で読み取る</b> → 確認して<b>保存</b>。銀行から下ろして金庫に入れたら<b>「補充を記録」</b>。現金が足りなそうな大きい支払い（例：定期代のまとめ払い）は<b>「保留」</b>にして待たせられます。ホームには<b>今いくら銀行から下ろせばいいか（引き出し目安）</b>も出ます。月末は<b>月次</b>でまとめ・CSV出力できます。
+<div style="margin-top:8px">
+<span class="badge b-staff">緑 = スタッフの操作</span>
+<span class="badge b-cash">現金＝残高が減る</span>
+<span class="badge b-card">カード＝残高は減らない</span>
+</div>
+</div>
+
+<div class="card" style="background:var(--green-bg);border-color:#bbf7d0">
+<b>アクセス</b>（スマホ・院内PC・院外も可）<br>
+・院外・スマホ（おすすめ）：<b>https://serverpc.tail2de5bb.ts.net:8445</b><br>
+・院内のWi-Fi／LAN：<b>http://192.168.20.250:3400</b><br>
+<span style="font-size:.88rem;color:#166534">※ 院外URLは<b>Tailscale（VPN）がオンの端末</b>からのみ開けます。開けないときはスマホのTailscaleがオンか確認してください。</span><br>
+<span style="font-size:.88rem;color:#166534">※ 最初に<b>スタッフ用パスコード</b>を入れてログインします（パスコードは院長から共有されます）。</span>
+</div>
+
+<div class="imp">
+<b>「病院小口」だけを使います。</b>画面上部のタブに<b>病院小口</b>（みなさんが使う方）と <b>🔒 院長小口</b> がありますが、スタッフ用パスコードでは<b>病院小口だけ</b>が見えます。院長小口はスタッフからは見えません。
+</div>
+
+<h2>1. 画面の全体像</h2>
+<div class="card">
+<div class="tabs">
+  <div class="tab"><b>🏠 ホーム</b>現金残高・引き出し目安・保留・最近の記録</div>
+  <div class="tab"><b>📋 一覧</b>記録の一覧・月や店名で検索</div>
+  <div class="tab"><b>📅 月次</b>月のまとめ・カテゴリ別・CSV出力</div>
+  <div class="tab"><b>⚙️ 設定</b>箱の名前・開始残高・目標残高</div>
+</div>
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-home.png" alt="ホーム画面"><div class="cap">▲ ホーム：現金残高、引き出し目安、保留中の支払い、最近の記録</div></div>
+</div>
+<p style="font-size:.88rem;margin-bottom:0">上の3つ（ホーム／一覧／月次）で画面を切り替え、右上の<b>⚙</b>で設定を開きます。</p>
+</div>
+
+<h2>2. 基本の流れ（領収書を記録する）</h2>
+<div class="flow">
+  <div class="fbox staff"><b>① 買い物をしたらレシートを用意</b>
+  病院のお金（小口）で支払った買い物のレシート・領収書を用意します。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>② ホームの「📷 領収書を追加」</b>
+  <span class="btn-example" style="background:var(--green)">📷 領収書を追加</span> を押し、<b>カメラで撮影</b>するか<b>写真を選ぶ</b>。写真なしで手入力もできます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>③ AIが自動で読み取る</b>
+  日付・店名・金額・消費税・カテゴリ・支払方法を<b>自動で入力</b>してくれます（数秒）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>④ 内容を確認して直す</b>
+  読み取りが合っているか確認。違っていれば直します（特に<b>金額・日付・現金/カード</b>）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>⑤「保存する」</b>
+  保存すると記録され、<b>現金で払った分はホームの残高から自動で引かれます</b>。</div>
+</div>
+
+<h2>3. 領収書を追加（入力項目）</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-capture.png" alt="領収書を追加フォーム"><div class="cap">▲ 領収書を追加：金額・支払方法・日付・支払先・カテゴリ・メモ</div></div>
+</div>
+<table>
+<tr><th style="width:26%">項目</th><th>内容</th></tr>
+<tr><td>金額</td><td>税込の支払額。レシート撮影なら自動で入ります。</td></tr>
+<tr><td>支払方法</td><td><span class="badge b-cash">現金</span>＝金庫から払った（残高が減る）／<span class="badge b-card">カード</span>＝カード払い（<b>残高は減りません</b>。記録だけ）。</td></tr>
+<tr><td>いまは保留にする</td><td>現金が足りなそうな時に「あとで支払う」として待たせます（<b>現金のときだけ</b>表示。次の章を参照）。</td></tr>
+<tr><td>日付</td><td>レシートの日付。</td></tr>
+<tr><td>支払先・店名</td><td>お店の名前。</td></tr>
+<tr><td>カテゴリ</td><td>消耗品費・旅費交通費・荷造運賃・会議費・福利厚生費 など（税理士さん用の科目）。</td></tr>
+<tr><td>メモ（任意）</td><td>但し書き・品目など。</td></tr>
+</table>
+<div class="note"><b>カードで払ったものも記録してください。</b>カードは現金残高からは引かれませんが、月次やCSVに「カード支出」として残るので、あとで見返すのに役立ちます。</div>
+</div>
+
+<h2>4. 補充を記録（銀行から下ろして金庫に入れた）</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-replenish.png" alt="補充を記録"><div class="cap">▲ 補充を記録：金額と補充日を入れるだけ</div></div>
+</div>
+<p style="margin-top:0">銀行から下ろして金庫にお金を入れたら、ホームの<span class="btn-example" style="background:var(--teal)">🏦 補充を記録</span>から<b>金額</b>と<b>補充日</b>を記録します。補充した分だけ<b>現金残高が増えます</b>。</p>
+</div>
+
+<h2>5. 支払いの「保留」と引き出し目安 <span class="badge b-staff" style="margin-left:6px">大事</span></h2>
+<div class="card">
+<p style="margin-top:0">現金が足りなそうな大きい支払い（例：<b>スタッフの定期代をまとめて払う</b>）を、いったん<b>「保留」</b>にして<b>お金を用意できるまで待たせる</b>ことができます。</p>
+<div class="hold-flow">
+  <div class="st s1"><b>保留中</b>領収書追加で「いまは保留にする」をON。<b>まだ残高から引かれません</b></div>
+  <div class="stsep">▶</div>
+  <div class="st s2"><b>支払う（確定）</b>お金を用意できたら「支払う」。残高から引かれ、<b>確定した日が記録日</b>になります</div>
+</div>
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-hold-detail.png" alt="保留中の記録"><div class="cap">▲ 保留中の記録：「保留中」の印。<b>支払う（現金で確定）</b>で確定</div></div>
+</div>
+<h3>引き出し目安（ホームのカード）</h3>
+<p>ホームの<b>「保留と引き出し目安」</b>カードに、銀行からいくら下ろせばいいかの目安が出ます。</p>
+<table>
+<tr><th style="width:34%">表示</th><th>意味</th></tr>
+<tr><td>保留中の合計</td><td>いま保留にしている支払いの合計。</td></tr>
+<tr><td>目標まで不足</td><td><b>目標残高</b>（標準は15万円）に対して、今いくら足りないか。</td></tr>
+<tr><td>銀行から引き出す目安</td><td><b>不足分 ＋ 保留の合計</b>。この金額を下ろせば、保留分を払っても残高が目標に戻ります。</td></tr>
+</table>
+<p style="font-size:.88rem">保留中の支払いは、用意ができたらホームの保留一覧の<span class="btn-example" style="background:var(--teal)">支払う</span>、または記録を開いて<b>「支払う（現金で確定）」</b>で確定します。</p>
+<div class="note"><b>保留中は一覧・月次・CSVには出ません。</b>まだ払っていないお金なので、<b>「支払う」で確定したときに初めて</b>記録・残高に反映されます。保留は<b>現金の支払い</b>だけに使えます（カードは対象外）。</div>
+</div>
+
+<h2>6. 一覧（記録を見る・探す）</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-list.png" alt="一覧画面"><div class="cap">▲ 一覧：月で絞り込み、店名・メモで検索、現金/カード/補充で切替</div></div>
+</div>
+<p style="margin-top:0">記録の一覧です。上で<b>月</b>を選び、<b>店名・メモで検索</b>、<b>すべて／現金／カード／補充・調整</b>のチップで絞り込めます。上部に<b>現金支出 計・カード支出 計</b>が出ます。各記録を押すと詳細（編集・削除）が開きます。</p>
+</div>
+
+<h2>7. 月次（まとめ・CSV出力）</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-month.png" alt="月次サマリ"><div class="cap">▲ 月次：現金/カード支出・補充・カテゴリ別と、CSV出力・印刷</div></div>
+</div>
+<p style="margin-top:0">月ごとのまとめです。<b>現金支出・カード支出・補充・調整</b>の合計と<b>カテゴリ別</b>の内訳が出ます。右上の<b>「CSV出力」</b>でExcelで開けるファイルを書き出せます（税理士さんへの共有用）。<b>「印刷」</b>もできます。</p>
+</div>
+
+<h2>8. 設定</h2>
+<div class="card">
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-settings.png" alt="設定画面"><div class="cap">▲ 設定：箱の名前・開始残高・目標残高</div></div>
+</div>
+<table>
+<tr><th style="width:30%">項目</th><th>内容</th></tr>
+<tr><td>箱の名前</td><td>帳簿の表示名（標準は「病院小口」）。</td></tr>
+<tr><td>開始残高</td><td>アプリを使い始めた時点で金庫にある現金。ここを実額にすると残高がぴったり合います。</td></tr>
+<tr><td>目標残高</td><td>銀行から引き出して戻す基準額（標準は<b>15万円</b>）。ホームの「引き出す目安」に使われます。</td></tr>
+</table>
+<p style="font-size:.88rem;margin-bottom:0">変更したら<b>「保存する」</b>を押します。</p>
+</div>
+
+<h2>9. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:40%">Q</th><th>A</th></tr>
+<tr><td>院外（スマホ）から開けない</td><td>スマホの<b>Tailscale をオン</b>にして <b>https://serverpc.tail2de5bb.ts.net:8445</b> を開いてください。</td></tr>
+<tr><td>カードで払ったのに残高が減らない</td><td>正常です。<b>カードは現金残高に影響しません</b>（記録だけ残ります）。現金で払った分だけ残高が減ります。</td></tr>
+<tr><td>大きい支払いで現金が足りない</td><td>領収書追加で<b>「いまは保留にする」</b>をON。お金を用意できたらホームの<b>「支払う」</b>で確定します。保留中は残高から引かれません。</td></tr>
+<tr><td>銀行からいくら下ろせばいい？</td><td>ホームの<b>「銀行から引き出す目安」</b>（不足分＋保留の合計）を参考にしてください。</td></tr>
+<tr><td>金額や店名の読み取りが間違っている</td><td>保存前に手で直せます。保存後も記録を開いて<b>「編集」</b>から直せます。</td></tr>
+<tr><td>保存した記録が一覧に見当たらない</td><td><b>保留中</b>の記録は一覧に出ません（ホームの「保留中の支払い」にあります）。「支払う」で確定すると一覧に出ます。</td></tr>
+<tr><td>金庫の現金と残高がズレている</td><td>院長にご相談ください（「調整」で合わせます）。</td></tr>
+<tr><td>院長小口のタブが見えない／開けない</td><td>正常です。<b>院長小口はスタッフからは見えません</b>。みなさんは「病院小口」を使います。</td></tr>
+<tr><td>このアプリの不具合・要望は？</td><td>院内ツールです。不具合・追加要望は院長までお伝えください。</td></tr>
+</table>
+</div>
+
+<div class="warn"><b>レシート撮影の注意：</b>領収書はお店のレシートが基本ですが、撮影のときに<b>飼い主さん・ペットのお名前やカルテ</b>などが一緒に写り込まないようにしてください。万一写った写真は保存・共有しないでください。</div>
+
+<footer>荻窪ツイン動物病院 ｜ 小口管理アプリ 使い方ガイド（2026-06-16版）<br>不明点・要望は院長まで</footer>
+</div>
+</body>
+</html>
