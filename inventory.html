@@ -23,9 +23,9 @@
   h3 { font-size: 1.02rem; margin: 22px 0 8px; }
   .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
   table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
-  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
   th { background: #f1f5f9; }
-  code { background: #f1f5f9; padding: 1px 6px; border-radius: 6px; font-size: .88em; }
+  code { background: #f1f5f9; padding: 1px 6px; border-radius: 6px; font-size: .88em; overflow-wrap: anywhere; word-break: break-word; }
   .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
   .b-staff{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fed7aa; }
   .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
@@ -59,7 +59,7 @@
 
 <h1>在庫・発注管理アプリ 使い方ガイド
 <small class="tophint"><a href="./">← ガイド一覧へ</a></small>
-<small>受付・スタッフ向け ｜ 2026年6月13日版 ｜ 荻窪ツイン動物病院</small></h1>
+<small>受付・スタッフ向け ｜ 2026年6月20日版 ｜ 荻窪ツイン動物病院</small></h1>
 
 <div class="card">
 <b>30秒まとめ</b><br>
@@ -72,9 +72,12 @@
 
 <div class="card" style="background:var(--amber-bg);border-color:#fed7aa">
 <b>アクセス</b>（院内PC・iPad・スマホ・院外も可）<br>
-・院内LAN：<b>https://192.168.20.250:3000</b><br>
-・院外（Tailscale ON）：<b>https://100.111.66.29:3000</b><br>
-<span style="font-size:.88rem;color:#9a3412">※ 院内ツールのため、初回は「この接続ではプライバシーが保護されません」等の証明書の警告が出ることがあります。<b>「詳細設定 → アクセスする（続行）」</b>で進んで問題ありません。</span><br>
+・院内PC（LAN）：<b>https://192.168.20.250:3000</b>（Edge / Chrome）<br>
+・iPhone / iPad・院外：<b>https://serverpc.tail2de5bb.ts.net</b>（Tailscale を ON。<b>証明書警告なし</b>）<br>
+<span style="font-size:.88rem;color:#9a3412">※ 院内PC（LAN）は院内ツールのため、初回は「この接続ではプライバシーが保護されません」等の証明書の警告が出ることがあります。<b>「詳細設定 → アクセスする（続行）」</b>で進んで問題ありません（Tailscaleの方は警告は出ません）。</span><br>
+<span style="font-size:.88rem;color:#9a3412">※ iPhone / iPad で<b>初めて使うとき</b>は、Tailscale のインストールとログイン（初回設定）が必要です。Gmailの二段階認証が要るため、<b>初回設定は院長が行います</b>。</span><br>
+<span style="font-size:.88rem;color:#9a3412">※ Safari で開いたら<b>「ホーム画面に追加」→「Webアプリとして表示」を ON</b> にすると、アプリのように使えます。</span><br>
+<span style="font-size:.88rem;color:#9a3412">※ うまく開けないときは、mini PC の電源・在庫アプリの起動・Tailscale が「Connected」か・URLの綴りを確認してください。</span><br>
 <span style="font-size:.88rem;color:#9a3412">※ 画面下部の<b>6つのタブ</b>（ホーム／在庫／発注／履歴／棚卸／設定）で切り替えます。</span>
 </div>
 
@@ -120,7 +123,11 @@
   <div class="stsep">▶</div>
   <div class="st s3"><b>納品済</b>届いた。履歴に記録される</div>
 </div>
-<p style="font-size:.88rem;margin-bottom:0">「発注」タブの上部タブで切り替え、<b>担当者</b>・<b>取り置きのみ</b>での絞り込みや、商品名での検索ができます。</p>
+<p style="font-size:.88rem">「発注」タブの上部タブで切り替え、<b>担当者</b>・<b>取り置きのみ</b>での絞り込みや、商品名での検索ができます。画面<b>右上の建物マーク</b>で<b>発注先ごと</b>に絞り込めます。</p>
+<ul style="font-size:.88rem;margin-bottom:0">
+<li><b>まとめて変更</b>：発注カードを<b>長押し</b>すると複数選択モードになり、同じ発注先の商品などを<b>一括でステータス変更</b>できます。</li>
+<li><b>押し間違えたら</b>：各カードの<b>「戻す」</b>で1つ前のステータスに戻せます。</li>
+</ul>
 </div>
 
 <h2>4. 在庫タブ（商品の一覧・登録・編集）</h2>
@@ -186,7 +193,7 @@
 <div class="shots">
   <div class="shotwrap"><img class="shot" src="inv-stocktake.png" alt="棚卸"><div class="cap">▲ 棚卸：保管場所・分類で絞り、入数を見ながら在庫数を入力</div></div>
 </div>
-<p style="margin-top:0">定期的に実際の在庫数を数えてつき合わせる画面です。上部に進み具合（<b>棚卸対象／棚卸済み／未登録</b>）が出ます。</p>
+<p style="margin-top:0">定期的に実際の在庫数を数えてつき合わせる画面です。上部に進み具合（<b>棚卸対象／棚卸済み／未登録</b>）が出ます。<b>複数人で同時に作業でき</b>、入力は<b>リアルタイムで反映</b>されます。</p>
 <ul style="font-size:.92rem">
 <li><b>ロケーション（保管場所）で絞り込み</b>：処置室・薬棚・歯科準備室・冷蔵庫…ごとに件数が出るので、<b>場所単位で数える</b>と効率的です。</li>
 <li><b>分類で絞り込み</b>：注射薬・医療消耗品・サプリメント…ごとにも絞れます。</li>
@@ -195,7 +202,9 @@
 <li>各商品に<b>棚卸メモ</b>や<b>チェック</b>（在庫見直し／期限近い／期限切れ／発注注意）を付けられます。</li>
 <li>数えていて在庫表に無い物が見つかったら<b>「在庫表にないもの」</b>から拾えます（＝未登録の発見）。</li>
 <li>各商品で<b>「保存して完了」</b>を押すと棚卸済みになります。</li>
+<li><b>やり直し</b>：棚卸済みを取り消すには、<b>「棚卸済み」タブ</b>で商品をタップ →<b>「棚卸対象に戻す」</b>を押します。</li>
 </ul>
+<div class="warn"><b>「全商品をリセット」に注意：</b>棚卸タブ（棚卸済み）にある<b>「全商品をリセット（棚卸対象に戻す）」</b>は、<b>棚卸済みの記録をすべて消去</b>します。誤って押さないでください。</div>
 </div>
 
 <h2>8. 設定タブ</h2>
@@ -208,7 +217,7 @@
 <table>
 <tr><th style="width:32%">項目</th><th>できること</th></tr>
 <tr><td>スタッフ管理</td><td>担当者の追加・編集・削除。発注・棚卸の「担当者／入力者」に出てきます。</td></tr>
-<tr><td>発注先管理</td><td>発注先の<b>連絡先・連絡方法（Web注文など）・メモ</b>を管理。送料無料の条件・締め時間・グループコード等を書いておけます。</td></tr>
+<tr><td>発注先管理</td><td>発注先の<b>連絡先・連絡方法（Web注文など）・メモ</b>を管理。送料無料の条件・締め時間・グループコード等を書いておけます。新規追加は<b>名前・担当者・電話番号・メモ</b>。<b>「商品データから発注先をインポート」</b>で、登録済み商品の発注先を一括取り込みできます。</td></tr>
 <tr><td>発注アラート設定（分類）</td><td>チェックした分類の商品を発注登録するとき、<b>確認アラート</b>を表示。</td></tr>
 <tr><td>発注アラート設定（商品別）</td><td>商品ごとにアラートを<b>ON/OFF</b>。</td></tr>
 <tr><td>Excel / CSV 操作</td><td><b>インポート</b>（一括登録）／<b>エクスポート</b>（商品データ）／<b>棚卸データエクスポート</b>。フォーマットは <code>CSV(.csv) UTF-8</code>、列は <code>商品名, 商品分類, 発注先, 最低在庫, 現在庫, 箱単価</code>。</td></tr>
@@ -216,7 +225,35 @@
 </table>
 </div>
 
-<h2>9. よくある質問</h2>
+<h2>9. 院内運用ルール <span class="badge b-staff" style="margin-left:6px">スタッフ</span></h2>
+<div class="card">
+<p style="margin-top:0">アプリの操作とあわせて、院内では次のルールで運用します。</p>
+
+<h3>客注（取り置き）</h3>
+<ol style="font-size:.92rem;margin:0">
+<li>発注時に、アプリの<b>メモ欄</b>へ「<b>患者名</b>」「<b>電話の有無</b>」「<b>領収（未／済）</b>」を入力。</li>
+<li>納品時にメモ欄を確認し、内容を<b>付箋に転記して商品に貼る</b>（電話した場合は「<b>tel済み</b>」と記載）。</li>
+</ol>
+<div class="warn"><b>顧客情報の取り扱い：</b>客注・取り置きでは<b>飼い主名・ペット名（患者名）</b>を入力します。<b>これは院内限定の情報です。</b>画面のスクリーンショットを外部に共有したり、院外の人に画面を見せたりしないでください。</div>
+
+<h3>ホワイトボードで管理するもの（アプリでは管理しない）</h3>
+<p style="font-size:.92rem;margin:0"><b>献花・酸素・医療廃棄</b>は、在庫アプリではなく<b>ホワイトボード</b>で管理します。①ホワイトボードに記載 → ②発注・連絡したら線で消す → ③納品・支払い済みになったらホワイトボードから消す。</p>
+
+<h3>価格（単価）を変えるとき</h3>
+<p style="font-size:.92rem;margin:0">①<b>マスタ登録</b>を変更 → ②在庫アプリの<b>各商品の単価</b>を変更。1つずつでも、<b>CSVアップロード</b>での一括変更でもOKです。</p>
+
+<h3>新しく商品を入れるとき</h3>
+<p style="font-size:.92rem;margin:0">①<b>マスタ登録</b> → ②在庫アプリに<b>商品登録</b>。商品名は<b>正式名称</b>を入れ、分かりにくいものは<b>普段使う名称</b>も入れておきます（例：<code>リセラメディカルキャップ ブルー（ディスポキャップ、オペ帽）</code>）。</p>
+<div class="note">院内にあるのに在庫アプリに未登録の商品は、<b>できるだけ追加</b>してください。棚卸に加算するため／後から他の人が発注するときに<b>発注先</b>が分かるようにするためです。</div>
+
+<h3>業者（発注先）の情報</h3>
+<p style="font-size:.92rem;margin:0"><b>設定 → 発注先管理</b>で、各業者の連絡先・（あまり使わない業者は）発注方法・「いくら以上で送料無料か」などをまとめて入力できます。新たな業者と取引するときは入力をお願いします。</p>
+
+<h3>発注アラート</h3>
+<p style="font-size:.92rem;margin:0">単価が高額なものは、<b>発注前に確認アラート</b>を出せます（<b>現在アラート登録している商品はありません</b>）。高額で一気に買うのは危険なもの・期限が短く発注前に確認が必要なものなどに活用してください。<b>商品画面から設定</b>できます。</p>
+</div>
+
+<h2>10. よくある質問</h2>
 <div class="card">
 <table>
 <tr><th style="width:40%">Q</th><th>A</th></tr>
@@ -227,12 +264,13 @@
 <tr><td>発注アラートを出したい／消したい</td><td>設定の<b>発注アラート設定（分類）</b>または<b>（商品別）</b>で調整します。</td></tr>
 <tr><td>発注や棚卸の担当者が選べない</td><td>設定の<b>スタッフ管理</b>で担当者を追加してください。</td></tr>
 <tr><td>1個あたりの値段を出したい</td><td>商品編集で<b>箱単価</b>と<b>入数</b>を入れると「1個あたり単価」が自動計算されます。</td></tr>
-<tr><td>院外から使いたい</td><td>Tailscale を ON にして <b>https://100.111.66.29:3000</b> を開きます。</td></tr>
+<tr><td>院外・iPhone/iPadから使いたい</td><td>Tailscale を ON にして <b>https://serverpc.tail2de5bb.ts.net</b> を開きます（証明書警告なし）。初回設定（Tailscaleの導入・ログイン）は院長にお願いしてください。</td></tr>
+<tr><td>データが表示されない／最新にならない</td><td><b>画面を下に引っ張って更新</b>してください。他の人の入力が反映されないときは、少し待つか画面を更新します。</td></tr>
 <tr><td>このアプリの修正・要望は？</td><td>院内ツールです。不具合・追加要望は院長までお伝えください。</td></tr>
 </table>
 </div>
 
-<footer>荻窪ツイン動物病院 ｜ 在庫・発注管理アプリ 使い方ガイド（2026-06-13版）<br>不明点・要望は院長まで</footer>
+<footer>荻窪ツイン動物病院 ｜ 在庫・発注管理アプリ 使い方ガイド（2026-06-20版）<br>不明点・要望は院長まで（アプリ開発：永野さん）</footer>
 </div>
 </body>
 </html>
