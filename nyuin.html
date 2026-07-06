@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>入院カルテアプリ 使用ガイド（獣医師・動物看護師向け）</title>
+<style>
+  :root {
+    --indigo: #4f46e5; --indigo-bg: #eef2ff;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --orange: #ea580c; --orange-bg: #fff7ed;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --slate: #334155; --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #3730a3, #4f46e5); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .85; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--indigo); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-staff{ background: var(--orange-bg); color: var(--orange); border: 1px solid #fed7aa; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox.vet  { border-color: #93c5fd; background: var(--blue-bg); }
+  .fbox.staff{ border-color: #fdba74; background: var(--orange-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 320px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shot.wide { max-width: 620px; }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 6px; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+  .c-late { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .c-now  { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .c-next { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+  .c-done { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>入院カルテアプリ 使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>獣医師・動物看護師向け ｜ 2026年7月6日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+入院中の子の<b>指示書・処置チェック・点滴/投薬・体温体重・血液検査</b>を、1つの画面でみんなで管理するアプリです。指示はそのまま<b>チェック表</b>になり、実施すると「<b>誰が・何時にやったか</b>」が自動で残ります。<b>やり忘れは赤く浮き上がる</b>ので、投薬忘れ・処置忘れを仕組みで防げます。iPad・スマホ・PCのどれでも使えます（iPadが一番見やすいです）。
+<div style="margin-top:8px">
+<span class="badge b-staff">橙 = 受付・看護師</span>
+<span class="badge b-vet">青 = 獣医師</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+</div>
+</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">場所</th><th>URL</th></tr>
+<tr><td>院内のPC・iPad</td><td><b>http://192.168.20.250:3500</b></td></tr>
+<tr><td>院外（スマホなど）</td><td><b>https://serverpc.tail2de5bb.ts.net:8446</b>（院の Tailscale 設定が必要）</td></tr>
+</table>
+<p style="margin:6px 0 0">最初に<b>パスコード</b>を入力します（院内で共有しているもの。分からなければ院長へ）。一度入れると同じ端末では約30日間は再入力不要です。</p>
+<div class="note">画面が見づらい夜間は、右上の <b>🌓 ボタン</b>でダークモード（黒背景）に切り替えられます。夜のICU当番におすすめです。</div>
+</div>
+
+<h2>2. 全体の流れ</h2>
+<div class="flow">
+  <div class="fbox staff"><b>① 入院登録</b>
+  VetLink で入院同意書をもらうと<b>自動でアプリに届きます</b>（「カルテを作成」を押すだけ）。届いていない時は手動登録：<b>診察券番号を入れて「アーミックスから取込んで作成」</b>。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>② 自動：アーミックスから取込＋AI下書き</b>
+  基本情報・体重・<b>血液検査</b>・カルテ（主観ノート）を自動で取り込み、AIが入院目的・所見・点滴・投薬の下書きを作ります。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>③ 獣医師：指示書を確定</b>
+  薬剤を選ぶと<b>体重から投与量を自動計算</b>。テンプレート（歯科術後セットなど）で一括入力もできます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>④ みんなで：治療シートで実施チェック</b>
+  朝・昼・夕・夜の各時間帯にやることが並びます。実施したらセルをタップして記録（2タップ）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>⑤ 退院処理</b>
+  「設定・指示」タブから退院。日帰り入院はお迎え時刻も表示されます。</div>
+</div>
+
+<h2>3. 入院ボードの見方（トップ画面）</h2>
+<div class="card">
+<p style="margin-top:0">開いた瞬間に「<b>誰が入院していて、何が遅れていて、誰を先に診るべきか</b>」が分かる画面です。<b>60秒ごとに自動更新</b>されるので、置きっぱなしの端末でも常に最新です。</p>
+<img class="shot" src="nyuin-board.png" alt="入院ボード画面">
+<div class="cap">▲ 入院ボード（画面の患者はすべて架空のサンプルです）</div>
+<table>
+<tr><th style="width:36%">表示</th><th>意味</th></tr>
+<tr><td>カード左端の色帯</td><td>重症度タグ：<b style="color:#dc2626">赤=重度</b>／<b style="color:#d97706">黄=中等度</b>／<b style="color:#16a34a">緑=軽症</b>。重い子ほど上に並びます。</td></tr>
+<tr><td><span class="chip c-late">遅延 2</span> <span class="chip c-now">いま 1</span> <span class="chip c-next">次 22:00</span></td><td>やり忘れの数（赤）・今の時間帯のタスク数・次の予定時刻。<b>赤が出ていたら最優先で対応</b>してください。</td></tr>
+<tr><td>ICU　O₂ 40%・設定28℃</td><td>ICU管理中の子の酸素濃度・設定温度。</td></tr>
+<tr><td>⚠ 取り扱い注意／飼い主特記</td><td>「費用を気にされる」「神経質」など、対応時に知っておくべきこと。</td></tr>
+<tr><td>面会・連絡</td><td>「毎日15時ごろ面会」「午前中に飼い主へ電話」など、事前の取り決め。</td></tr>
+</table>
+</div>
+
+<h2>4. 治療シート（実施チェック）<span class="badge b-staff" style="margin-left:6px">看護師</span><span class="badge b-vet">獣医師</span></h2>
+<div class="card">
+<p style="margin-top:0">患者カードをタップすると、その子の入院カルテが開きます。指示が縦に、時間帯（朝8時・昼13時・夕18時・夜22時）が横に並びます。</p>
+<img class="shot" src="nyuin-sheet.png" alt="治療シート（スマホ）">
+<div class="cap">▲ 治療シート（スマホ表示・架空データ）</div>
+<img class="shot" src="nyuin-ipad.png" alt="治療シート（iPad）">
+<div class="cap">▲ iPadなら朝昼夕夜が横スクロールなしで全部見えます</div>
+<table>
+<tr><th style="width:30%">セルの色</th><th>意味</th></tr>
+<tr><td><span class="chip c-late">未実施（赤）</span></td><td><b>予定時刻を過ぎてもチェックされていない＝要対応。</b></td></tr>
+<tr><td><span class="chip c-now">いま（緑）</span></td><td>今の時間帯にやること。列全体も薄緑になります。</td></tr>
+<tr><td><span class="chip c-next">予定（青）</span></td><td>これから。</td></tr>
+<tr><td><span class="chip c-done">✓ 8:10 神田</span></td><td>実施済み（時刻と担当者が残ります）。</td></tr>
+</table>
+<h3>実施のしかた（2タップ）</h3>
+<ol>
+<li>セルをタップ → 担当者名は<b>前回の名前が自動で選ばれています</b>（違えば選び直し）</li>
+<li>「✓ 実施を記録」をタップ → 完了。<b>間違えたら直後に出る「取り消す」を押せば戻せます</b></li>
+</ol>
+<ul>
+<li><b>観察の行</b>（食欲・排泄・嘔吐）は、食欲◯△×・尿・便・吐き気の有無を選ぶだけです。</li>
+<li><b>バイタルの行</b>で体温を入れると、そのまま「推移」タブのグラフに反映されます（前日との体重差もヘッダに常時表示）。</li>
+<li>カルテがまだ書かれていない子は、ヘッダの「<b>アーミックス再取込</b>」を押すと最新のカルテ・検査を取り込み直せます。</li>
+</ul>
+</div>
+
+<h2>5. 血液検査タブ<span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+<div class="card">
+<p style="margin-top:0">毎日の血液検査を自動で取り込み、<b>前日からの増減</b>と「<b>入院時は正常だったのに悪化した項目</b>」を自動で拾って赤帯で知らせます。血糖・アルブミン・カリウムなどの見落とせない項目は太字で強調されます。</p>
+<img class="shot" src="nyuin-labs.png" alt="血液検査タブ">
+<div class="cap">▲ 血液検査タブ（架空データ）。上の赤帯が「要確認」の自動アラート</div>
+</div>
+
+<h2>6. 入院登録と指示書づくり<span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+<div class="card">
+<img class="shot" src="nyuin-register.png" alt="入院登録画面">
+<div class="cap">▲ 入院登録（架空データ）。VetLinkから届いた子は青いバナーに出ます</div>
+<ul>
+<li><b>VetLinkで入院同意書をもらった子</b>は自動でここに届きます。「カルテを作成」を押すだけ。</li>
+<li>届いていない時は<b>手動登録</b>：診察券番号（例 1234-1）を入れて「アーミックスから取込んで作成」。</li>
+<li>登録時に<b>重症度タグ・ICU設定・面会/連絡の取り決め・飼い主特記</b>（費用を気にされる／神経質／⚠取り扱い注意）を設定できます。</li>
+</ul>
+<h3>薬剤と投与量</h3>
+<img class="shot wide" src="nyuin-drugs.png" alt="薬剤マスタ">
+<div class="cap">▲ 薬剤マスタ。よく使う注射・点滴混注薬が登録済みです</div>
+<ul>
+<li>薬剤を選ぶと<b>体重から投与量を自動計算</b>します（例：25mg/kg × 4.2kg = 105mg → 1.05ml）。安全域の外に出ると警告が表示されます。</li>
+<li>点滴は<b>メイン点滴／側管・混注／シリンジポンプ</b>の3系統を分けて指示できます。昇圧剤などはγ（マイクロ）から時間あたりの流量（ml/h）を自動計算します。</li>
+<li><b>「⚠未確認」バッジ付きの薬剤</b>は、院長がまだ用量を最終確認していないものです。<b>使うときは投与量を自分でも必ず確認</b>してください。</li>
+<li>KCLなどの危険薬は、選ぶと<b>赤い安全警告</b>（原液静注禁止など）が表示されます。必ず読んでください。</li>
+</ul>
+<div class="note"><b>印刷：</b>ヘッダの「印刷」で当日の指示書を紙に出せます。ネットワーク障害や停電時のバックアップとして使ってください。</div>
+</div>
+
+<h2>7. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">質問</th><th>答え</th></tr>
+<tr><td>夜中や早朝も使えますか？</td><td><b>使えます。</b>記録・チェック・閲覧は24時間動きます。アーミックスからの取込（登録・再取込）だけは受付PCが動いている日中のみです。</td></tr>
+<tr><td>カルテがまだ書かれていない子を登録したら？</td><td>血液検査と基本情報は入ります。カルテを書いたあとに「<b>アーミックス再取込</b>」を押せば、入院目的などのAI下書きが追加されます。</td></tr>
+<tr><td>実施チェックを間違えて押した</td><td>直後に出る「<b>取り消す</b>」ボタンで戻せます（約6秒間）。過ぎてしまったら獣医師または院長に連絡してください。</td></tr>
+<tr><td>表示がおかしい・動かない</td><td>まず再読み込み。直らなければ院長へ（システムは3分ごとに自動監視・自動復旧しています）。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>改善リクエストはいつでも院長まで。すぐ直せることが多いです。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>この画面には患者名・飼い主さんの情報が表示されます。<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべて架空のサンプルです）</div>
+
+<footer>荻窪ツイン動物病院 ｜ 入院カルテアプリ 使用ガイド（2026年7月6日版）<br>不明点・改善要望は院長まで</footer>
+</div>
+</body>
+</html>
