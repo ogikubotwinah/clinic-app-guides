@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>症例音声メモアプリ 使用ガイド（スタッフ・獣医師向け）</title>
+<style>
+  :root {
+    --violet: #7c3aed; --violet-bg: #f5f3ff;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --indigo: #4f46e5; --indigo-bg: #eef2ff;
+    --sky: #0284c7; --sky-bg: #f0f9ff;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #5b21b6, #7c3aed); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .85; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--violet); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #c4b5fd; background: var(--violet-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--violet-bg); border: 1px solid #ddd6fe; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-sp   { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+  .c-sub  { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
+  .c-pet  { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .c-species { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>症例音声メモアプリ 使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>スタッフ・獣医師向け ｜ 2026年7月14日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+学会・セミナー用に残しておきたい<b>症例</b>を、<b>話すだけ</b>（またはテキスト）でメモできるアプリです。カルテNo.を入れると<b>患者名（飼い主さん＋ペット名）が自動で入り</b>、話した内容は自動で文字に起こされます。歯科・循環器などの<b>診療科タグも自動</b>で付くので、あとから<b>症例ライブラリ</b>で探せます。パスコード不要でサッと使えます。
+<div style="margin-top:8px">
+<span class="badge b-vet">獣医師が使う画面です</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+</div>
+</div>
+
+<div class="note">💡 <b>日記（デイリー気づき）は院長専用</b>です。スタッフの画面には出ません。スタッフが使うのは<b>症例メモだけ</b>です。</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">場所</th><th>URL・必要なもの</th></tr>
+<tr><td>院内（病院のWi-Fi）</td><td><b>https://192.168.20.250:3701</b><br><span style="font-size:.85rem;color:#64748b"><b>Tailscaleは要りません。</b>病院のWi-Fiにつないで、このURLをそのまま開いてください。初回だけ「接続はプライベートではありません」等の警告が出ますが →「詳細（を表示）」→「このWebサイトにアクセス／このまま進む」で開けます（院内の安全なアプリです）。</span></td></tr>
+<tr><td>院外（自宅など）</td><td><b>https://serverpc.tail2de5bb.ts.net:8448</b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
+</table>
+<div class="note">📱 <b>iPhone・iPad は Safari で開くのがおすすめ</b>です（マイクと証明書の許可がスムーズです）。パソコンは Chrome / Edge / Safari のどれでもOKです。</div>
+<div class="note">🎙️ <b>音声を使うには「https（鍵マーク）」のURL</b>で開いてください。マイクは https でしか使えません。上のURLはどちらも https です。</div>
+
+<h3>ログイン（パスコード不要）</h3>
+<img class="shot" src="cb-login.png" alt="ログイン画面">
+<div class="cap">▲ ログイン画面</div>
+<p style="margin:6px 0 0"><b>「獣医師として入る（パスコード不要）」</b>を押すだけです。パスコードは要りません。一度入ると同じ端末では約30日間そのまま使えます。<br>（「院長として入る」は院長用です。）</p>
+</div>
+
+<h2>2. 基本の流れ</h2>
+<div class="flow">
+  <div class="fbox vet"><b>① 話した人を選ぶ</b>自分の名前をタップ（次回から自動で選ばれます）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>② カルテNo.を入れる（任意）</b>患者名が自動で入ります。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>③ 「● 話す」で録音（またはテキスト入力）</b>所見・経過を話す → もう一度押して停止。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>④ 自動：文字起こし＋診療科タグ</b>話した内容が文字になり、歯科/循環器などのタグが自動で付きます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>⑤ 症例ライブラリで見返す</b>あとから患者名・診療科・キーワードで検索できます。</div>
+</div>
+
+<h2>3. 入力画面の使い方</h2>
+<div class="card">
+<img class="shot" src="cb-memo.png" alt="症例メモ 入力画面">
+<div class="cap">▲ 症例メモの入力画面</div>
+
+<h3>話した人</h3>
+<p style="margin-top:0">上のボタンから<b>自分の名前</b>を選びます。一度選ぶと次回から自動で選ばれています。</p>
+
+<h3>カルテNo.（任意・入れると患者名が自動で入ります）</h3>
+<ul>
+<li>カルテNo.を入れて<b>枠の外をタップ</b>すると、<b>「🐾 山田さんのポチちゃん を自動入力しました」</b>のように患者名が自動で入ります（例は架空です）。</li>
+<li><b>多頭飼い</b>で番号だけだと「複数の子がいます。枝番を付けてください」と出ます。→ 数字を入れて<b>「−」ボタン</b>でハイフンを足し、続けて枝番（例 <b>1234-1</b>）を入れてください。</li>
+<li>見つからない時・カルテNo.が無い時は、患者名を<b>手で入力</b>してもOK。カルテNo.は<b>無くても</b>メモは残せます。</li>
+</ul>
+
+<h3>録音する（「● 話す」）</h3>
+<ol>
+<li><b>「● 話す」</b>をタップ → 赤くなったら話す（所見・経過・気づき）。</li>
+<li>終わったら<b>「■ 停止」</b>。自動で送信され、文字起こしが始まります。</li>
+<li>キーボードで打ちたい時は<b>「テキストで入力」</b>から。</li>
+</ol>
+<div class="tip">🗣️ <b>歯科・医学の専門用語は自動で補正</b>されます（例：「市内治療」→「歯内治療」）。話し言葉のままで大丈夫です。文字起こしの結果はあとから編集できます。</div>
+<div class="tip">⏱️ <b>文字起こしの間に、続けて次の症例も録音できます。</b>待たなくてOK。カードが縦に並んで、それぞれ順番に文字になります。</div>
+</div>
+
+<h2>4. 送信後のカード</h2>
+<div class="card">
+<p style="margin-top:0">送信すると結果カードが出ます。</p>
+<table>
+<tr><th style="width:34%">表示</th><th>意味</th></tr>
+<tr><td>⏳ 文字起こし中…</td><td>音声を文字に変換中。<b>このまま次の録音に進んでOK</b>。</td></tr>
+<tr><td>🗂 症例メモ ＋ 🐾患者名</td><td>文字起こし完了。患者名もこの時点で表示されます。</td></tr>
+<tr><td>編集</td><td>文字起こしの誤りをその場で直せます。</td></tr>
+<tr><td>このメモを取り消す</td><td>間違えて登録した時に取り消し（確認が2回出ます）。</td></tr>
+</table>
+</div>
+
+<h2>5. 症例ライブラリ（見返す・探す・消す）</h2>
+<div class="card">
+<p style="margin-top:0">右上の<b>「症例ライブラリ」</b>から、これまでの症例メモを一覧できます。</p>
+<h3>自動で付くタグ</h3>
+<p style="margin-top:0">各症例には、内容から<b>自動で</b>タグが付きます。</p>
+<p>
+<span class="chip c-species">犬</span>
+<span class="chip c-sp">歯科・口腔外科</span>
+<span class="chip c-sub">歯冠破折・歯内治療</span>
+&nbsp; / &nbsp;
+<span class="chip c-species">猫</span>
+<span class="chip c-sp">循環器</span>
+<span class="chip c-sub">僧帽弁閉鎖不全症</span>
+</p>
+<table>
+<tr><th style="width:30%">タグ</th><th>内容</th></tr>
+<tr><td><span class="chip c-species">犬 / 猫</span></td><td>本文から分かる場合に自動で付きます。</td></tr>
+<tr><td><span class="chip c-sp">診療科（大分類）</span></td><td>歯科・口腔外科／循環器／消化器／皮膚科／整形外科／腫瘍 …など。</td></tr>
+<tr><td><span class="chip c-sub">小分類</span></td><td>歯科・循環器はさらに細かく（歯周病・抜歯／僧帽弁閉鎖不全症・不整脈 など）。</td></tr>
+</table>
+<h3>検索</h3>
+<p style="margin-top:0">上の検索欄に<b>診療科・病名・カルテNo.・患者名</b>などを入れると絞り込めます（例：「歯周病」「循環器」「犬」）。言い忘れた語でもタグから当たることがあります。</p>
+<h3>間違えて登録した症例を消す</h3>
+<p style="margin-top:0">各カードの<b>「削除」</b>で消せます（確認が2回出ます）。履歴（右上「履歴」）からも削除・編集できます。</p>
+</div>
+
+<h2>6. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">質問</th><th>答え</th></tr>
+<tr><td>マイクが使えない</td><td><b>https（鍵マーク）のURL</b>で開いているか確認してください。初回はマイクの許可を「許可」に。それでもダメなら「テキストで入力」を使えます。</td></tr>
+<tr><td>患者名が自動で入らない</td><td>カルテNo.を入れて<b>枠の外をタップ</b>すると照会します。多頭飼いは枝番（例 1234-1）が要ります。見つからなければ手入力でOK。</td></tr>
+<tr><td>文字起こしがおかしい</td><td>結果カードや履歴の<b>「編集」</b>で直せます。専門用語は自動補正しますが、最終確認をお願いします。</td></tr>
+<tr><td>日記は使えないの？</td><td>日記（デイリー気づき）は<b>院長専用</b>です。スタッフは症例メモをお使いください。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>改善要望はいつでも院長まで。すぐ直せることが多いです。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>カルテNo.・患者名は<b>このアプリの中だけ</b>で保管され、外部（Obsidian・LINE等）には出ません。ただし<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はサンプルで、患者情報は含みません）</div>
+
+<footer>荻窪ツイン動物病院 ｜ 症例音声メモアプリ 使用ガイド（2026年7月14日版）<br>不明点・改善要望は院長まで</footer>
+</div>
+</body>
+</html>
