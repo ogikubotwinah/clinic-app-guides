@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>カルテ音声SOAPアプリ 使用ガイド（獣医師向け）</title>
+<style>
+  :root {
+    --rose: #e11d48; --rose-bg: #fff1f2;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #9f1239, #e11d48); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--rose); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--rose-bg); color: var(--rose); border: 1px solid #fecdd3; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #fda4af; background: var(--rose-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--rose-bg); border: 1px solid #fecdd3; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>カルテ音声SOAPアプリ 使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>獣医師向け ｜ 2026年7月17日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+診察の会話を<b>話すだけ</b>で、<b>SOAP形式のカルテ下書き</b>が自動でできるアプリです。録音（またはテキスト）→ AIが<b>要点をまとめる</b> → 先生が確認・手直し → <b>「カルテに入れる」でAhrmicsの主観ノートへ書き込み</b>まで、この1画面で完結します。会話で言った<b>体重・体温</b>も自動で拾ってカルテに一緒に記録できます。パスコード不要でサッと使えます。
+<div style="margin-top:8px">
+<span class="badge b-vet">獣医師が使う画面です</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+</div>
+</div>
+
+<div class="imp">🔒 <b>大事なルール：カルテへ入る内容は必ず先生が確認してから。</b>AIの下書きは「たたき台」です。<b>会話に無い検査・所見・薬・数値・「説明済み」は書かない</b>設計ですが、最終確認は必ず先生が行ってください（「カルテに入れる」を押した時が確認＝確定です）。</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">場所</th><th>URL・必要なもの</th></tr>
+<tr><td>院内（病院のWi-Fi）</td><td><b>https://192.168.20.250:3601</b><br><span style="font-size:.85rem;color:#64748b"><b>Tailscaleは要りません。</b>病院のWi-Fiにつないで、このURLをそのまま開いてください。初回だけ「保護されていない通信」等の警告が出ることがありますが →「詳細」→「このまま進む」で開けます（院内の安全なアプリです）。ログイン画面下の証明書を入れると警告は消えます。</span></td></tr>
+<tr><td>院外（自宅など）</td><td><b>https://serverpc.tail2de5bb.ts.net:8449</b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
+</table>
+<div class="note">🎙️ <b>マイク（録音）を使うには「https（鍵マーク）」のURL</b>で開いてください。マイクは https でしか使えません。上のURLはどちらも https です。診察室のパソコンは<b>USBマイクを2人の中間（50cm〜1m）</b>に向けると精度が上がります。</div>
+
+<h3>ログイン（パスコード不要）</h3>
+<img class="shot" src="cv-login.png" alt="ログイン画面">
+<div class="cap">▲ ログイン画面</div>
+<p style="margin:6px 0 0"><b>「獣医師として入る（パスコード不要）」</b>を押すだけです。一度入ると同じ端末では約30日そのまま使えます。（「院長として入る」は院長用です。）</p>
+</div>
+
+<h2>2. 基本の流れ</h2>
+<div class="flow">
+  <div class="fbox vet"><b>① 診察をはじめる</b>担当の先生・<b>診察タイプ</b>・カルテNo.を選んで「診察をはじめる」。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>② 「● 録音」で会話を録る（またはテキスト）</b>場面（問診／検査後 など）を選んで録音 → もう一度押して停止。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>③ 自動：文字起こし＋要点（SOAP）</b>会話が文字になり、タイプに合わせて要点がまとまります（体重・体温も自動抽出）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>④ 要点を確認・手直し</b>S/O/A/P を読んで直す。違えば「要点を作り直す」。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>⑤ 「カルテに入れる」</b>患者確認 → Ahrmicsの主観ノートへ書き込み（体重・体温も一緒に）。入れると診察はアーカイブへ。</div>
+</div>
+
+<h2>3. 診察タイプ（要点の形が変わります）</h2>
+<div class="card">
+<p style="margin-top:0">診察をはじめる時に選びます。タイプによって<b>要点の見出し</b>と<b>必要な録音回数</b>が変わります。</p>
+<table>
+<tr><th style="width:26%">タイプ</th><th>要点の形</th><th>録音</th></tr>
+<tr><td>再診（検査なし）</td><td><b>S・P</b>（主訴と計画のみ）</td><td>1回・録り終えると自動でまとまる</td></tr>
+<tr><td>再診（検査あり）</td><td><b>S・O・A・P</b></td><td>検査前・検査後の2回で完成</td></tr>
+<tr><td>初診（検査予定）</td><td>SOAP（1回なら S・O・P）</td><td>通常2回・柔軟</td></tr>
+<tr><td>半日入院／手術当日</td><td>【預かり】【お返し】を別々に</td><td>預かり・お返しの2回（同じ日の主観へ2件）</td></tr>
+</table>
+<div class="tip">🔄 <b>検査をせずに診察が終わった時</b>は、要点カード右上の<b>診察タイプを「再診（検査なし）」に変える</b>と、「あと1回の録音で完成します」が消えて、そのまま要点をまとめてカルテに入れられます。</div>
+<div class="note">📄 <b>再診（検査なし）は S・P に固定</b>です（検査所見Oや評価Aの見出しは自動で足しません）。検査をした診察は「再診（検査あり）」を選んでください。</div>
+</div>
+
+<h2>4. 録音の使い方</h2>
+<div class="card">
+<img class="shot" src="cv-record.png" alt="録音画面">
+<div class="cap">▲ 録音画面（サンプル）</div>
+
+<h3>録音する場面</h3>
+<p style="margin-top:0">タイプに合わせたボタンが出ます（問診／検査前・検査後／結果説明／預かり・お返し／<b>追加説明・メモ</b>）。<b>飼い主さんのいない所での口述（所見メモ）</b>も「追加説明・メモ」で録れば要点に反映されます。</p>
+
+<h3>録音する（「● 録音」）</h3>
+<ol>
+<li><b>「● 録音」</b>をタップ → 話す。もう一度で<b>停止</b>、自動で送信されます。</li>
+<li>会話が途切れて<b>3分</b>無音が続くと自動で止まります。</li>
+<li>途中で手を止めたい時は<b>「⏸ 一時中断」→「▶ 再開」</b>（中断中は録音されません）。</li>
+<li>キーボードで打ちたい時は<b>「テキストで入力」</b>から。</li>
+</ol>
+<div class="tip">⏱️ <b>1つの診察に録音を何回でも足せます。</b>問診→検査後→追加メモ、と場面を分けて録音すると、要点は全部を<b>まとめて</b>作ります。</div>
+<div class="tip">🗣️ <b>専門用語は文脈で自動補正</b>されます。話し言葉のままで大丈夫です。文字起こしはあとから編集できます。</div>
+<div class="note">🎤 マイクがうまく拾えていない時は、上の<b>「マイク」欄</b>で正しいマイクを選び直してください（端末ごとに記憶します）。</div>
+</div>
+
+<h2>5. 要点（SOAP）の画面</h2>
+<div class="card">
+<img class="shot" src="cv-summary.png" alt="要点画面">
+<div class="cap">▲ 要点（下書き）画面（サンプル）</div>
+
+<h3>要点をまとめる／作り直す</h3>
+<p style="margin-top:0">録音が済むと<b>自動で要点</b>ができます（タイプによっては「要点をまとめる」を押します）。内容がいまいちな時は<b>「要点を作り直す」</b>。各欄はその場で<b>手直し</b>できます。</p>
+
+<h3>体重・体温</h3>
+<p style="margin-top:0">会話で言った<b>体重・体温</b>が自動で欄に入ります（例：「体重4.2キロ、体温38度6分」）。数字を確認して、<b>「カルテに入れる」時に一緒にAhrmicsへ記録</b>されます。手で直してもOK。</p>
+
+<h3>文字起こし全文・録音は畳まれます</h3>
+<p style="margin-top:0">要点ができると、<b>文字起こし全文と録音エリアは自動で畳まれ</b>、要点がすぐ読めます。全文を見たい時は<b>「📄 文字起こし全文を表示」</b>、録音を足したい時は<b>「➕ 録音を追加」</b>で開けます。</p>
+
+<h3>ボタンの意味</h3>
+<table>
+<tr><th style="width:32%">ボタン</th><th>意味</th></tr>
+<tr><td><b>カルテに入れる</b></td><td>要点を確定して <b>Ahrmicsの主観ノートへ書き込み</b>（患者確認あり）。体重・体温も一緒に記録。入れると診察はアーカイブへ。</td></tr>
+<tr><td>コピー</td><td>要点を【見出し】付きでコピー。Ahrmicsに手で貼りたい時に。</td></tr>
+<tr><td>✎ 手直しを保存</td><td>手直しした要点を<b>保存だけ</b>（カルテにはまだ入りません）。</td></tr>
+</table>
+</div>
+
+<h2>6. カルテに入れる（Ahrmicsへ）</h2>
+<div class="card">
+<ol style="margin-top:0">
+<li><b>カルテNo.</b>を入れます（例 <b>1234-1</b>）。</li>
+<li>「カルテに入れる」を押すと<b>患者確認</b>が出ます（例：飼い主さん名・ペット名）。<b>合っているか必ず確認</b>してOK。</li>
+<li>本日のカルテの<b>主観ノート（S）</b>へ、先頭に「担当医：〇〇」付きで書き込まれます。体重・体温は客観データへ。</li>
+</ol>
+<div class="imp">⚠ <b>患者確認の名前が違ったら入れないでください。</b>カルテNo.を直して照会し直してから入れてください（多頭飼いは枝番＝例 1234-1 が要ります）。</div>
+</div>
+
+<h2>7. 1回の録音に2頭以上（同じ飼い主さんの複数のこ）</h2>
+<div class="card">
+<p style="margin-top:0">同じ飼い主さんの<b>2頭を続けて診察</b>した時（例：わんちゃん2頭）は、カルテNo.欄に<b>両方のカルテNo.をカンマで</b>入れます（例 <b>1234-1,1234-2</b>）。</p>
+<ul>
+<li>「カルテに入れる」を押すと、AIが<b>患者ごとに要点を分けて</b>確認画面を出します（<b>共通する説明は両方のカルテに</b>入ります）。</li>
+<li>各患者の<b>ペット名・飼い主名</b>が出るので確認してOKすると、<b>それぞれのカルテ</b>へ書き込まれます。</li>
+</ul>
+<div class="note">🔎 <b>問診票の氏名とカルテ登録名が違う</b>時は<b>警告</b>が出ます（例：登録が別の飼い主さんになっている）。気づいたら受付で氏名を直してから入れてください。</div>
+</div>
+
+<h2>8. 一覧の見方（診察が毎日たまらない工夫）</h2>
+<div class="card">
+<p style="margin-top:0">トップの一覧は<b>3つのタブ</b>に分かれています。</p>
+<table>
+<tr><th style="width:26%">タブ</th><th>中身</th></tr>
+<tr><td><b>今日・昨日</b></td><td>当日と前日の、まだカルテに入れていない診察。</td></tr>
+<tr><td><b>それ以前</b></td><td>おととい以前の、まだ入れていない診察（録り忘れ・入れ忘れはここに下がります）。</td></tr>
+<tr><td><b>🗄 アーカイブ</b></td><td>カルテに入れ終わった（転記済み）診察。</td></tr>
+</table>
+<div class="tip">🔗 <b>同じ日・同じカルテNo.</b>の診察が2つに分かれた時は、詳細画面の<b>「この診察にまとめる」</b>で1つに結合できます（録音が統合されます）。</div>
+<div class="note">🗑 録音のない<b>空の診察</b>は「空の診察を片付ける」でまとめて消せます（録音を始めるまで診察は作られません）。</div>
+</div>
+
+<h2>9. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">質問</th><th>答え</th></tr>
+<tr><td>マイクが使えない</td><td><b>https（鍵マーク）のURL</b>で開いているか、上の<b>「マイク」欄</b>で正しいマイクを選んでいるか確認を。だめなら「テキストで入力」でもOK。</td></tr>
+<tr><td>検査をしなかったのに「あと1回」で進めない</td><td>要点カード右上の<b>診察タイプを「再診（検査なし）」に変更</b>すると、そのまままとめられます。</td></tr>
+<tr><td>要点がSOAPになってしまう（検査なしなのに）</td><td>診察タイプが「再診（検査あり）」等になっていないか確認を。「再診（検査なし）」は<b>S・P固定</b>です。</td></tr>
+<tr><td>体温・体重が入らない</td><td>会話で<b>はっきり数字を言う</b>と自動で入ります。入らなければ欄に手で入力してください。</td></tr>
+<tr><td>2頭まとめて診た</td><td>カルテNo.欄に<b>両方の番号をカンマ</b>で（例 1234-1,1234-2）。患者ごとに分けて入ります。</td></tr>
+<tr><td>入れた要点がカルテに見えない</td><td>Ahrmics側でそのカルテを<b>一度閉じて開き直す</b>と表示されます。それでも無ければ院長へ。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>改善要望はいつでも院長まで。すぐ直せることが多いです。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>カルテNo.・患者名・会話内容は<b>このアプリと院内カルテ（Ahrmics）の中だけ</b>で保管され、外部（LINE・SNS等）には出ません。ただし<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべてサンプルで、実在の患者情報は含みません）</div>
+
+<footer>荻窪ツイン動物病院 ｜ カルテ音声SOAPアプリ 使用ガイド（2026年7月17日版）<br>不明点・改善要望は院長まで</footer>
+</div>
+</body>
+</html>
