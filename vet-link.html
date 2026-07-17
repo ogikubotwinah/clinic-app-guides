@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>VetLink（院内診療サポート）使用ガイド</title>
+<style>
+  :root {
+    --cyan: #0891b2; --cyan-bg: #ecfeff;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --orange: #ea580c; --orange-bg: #fff7ed;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --slate: #334155; --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #0e7490, #0891b2); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .88; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--cyan); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-staff{ background: var(--orange-bg); color: var(--orange); border: 1px solid #fed7aa; }
+  .b-recep{ background: var(--cyan-bg); color: var(--cyan); border: 1px solid #a5f3fc; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox.vet  { border-color: #93c5fd; background: var(--blue-bg); }
+  .fbox.staff{ border-color: #fdba74; background: var(--orange-bg); }
+  .fbox.recep{ border-color: #67e8f9; background: var(--cyan-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 380px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shot.wide { max-width: 620px; }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 6px; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+  .c-late { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .c-now  { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  .c-next { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+  .c-done { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>VetLink（院内診療サポート）使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>受付・スタッフ・獣医師向け ｜ 2026年7月16日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+<b>問診票・同意書・麻酔/手術・歯科カルテ</b>を、患者情報でひとつにまとめて院内で扱うアプリです。カルテ番号を入れると<b>アーミックスから患者情報を自動取込</b>。手術予定は<b>予約管理表から自動で「本日の麻酔イベント」に並び</b>、導入準備→麻酔→術後とステータスが自動で進みます。同意書は<b>iPadで署名</b>でき、入院同意書は署名すると<b>入院カルテアプリへ自動連携</b>します。iPad・PC・スマホで使えます（iPadが一番見やすいです）。
+<div style="margin-top:8px">
+<span class="badge b-recep">水色 = 受付</span>
+<span class="badge b-staff">橙 = 看護師</span>
+<span class="badge b-vet">青 = 獣医師</span>
+<span class="badge b-auto">緑 = 自動（AI・システム）</span>
+</div>
+</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">場所</th><th>URL</th></tr>
+<tr><td>院内のPC・iPad</td><td><b>http://192.168.20.250:3007</b></td></tr>
+<tr><td>院外・iPadのホーム画面追加（アプリ化）</td><td><b>https://serverpc.tail2de5bb.ts.net:8450</b>（院の Tailscale 設定が必要）</td></tr>
+</table>
+<p style="margin:6px 0 0">共有端末で使う想定のため<b>ログイン（パスコード）はありません</b>。開けばすぐ使えます。</p>
+<div class="note"><b>iPadでアプリのように使うには：</b>Safari で <b>https://…:8450</b> を開き、共有ボタンから「<b>ホーム画面に追加</b>」。PDFの表示・印刷・「戻る」もアプリ内で動くようになっています。</div>
+</div>
+
+<h2>2. 上のメニュー（全体像）</h2>
+<div class="card">
+<table>
+<tr><th style="width:26%">メニュー</th><th>できること</th></tr>
+<tr><td><b>患者管理</b></td><td>全機能で共通に使う患者の台帳。カルテ番号でアーミックスから取り込めます。</td></tr>
+<tr><td><b>問診票</b></td><td>初診・歯科の問診票づくり。ホームページから届いた問診票の取り込みも。</td></tr>
+<tr><td><b>同意書</b></td><td>入院・麻酔・歯科・ホテル・トリミングの同意書／規約書を作成・iPad署名・管理。</td></tr>
+<tr><td><b>手術/麻酔</b></td><td>当日の麻酔イベント一覧。手術予定の登録、導入薬の準備、術後報告書まで。</td></tr>
+<tr><td><b>歯科</b></td><td>歯科処置カルテ（歯式・歯周・抜歯集計）とカルテ貼り付け用テキスト・報告書。</td></tr>
+<tr><td><b>⚙️ 設定</b></td><td>文書テンプレート・スタッフ・薬剤のマスタ管理。</td></tr>
+</table>
+</div>
+
+<h2>3. ホーム画面の見方</h2>
+<div class="card">
+<p style="margin-top:0">開くと「<b>今日やること</b>」がひと目で分かります。問診票の対応待ち・受付でお渡しする書類・本日の歯科初診、そして<b>本日の麻酔イベント</b>が時間順に並びます。</p>
+<img class="shot" src="vet-link-home.png" alt="VetLink ホーム画面">
+<div class="cap">▲ ホーム画面（画面の患者・飼主はすべて架空のサンプルです）</div>
+<table>
+<tr><th style="width:34%">表示</th><th>意味</th></tr>
+<tr><td>問診票 対応待ち</td><td>ホームページから届いた・未処理の問診票の件数。</td></tr>
+<tr><td>受付対応待ち書類</td><td>署名が済んで、受付でお渡し・説明する書類（麻酔前注意事項など）。「一覧へ」で開けます。</td></tr>
+<tr><td>本日の麻酔イベント</td><td>その日の手術・麻酔予定。<b>前日／今日／翌日</b>で切り替え。各カードから導入準備・麻酔・歯科・同意書・注意事項・報告書へ進めます。</td></tr>
+<tr><td>＋ 麻酔予定を追加 ／ 🖨 一覧PDF</td><td>予定の手動追加と、当日の麻酔一覧の印刷。</td></tr>
+</table>
+<p style="margin:10px 0 0">画面のいちばん下に<b>「すぐ作成する」</b>があり、よく使う書類・問診票をここから直接作れます（下の表の書類）。</p>
+</div>
+
+<h2>4. 患者管理</h2>
+<div class="card">
+<p style="margin-top:0">すべての機能で共有される患者の台帳です。カルテ番号・飼主名・動物名・電話番号で検索できます。</p>
+<img class="shot" src="vet-link-patients.png" alt="患者管理の台帳">
+<div class="cap">▲ 患者管理（架空データ）</div>
+<ul>
+<li><b>＋新規患者</b>：カルテ番号を入れて「<b>アーミックスから取り込む</b>」と、種類・品種・性別・年齢・体重を自動で埋められます（受付PCが動いている日中のみ）。</li>
+<li>アーミックスに無い子・仮の子は<b>仮患者</b>として登録し、あとで正式なカルテ番号にひも付けできます。</li>
+</ul>
+</div>
+
+<h2>5. 手術・麻酔（当日麻酔イベント）<span class="badge b-vet" style="margin-left:6px">獣医師</span><span class="badge b-staff">看護師</span></h2>
+<div class="card">
+<p style="margin-top:0">その日の手術・麻酔を1画面で回します。<b>予約管理表（予約革命）に登録された手術予定は、自動でここに並びます</b>（約30分ごとに同期）。手動で「＋手術予定を登録」もできます。</p>
+<img class="shot" src="vet-link-surgeries.png" alt="当日麻酔イベント一覧">
+<div class="cap">▲ 当日麻酔イベント一覧＋導入薬準備リスト（架空データ）</div>
+<ul>
+<li><b>本日の導入薬準備リスト</b>：その日に使う導入薬を薬剤ごとにまとめ、<b>未準備／準備済</b>で管理できます。体重からの予定量は参考値です（当日体重で必ず再確認してください）。</li>
+<li><b>ステータスは自動で進みます</b>：導入準備 → 麻酔 → 術後。各カードのボタンから開いて記録します。</li>
+<li><b>🖨 一覧PDF</b>で当日の麻酔一覧を印刷できます。</li>
+</ul>
+<div class="note"><b>予定が反映されない時は？</b>予約管理表への登録・メニュー名をご確認ください。反映は自動同期（約30分間隔）です。急ぐ時は「＋手術予定を登録」で手動追加できます。</div>
+</div>
+
+<h2>6. 同意書・規約書（iPad署名）<span class="badge b-recep" style="margin-left:6px">受付</span><span class="badge b-vet">獣医師</span></h2>
+<div class="card">
+<p style="margin-top:0">入院・麻酔・歯科処置・鎮静・ホテル・トリミングの同意書／規約書を作成し、<b>iPadでその場で署名</b>してもらえます。署名済み・未署名で状態を管理します。</p>
+<img class="shot" src="vet-link-consents.png" alt="同意書の一覧">
+<div class="cap">▲ 同意書一覧（架空データ）</div>
+<ul>
+<li>患者を選ぶ画面でも<b>アーミックス取込</b>が使えます。麻酔イベントから作れば予定内容が自動で反映されます。</li>
+<li><b>入院同意書は、署名が確定すると入院カルテアプリへ自動で連携</b>されます（入院カルテ側で「カルテを作成」を押すだけ）。</li>
+<li>署名が済んだ「お渡し・説明書類」（麻酔前注意事項など）は、ホームの<b>受付対応待ち</b>に出ます。</li>
+</ul>
+<h3>テンプレート管理<span class="badge b-vet" style="margin-left:6px">獣医師</span></h3>
+<img class="shot" src="vet-link-templates.png" alt="文書テンプレート管理">
+<div class="cap">▲ 文書テンプレート管理</div>
+<p style="margin:6px 0 0">同意書・規約書の本文は病院側で自由に編集できます。編集すると<b>新しいバージョンとして記録</b>され、<b>すでに署名済みの文書には影響しません</b>。</p>
+</div>
+
+<h2>7. 問診票</h2>
+<div class="card">
+<ul style="margin-top:0">
+<li><b>初診問診票／歯科初診問診票</b>を作成できます。既存患者の問診票も作れます。</li>
+<li>手書きで使いたい時は<b>空の問診票PDF</b>を開いて印刷できます。</li>
+<li>ホームページの問診フォームから届いた<b>未登録の外部問診票</b>は「問診票」タブにまとまり、内容を確認して患者にひも付けます。</li>
+</ul>
+</div>
+
+<h2>8. 歯科カルテ<span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+<div class="card">
+<p style="margin-top:0">歯科処置の記録を、<b>歯式・歯周ポケット・動揺・抜歯集計</b>まで含めて残せます。</p>
+<ul>
+<li>記録から<b>カルテ貼り付け用テキスト</b>を作れます（口腔内の状況→検査→治療の順・担当獣医師つき・抜歯本数などは会計用に箇条書き）。アーミックスのカルテに貼り付けて使います。</li>
+<li><b>抜歯集計</b>では犬歯（104・204・304・404）を単根歯と分けて数えます。</li>
+<li>歯のイラスト付きの<b>報告書PDF</b>も作れます。</li>
+</ul>
+<div class="note">歯科カルテの画面は患者ごとの記録のため、このガイドでは画面例を載せていません。操作は各麻酔イベントの「歯科」ボタンから開けます。</div>
+</div>
+
+<h2>9. 設定（マスタ管理）<span class="badge b-vet" style="margin-left:6px">獣医師</span></h2>
+<div class="card">
+<h3>薬剤管理</h3>
+<img class="shot wide" src="vet-link-drugs.png" alt="薬剤マスタ">
+<div class="cap">▲ 薬剤マスタ（麻酔記録の薬剤／輸液選択で使います）</div>
+<p style="margin:6px 0 0">よく使う薬剤・輸液を、分類・濃度・標準用量・投与経路つきで登録します。「🚑 緊急薬プロトコル管理」もここから開けます。</p>
+<h3>スタッフ管理</h3>
+<img class="shot" src="vet-link-staff.png" alt="スタッフ管理">
+<div class="cap">▲ スタッフ管理（獣医師・看護師）</div>
+<p style="margin:6px 0 0">手術予定の担当者・麻酔記録・各種記録者で使うスタッフを登録します。<b>文書テンプレート管理</b>も設定の中にあります。</p>
+</div>
+
+<h2>10. ステータスの色・意味</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">表示</th><th>意味</th></tr>
+<tr><td><span class="chip c-next">予定</span></td><td>これからの麻酔イベント。</td></tr>
+<tr><td><span class="chip c-now">導入準備 / 麻酔中</span></td><td>準備・麻酔が進行中。麻酔時間が自動でカウントされます。</td></tr>
+<tr><td><span class="chip c-done">覚醒中 / 術後</span></td><td>麻酔が終わり、術後管理・報告書の段階。</td></tr>
+<tr><td><span class="chip c-late">同意書 未取得 / 未作成</span></td><td>まだ足りていない書類。赤は「対応が必要」の目印です。</td></tr>
+<tr><td>署名済み ／ 未署名</td><td>同意書の署名状態。署名済みでお渡し待ちの書類は受付対応待ちに出ます。</td></tr>
+</table>
+</div>
+
+<h2>11. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">質問</th><th>答え</th></tr>
+<tr><td>ログイン（パスコード）は要りますか？</td><td>いりません。共有端末用に、開けばすぐ使えます。</td></tr>
+<tr><td>手術予定が出てこない</td><td>予約管理表（予約革命）への登録・メニュー名をご確認ください。反映は約30分ごとの自動同期です。急ぐ時は「＋手術予定を登録」で手動追加できます。</td></tr>
+<tr><td>患者情報が自動で入らない</td><td>アーミックス取込は<b>受付PCが動いている日中のみ</b>です。動いていない時は手動入力／仮患者で進められます。</td></tr>
+<tr><td>iPadでPDFの「戻る」や印刷ができない</td><td>ホーム画面追加した <b>https://…:8450</b> から開いてください。アプリ内ビューアで戻る・印刷ができます。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>改善リクエストはいつでも院長・永野さんまで。すぐ直せることが多いです。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>この画面には患者名・飼い主さんの情報が表示されます。<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべて<b>架空のサンプル</b>です）</div>
+
+<footer>荻窪ツイン動物病院 ｜ VetLink 使用ガイド（2026年7月16日版）<br>不明点・改善要望は院長・永野さんまで</footer>
+</div>
+</body>
+</html>
