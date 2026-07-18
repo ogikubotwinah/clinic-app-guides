@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>文献ライブラリ 使い方ガイド（獣医師向け）</title>
+<style>
+  :root {
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --violet: #7c3aed; --violet-bg: #f5f3ff;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #92400e, #d97706); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .92; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--amber); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .tab { display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: .85rem; font-weight: 700; background: #f1f5f9; border: 1px solid var(--border); margin: 2px 3px; white-space: nowrap; }
+  .shot { width: 100%; max-width: 320px; display: block; margin: 10px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.10); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: var(--amber-bg); border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--teal-bg); border: 1px solid #99f6e4; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 1px 8px; border-radius: 6px; font-size: .8rem; font-weight: 700; }
+  code { background: #f1f5f9; padding: 1px 6px; border-radius: 5px; font-size: .9em; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  .tophint { font-size: .8rem; } .tophint a { color: #fff; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>📚 文献ライブラリ 使い方ガイド
+<small class="tophint"><a href="./">← ガイド一覧へ</a></small>
+<small>獣医師向け ｜ 2026年7月18日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+<b>世界の新しい論文をAIが日本語で要約</b>したものを、検索して読めるアプリです。分野は
+<span class="tab">🦷 獣医歯科</span><span class="tab">🫀 獣医循環器</span><span class="tab">💉 獣医麻酔</span><span class="tab">🧑 人歯科</span>
+の4つ。院内PCのブラウザで開くだけ（<b>パスコード不要</b>）。各論文は「主結果／臨床的意味／既存との差分／限界」を日本語でまとめています。
+<b>毎朝、新着が自動で増えます。</b>
+</div>
+
+<div class="card" style="background:var(--amber-bg);border-color:#fde68a">
+<b>アクセス</b><br>
+・院内PCのブラウザ：<b>http://192.168.20.250:3900</b>（パスコード不要）<br>
+・院外（自宅など）からも見られるようにできます。ご希望の方は院長までお知らせください（端末ごとに簡単な設定が必要です）。
+</div>
+
+<div class="note"><b>いちばん大事なこと：これは AI が抄録から作った「下読み用の要約」です。</b>
+参考にはなりますが、<b>診療判断は必ず原文でご確認ください</b>。各カードに原文（PubMed など）へのリンクがあります。</div>
+
+<h2>1. 画面の全体像</h2>
+<div class="card">
+<p style="margin-top:0">上から順に、<b>検索ボックス → 分野タブ → 絞り込み（信頼性・並び順・タグ） → 論文の一覧</b>です。一覧は既定で<b>信頼性の高い順</b>に並びます。</p>
+<ul style="font-size:.92rem">
+<li><b>分野タブ</b>：「すべて」または4分野。タブの数字はその分野の収録件数です。</li>
+<li><b>検索</b>：日本語でも英語でもOK。「歯周」「僧帽弁」「不整脈」「プロポフォール」など。<b>2文字の用語</b>でも引けます。スペースで区切ると<b>すべて含む</b>もの（AND検索）になります。</li>
+<li><b>タグ</b>：分野ごとの主題タグ（歯周・心エコー・周術期管理…）。押すとそのタグだけに絞れます。数字は件数。</li>
+<li><b>信頼性</b>：<code>5以上</code> <code>7以上</code>でエビデンスの強い論文だけに絞れます。<b>並び</b>は「信頼性順／新着順」。</li>
+</ul>
+<img class="shot" src="lit-home.png" alt="ホーム画面：検索・5つのタブ・タグ・論文一覧">
+<div class="cap">▲ ホーム：検索ボックス、分野タブ（件数つき）、タグ、信頼性順の一覧</div>
+</div>
+
+<h2>2. 論文カードの読み方</h2>
+<div class="card">
+<p style="margin-top:0">一覧のカードを<b>タップすると開いて</b>、日本語の要約が読めます（ファイルを探す必要はありません）。開いた画面には次が入っています。</p>
+<table>
+<tr><th style="width:32%">項目</th><th>内容</th></tr>
+<tr><td>左の<span class="chip" style="background:#d1fae5;color:#065f46">数字</span></td><td><b>信頼性スコア（1〜10）</b>。研究デザインや症例数などから機械的に付けた目安。緑=高い/水色/黄色/灰=低い。</td></tr>
+<tr><td>主結果</td><td>抄録に書かれた結果（数値は原文どおり）。</td></tr>
+<tr><td>臨床的意味</td><td>一般論として臨床的に何を意味するか。</td></tr>
+<tr><td>既存との差分</td><td>従来と比べて何が新しいか。</td></tr>
+<tr><td>限界・未解決</td><td><b>この研究から言えないこと</b>の線引き。</td></tr>
+</table>
+<p style="font-size:.9rem">信頼性スコアの内訳の横にある <b>「？」</b> を押すと、採点の考え方（メタ解析とは・対象論文とは 等）が読めます。カード下部の<b>原文リンク</b>から PubMed 等の原著に飛べます。</p>
+<img class="shot" src="lit-card.png" alt="論文カードを開いた画面：信頼性・主結果・臨床的意味など">
+<div class="cap">▲ カードを開くと日本語要約。信頼性の内訳と「？」（採点の説明）、原文リンクつき</div>
+</div>
+
+<h2>3. 画面上の2つの説明</h2>
+<div class="card">
+<p style="margin-top:0">ヘッダー右上に、いつでも開ける説明が2つあります。</p>
+<div class="cols" style="display:flex;gap:14px;flex-wrap:wrap">
+<div style="flex:1;min-width:240px">
+<h3 style="margin-top:0">📖 収集の範囲</h3>
+<p style="font-size:.9rem">どこから論文を集めているか（PubMed など）、どのレベルまで拾えているか、<b>まだ足りないもの</b>を正直に書いています。</p>
+<img class="shot" src="lit-coverage.png" alt="収集の範囲パネル">
+</div>
+<div style="flex:1;min-width:240px">
+<h3 style="margin-top:0">📊 信頼性スコアの見方</h3>
+<p style="font-size:.9rem">スコアの付け方と、<b>メタ解析・システマティックレビュー・RCT・対象論文</b>などの用語をやさしく説明しています。</p>
+<img class="shot" src="lit-score.png" alt="信頼性スコアの見方パネル">
+</div>
+</div>
+</div>
+
+<h2>4. 日本語の学会誌（「和文」カード）</h2>
+<div class="card">
+<p style="margin-top:0">PubMed に載らない<b>日本語の学会誌（J-STAGE）</b>も、見つけられるように載せています。これらは<span class="chip" style="background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe">和文</span>バッジが付き、
+<b>AI要約はありません</b>（学会誌側で抄録が取得できないため）。<b>見出しとリンクだけ</b>なので、内容は原文リンク（J-STAGE）でご確認ください。「PubMedには無いけれど、こんな和文報告がある」と気づくための項目です。</p>
+</div>
+
+<h2>5. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">Q</th><th>A</th></tr>
+<tr><td>要約をそのまま鵜呑みにしていい？</td><td><b>いいえ。</b>AIが抄録から作った目安です。必ず<b>原文（リンク）</b>でご確認ください。</td></tr>
+<tr><td>下の方の論文／和文カードが出てこない</td><td>一覧の下に<b>「もっと見る」</b>があります。押すと残りが表示されます（和文カードは信頼性なしなので最後尾に並びます）。</td></tr>
+<tr><td>循環器と麻酔の両方に同じ論文が出る</td><td>「心疾患の子の麻酔」など<b>両分野に関係する</b>論文は、両方のタブに出ます（正しい動きです）。</td></tr>
+<tr><td>新しい論文はいつ増える？</td><td><b>毎朝、自動</b>で増えます。操作は不要です。</td></tr>
+<tr><td>こんな分野も欲しい／こう直してほしい</td><td>院長までお知らせください（分野の追加も、要望の反映もできます）。</td></tr>
+</table>
+</div>
+
+<footer>荻窪ツイン動物病院 ｜ 文献ライブラリ 使い方ガイド（2026-07-18版）<br>不明点・ご要望は院長まで</footer>
+</div>
+</body>
+</html>
