@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>予約管理アプリ 使用ガイド（受付・スタッフ・獣医師・トリマー向け）</title>
+<style>
+  :root {
+    --sky: #0369a1; --sky-bg: #f0f9ff;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #075985, #0ea5e9); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--sky); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff { background: var(--sky-bg); color: var(--sky); border: 1px solid #bae6fd; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff { border-color: #7dd3fc; background: var(--sky-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shotw { display: block; width: 100%; max-width: 640px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--sky-bg); border: 1px solid #bae6fd; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>予約管理アプリ 使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>受付・スタッフ・獣医師・トリマー向け ｜ 2026年7月31日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+当院オリジナルの<b>予約システム</b>です。<b>診察・トリミング・ペットホテル・一時預かり</b>の予約をこの1画面で管理します。飼い主さまは<b>公式LINEからネット予約</b>ができ、来院時は<b>再来機（番号入力・QR）で自動受付</b>。予約革命の置き換えとして、休みの反映（勤怠から自動）や「この子ごとのトリミング時間」など、当院の運用に合わせて作られています。
+<div style="margin-top:8px">
+<span class="badge b-staff">スタッフが使う画面です</span>
+<span class="badge b-auto">緑 = 自動（システム）</span>
+</div>
+</div>
+
+<div class="imp">📌 <b>切り替えのお知らせがあるまでは、予約の正式な登録先はこれまで通り予約革命です。</b>切り替え日以降は<b>このアプリだけ</b>に入力してください（それまで、このカレンダーには予約革命の内容が1日3回自動で写されています）。</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">場所</th><th>URL・必要なもの</th></tr>
+<tr><td>院内（病院のWi-Fi）</td><td><b>http://192.168.20.250:4000</b></td></tr>
+<tr><td>院外（自宅など）</td><td><b>http://100.111.66.29:4000</b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
+</table>
+<p style="margin:6px 0 0">初回だけ<b>パスコード</b>を聞かれます（院内掲示・不明なら院長へ）。一度入れると同じ端末ではそのまま使えます。スマホでも操作できます（横スクロール・ピンチ拡大対応）。</p>
+</div>
+
+<h2>2. カレンダーの見方（Daily）</h2>
+<div class="card">
+<img class="shotw" src="resv-daily.png" alt="日別カレンダー">
+<div class="cap">▲ 日別カレンダー（画像はテストデータです）</div>
+<table>
+<tr><th style="width:34%">見るところ</th><th>意味</th></tr>
+<tr><td>列</td><td>担当ごと（獣医師 → トリマー の順）。<b>院長1・院長2</b>＝院長の2枠、<b>予約外／指名なし</b>＝飛び込み・順番待ちのメモ置き場（同じ時間に何件でも入ります）、<b>自由枠</b>＝歯磨き指導・パピーパーティー等。</td></tr>
+<tr><td>予約の色</td><td>メニューの分類ごとに色分け：<span class="chip" style="background:#dcfce7;color:#15803d">予防=緑</span> <span class="chip" style="background:#dbeafe;color:#1d4ed8">歯科=青</span> <span class="chip" style="background:#fef3c7;color:#b45309">診察=橙</span> <span class="chip" style="background:#fee2e2;color:#b91c1c">手術=赤</span> <span class="chip" style="background:#fce7f3;color:#be185d">トリミング=桃</span> など。<b>🌐マーク＝飼い主さまがLINEから入れたネット予約</b>です。</td></tr>
+<tr><td>休みのスタッフ</td><td><b>列ごと自動で消えます</b>（勤怠システムから毎朝自動反映）。全員を見たい時は右上の<b>「休み表示」</b>を押します。</td></tr>
+<tr><td>「看護師 早n・遅n」</td><td>その日の看護師の早番・遅番人数（勤怠から自動）。</td></tr>
+<tr><td>日付の移動</td><td><b>‹ ›</b>で前後の日、<b>「今日」</b>で当日、<b>「📅 月」</b>または日付タップでミニカレンダー。</td></tr>
+</table>
+<div class="tip">🔍 右上のボタン：<b>「検索」</b>＝カルテNo・名前で予約を探す（本日／明日以降／過去に分けて表示・タップでその日へ）／<b>「取消一覧」</b>＝キャンセルの一覧（当日内の時間移動も分かります）／<b>「📜 履歴」</b>＝いつ・誰が・どの予約を入れた/変えた/取り消したかの記録。</div>
+</div>
+
+<h2>3. 予約を入れる・変更する</h2>
+<div class="flow">
+  <div class="fbox staff"><b>① 空いているマスをクリック（タップ）</b>その担当・その時間で入力画面が開きます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox staff"><b>② メニューを選ぶ → カルテNoで「検索」</b>飼い主名が自動で入り、<b>同居の子がボタンで出ます</b>。診た子をタップ（複数選択OK＝2頭目から+15分/頭で終了時刻が自動で伸びます）。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>③ 空きチェックは自動</b>「✅ この枠は空いています」を確認して<b>「予約登録」</b>。ダブルブッキング・院内全体の同時対応上限（4件）は自動で止まります。</div>
+</div>
+<div class="card">
+<img class="shot" src="resv-modal.png" alt="予約入力画面">
+<div class="cap">▲ 予約入力（画像はテストデータです）</div>
+<table>
+<tr><th style="width:34%">操作</th><th>やり方</th></tr>
+<tr><td>予約の変更・取消</td><td><b>予約をクリック</b>→時間・担当・メニューを直して保存／「来院」「完了」「取消」ボタンで状態変更。</td></tr>
+<tr><td>状態の意味</td><td><b>予約</b>→<b>来院</b>（受付済み）→<b>完了</b>（お会計まで終了）。<b>取消</b>＝キャンセル。<b>待</b>＝ホテルの予約待ち（点線表示）。</td></tr>
+<tr><td>時間をふさぐ（ブロック）</td><td>入力画面上部の<b>「ブロック（予約不可に）」</b>タブ。時間帯または1日（9:00〜19:00）をふさげます。<b>すでに入っている予約はそのまま残ります</b>（新規だけ入らなくなる）。解除はブロックをクリック。</td></tr>
+<tr><td>その日だけ休みにする</td><td>列の名前の下の<b>「休」</b>ボタン。※毎週の休み・出勤は勤怠から自動なので、通常は触らなくてOKです。</td></tr>
+</table>
+</div>
+
+<h2>4. トリミング「この子の時間」（2026年7月〜）</h2>
+<div class="card">
+<img class="shot" src="resv-trim.png" alt="この子のトリミング時間">
+<div class="cap">▲ トリミングの予約画面に出る「✂ この子のトリミング時間」（画像はテストデータです）</div>
+<p style="margin-top:0">基本は<b>シャンプーコース60分・シャンプーカット120分</b>などコースごとの時間ですが、<b>「この子は3時間半かかる」</b>のような<b>子ごとの時間</b>を登録できます。トリミングのコースを選んで子を選ぶと<b>「✂ この子のトリミング時間」欄</b>が出ます。</p>
+<ul>
+<li><b>分数を入れて「保存」</b>→ 次からその子の予約は<b>自動でその長さ</b>で枠が取られます。<b>飼い主さまのLINEネット予約にも同じ長さが効きます</b>（「3時間の子が2時間半で入ってしまう」がなくなります）。</li>
+<li><b>空欄のまま</b>＝コースの基本時間。パピーなどまだ時間が定まらない子は空欄でOK。</li>
+<li><b>今回だけ長くしたい</b>（毛玉など）→ 数字を変えて<b>保存せずに</b>そのまま予約登録すると、その回だけ長く取れます。</li>
+<li>やめたい時は欄を<b>空にして「保存」</b>で基本に戻ります。</li>
+</ul>
+<div class="note">✂ 時間の目安はこれまで通り<b>トリマーの皆さんの判断が正</b>です。初回カルテを書いた時などに、この欄に登録しておくと次回から自動になります。</div>
+</div>
+
+<h2>5. ペットホテル・一時預かり（Hotel タブ）</h2>
+<div class="card">
+<img class="shotw" src="resv-hotel.png" alt="ホテルタブ">
+<div class="cap">▲ Hotelタブ＝日付×部屋の2週間表（画像はテストデータです）</div>
+<table>
+<tr><th style="width:34%">操作・見方</th><th>内容</th></tr>
+<tr><td>新しく入れる</td><td>部屋の行の<b>空きマスをクリック</b>→<b>宿泊</b>（チェックイン〜アウト・既定は翌日15:00）か<b>一時預かり（時間制）</b>を選択→同居の子を選んで登録（<b>複数選択で頭数分まとめて</b>入ります）。</td></tr>
+<tr><td>バーの見方</td><td>「9:00 名前 →15:00」＝イン時刻とアウト時刻。日をまたぐ宿泊は横に伸びます。日付の下に<b>「n部屋 m頭」</b>＝その日の稼働数。</td></tr>
+<tr><td>部屋のルール</td><td><b>同じお家の子だけ同室OK</b>（別のお家は自動でブロックされます）。時間がかぶらなければ同じ部屋を1日で使い回せます。</td></tr>
+<tr><td>予約待ち</td><td>登録時に「予約待ち」にチェック→<b>点線＋「待」</b>で表示（部屋は占有しません）。専用の<b>キャンセル待ち行</b>もあります。</td></tr>
+<tr><td>変更</td><td>バーをクリック→イン/アウト日時・部屋を変更。</td></tr>
+</table>
+<div class="note">🏨 ホテル・一時預かりの予約受付はこれまで通り<b>お電話・受付のみ</b>です（ネット予約は準備が整ってから）。年末年始はホテルのみ営業＝休診日でもホテル行は入力できます。</div>
+</div>
+
+<h2>6. 来院受付（再来機）</h2>
+<div class="card">
+<img class="shot" src="resv-checkin.png" alt="来院受付キオスク">
+<div class="cap">▲ 受付ディスプレイの「来院受付」画面</div>
+<p style="margin-top:0">受付のディスプレイに常時表示しておく画面です（<b>/checkin</b>・パスコード不要）。飼い主さまが自分で受付できます。</p>
+<ul>
+<li><b>診察券番号を入力</b>して「受付する」、または<b>QRコードをリーダーにかざす</b>（LINEの会員証QR・紙のQRカードどちらもOK。<b>今までのLINEのQRがそのまま使えます</b>）。</li>
+<li>同じお家の子は<b>まとめて受付</b>されます。受付できるのは<b>予約時刻の前後2時間以内</b>の予約（早すぎると「2時間前から受付できます」と案内されます）。</li>
+<li>受付すると予約が<b>「来院」</b>になり、<b>電子カルテの受付ボードにも自動で載ります</b>。</li>
+</ul>
+</div>
+
+<h2>7. 診察券QRの発行（LINEをお使いでない方向け）</h2>
+<div class="card">
+<img class="shot" src="resv-qr.png" alt="診察券QR発行">
+<div class="cap">▲ 診察券QR発行（画像はテストデータです）</div>
+<p style="margin-top:0"><b>/qr</b>（受付スタッフ用）でカルテNoを入れて「表示」→<b>来院受付カード</b>が出るので「印刷する」でお渡しします。世帯番号で発行するので、同じお家の子はこの1枚でまとめて受付できます。※LINEをお使いの方は発行不要です（LINEの会員証QRが診察券代わり）。</p>
+</div>
+
+<h2>8. 設定（⚙ 出勤設定）</h2>
+<div class="card">
+<img class="shot" src="resv-settings.png" alt="出勤設定">
+<div class="cap">▲ ⚙ 出勤設定（毎週の休み・休診日・ホテルの部屋）</div>
+<table>
+<tr><th style="width:34%">項目</th><th>内容</th></tr>
+<tr><td>毎週の休み</td><td>スタッフ×曜日のチェック。<b>ただし通常は勤怠システムから毎朝自動で反映される方が正</b>で、手動チェックは翌朝上書きされます。基本は触らなくてOK。</td></tr>
+<tr><td>休診日</td><td>特定日・毎年（年末年始）の休診を登録。休診日はカレンダーがグレーになり予約できません（ホテルは除く）。</td></tr>
+<tr><td>ホテルの部屋</td><td>部屋ごとの使用可否のON/OFF（故障・清掃中など）。</td></tr>
+</table>
+</div>
+
+<h2>9. 飼い主さまのLINE予約（参考）</h2>
+<div class="card">
+<p style="margin-top:0">飼い主さまは<b>公式LINEのメニュー</b>から自分で予約できます。スタッフへの問い合わせが来た時のために、ルールを知っておいてください。</p>
+<table>
+<tr><th style="width:38%">ルール</th><th>内容</th></tr>
+<tr><td>予約できる期間</td><td><b>当日OK（開始1時間前まで）</b>〜180日先まで。直前は「お電話で」と案内されます。</td></tr>
+<tr><td>ネットで予約できるメニュー</td><td>診察（再診・初診）・ワクチン・狂犬病・避妊相談・歯科（初診/検診）・トリミング（お手入れ/シャンプー/シャンプーカット）など。<b>健診・フィラリア・ホテル・猫トリミングは電話/受付のみ</b>。</td></tr>
+<tr><td>確認・キャンセル</td><td>LINEの「予約の確認」から。<b>ネット予約分のみ、開始1時間前まで</b>自分でキャンセルできます（それ以外は「お電話で」）。</td></tr>
+<tr><td>通知</td><td>予約完了・キャンセル完了・<b>前日夕方のリマインダー</b>がLINEに届きます。</td></tr>
+<tr><td>いたずら防止</td><td>初めての子は1件まで・1頭あたり診察2件/トリミング3件まで等の上限があります。上限の方は「お電話にて」と案内されます。</td></tr>
+</table>
+</div>
+
+<h2>10. よくある質問</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">質問</th><th>答え</th></tr>
+<tr><td>パスコードを聞かれた</td><td>初回のみです。院内掲示のパスコードを入力（不明なら院長へ）。</td></tr>
+<tr><td>予約が入らない（赤い警告）</td><td>「同じ時間に予約が入っています」＝その担当の重複／「同時対応上限（4件）」＝院内全体の上限。時間か担当を変えてください。</td></tr>
+<tr><td>先生の列が見当たらない</td><td>その日お休みだと列ごと隠れています。<b>「休み表示」</b>を押すと出ます。</td></tr>
+<tr><td>間違えて取り消した</td><td><b>「取消一覧」</b>で確認できます。同じ内容でもう一度入れ直してください（操作の記録は「📜 履歴」に残っています）。</td></tr>
+<tr><td>予約を探したい</td><td><b>「🔍 検索」</b>にカルテNoか名前を入れると、本日／明日以降／過去に分けて出ます。行をタップでその日へ移動。</td></tr>
+<tr><td>ネット予約はどれ？</td><td>予約に<b>🌐</b>マークが付いています。開くと「経路：ネット予約」と出ます。飼い主さまがLINEでキャンセルするとメモに残ります。</td></tr>
+<tr><td>トリミングの枠が短い/長い</td><td>その子の<b>「✂ この子のトリミング時間」</b>を登録・修正してください（→ 4章）。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>改善要望はいつでも院長まで。すぐ直せることが多いです。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>この画面には飼い主さま・ペットのお名前が表示されます。<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべてテストデータで、実在の患者情報は含みません）</div>
+
+<footer>荻窪ツイン動物病院 ｜ 予約管理アプリ 使用ガイド（2026年7月31日版）<br>不明点・改善要望は院長まで</footer>
+</div>
+</body>
+</html>
