@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="動物病院のIT・SaaS契約の棚卸しと、電子カルテ各社への確認項目をまとめた記入式チェックシート。">
+<title>動物病院 IT棚卸し ＋ 電子カルテ比較シート</title>
+<style>
+  :root {
+    --paper: #f7f9f9;
+    --card: #ffffff;
+    --ink: #16242c;
+    --ink-soft: #4a5f68;
+    --ink-faint: #7d9099;
+    --rule: #dde5e6;
+    --accent: #0f6d78;
+    --accent-soft: #e2f0f1;
+    --flag: #a8501d;
+    --flag-soft: #f6e9e1;
+    --field: #f2f6f6;
+    --shadow: 0 1px 2px rgba(22, 36, 44, .05), 0 8px 24px -16px rgba(22, 36, 44, .25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #11191d; --card: #182227; --ink: #e6eeef; --ink-soft: #a8bcc2;
+      --ink-faint: #7b9199; --rule: #2a3941; --accent: #5cc4cf; --accent-soft: #1c3238;
+      --flag: #e0925f; --flag-soft: #33251b; --field: #121b1f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px -16px rgba(0, 0, 0, .8);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f9f9; --card: #ffffff; --ink: #16242c; --ink-soft: #4a5f68;
+    --ink-faint: #7d9099; --rule: #dde5e6; --accent: #0f6d78; --accent-soft: #e2f0f1;
+    --flag: #a8501d; --flag-soft: #f6e9e1; --field: #f2f6f6;
+    --shadow: 0 1px 2px rgba(22,36,44,.05), 0 8px 24px -16px rgba(22,36,44,.25);
+  }
+  :root[data-theme="dark"] {
+    --paper: #11191d; --card: #182227; --ink: #e6eeef; --ink-soft: #a8bcc2;
+    --ink-faint: #7b9199; --rule: #2a3941; --accent: #5cc4cf; --accent-soft: #1c3238;
+    --flag: #e0925f; --flag-soft: #33251b; --field: #121b1f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
+    font-size: 16px; line-height: 1.75; -webkit-text-size-adjust: 100%;
+  }
+
+  .wrap {
+    max-width: 46rem; margin: 0 auto;
+    padding: clamp(1.75rem, 5vw, 3.5rem) clamp(1rem, 4vw, 2rem) 5rem;
+    display: flex; flex-direction: column; gap: 2.75rem;
+  }
+
+  .mincho { font-family: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "MS PMincho", serif; }
+
+  header { display: flex; flex-direction: column; gap: .9rem; }
+  .eyebrow { font-size: .74rem; letter-spacing: .16em; color: var(--accent); font-weight: 700; margin: 0; }
+  h1 { font-size: clamp(1.55rem, 4.4vw, 2.05rem); line-height: 1.35; margin: 0; font-weight: 600; text-wrap: balance; letter-spacing: .01em; }
+  .lede { margin: 0; color: var(--ink-soft); font-size: .97rem; }
+  .meta { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .8rem; color: var(--ink-faint); border-top: 1px solid var(--rule); padding-top: .8rem; }
+
+  .note {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 1.15rem 1.3rem; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: .55rem;
+  }
+  .note h2 { font-size: .95rem; margin: 0; font-weight: 700; letter-spacing: .02em; }
+  .note p { margin: 0; font-size: .92rem; color: var(--ink-soft); }
+  .quote { margin: 0; padding: .8rem 1rem; background: var(--accent-soft); border-radius: 2px; font-size: .92rem; color: var(--ink); }
+
+  /* part divider */
+  .part {
+    display: flex; align-items: baseline; gap: .8rem;
+    border-top: 3px solid var(--ink); padding-top: .9rem; margin-top: .5rem;
+  }
+  .part-num { font-size: .78rem; letter-spacing: .14em; color: var(--accent); font-weight: 700; white-space: nowrap; }
+  .part h2 { font-size: 1.3rem; margin: 0; font-weight: 600; letter-spacing: .02em; }
+  .part-note { margin: -1.6rem 0 0; font-size: .88rem; color: var(--ink-faint); }
+
+  section { display: flex; flex-direction: column; gap: 1rem; }
+  .sec-head {
+    display: grid; grid-template-columns: 2.6rem 1fr; align-items: baseline;
+    gap: .6rem; border-bottom: 2px solid var(--ink); padding-bottom: .5rem;
+  }
+  .sec-letter { font-size: 1.9rem; line-height: 1; color: var(--accent); font-weight: 400; }
+  .sec-title { font-size: 1.06rem; margin: 0; font-weight: 700; letter-spacing: .02em; }
+  .sec-note { grid-column: 2; font-size: .85rem; color: var(--ink-faint); margin: 0; }
+
+  ul.items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  ul.items li {
+    display: grid; grid-template-columns: 1.35rem 2.9rem 1fr; gap: .1rem .5rem;
+    align-items: start; padding: .6rem .3rem .6rem 0; border-bottom: 1px solid var(--rule);
+  }
+  ul.items li:last-child { border-bottom: none; }
+  ul.items.nocode li { grid-template-columns: 1.35rem 1fr; }
+  .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--ink-faint); padding-top: .28rem; font-variant-numeric: tabular-nums; }
+  .q { font-size: .95rem; }
+  .q .why { display: block; color: var(--ink-faint); font-size: .84rem; margin-top: .15rem; }
+  li.key .q { font-weight: 700; }
+  li.key .code { color: var(--flag); }
+  .tag { display: inline-block; background: var(--flag-soft); color: var(--flag); font-size: .7rem; font-weight: 700; padding: .05rem .4rem; border-radius: 2px; margin-right: .35rem; vertical-align: .08em; letter-spacing: .04em; }
+
+  input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none; width: 1.05rem; height: 1.05rem;
+    margin: .35rem 0 0; border: 1.5px solid var(--ink-faint); border-radius: 2px;
+    background: var(--card); cursor: pointer; display: grid; place-content: center; flex: none;
+  }
+  input[type="checkbox"]::after {
+    content: ""; width: .55rem; height: .3rem; border: 2px solid var(--card);
+    border-top: 0; border-right: 0; transform: rotate(-45deg) translateY(-.06rem); opacity: 0;
+  }
+  input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+  input[type="checkbox"]:checked::after { opacity: 1; }
+  input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  li:has(input.done:checked) .q { color: var(--ink-faint); }
+
+  /* text fields */
+  input[type="text"], textarea {
+    font: inherit; font-size: .92rem; width: 100%; padding: .35rem .5rem;
+    background: var(--field); color: var(--ink);
+    border: 1px solid var(--rule); border-radius: 2px;
+  }
+  input[type="text"]:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+  textarea { min-height: 4.5rem; resize: vertical; line-height: 1.6; }
+
+  .fields { display: flex; flex-direction: column; gap: .85rem; }
+  .field { display: flex; flex-direction: column; gap: .25rem; }
+  .field label { font-size: .89rem; font-weight: 600; }
+  .field .hint { font-size: .82rem; color: var(--ink-faint); font-weight: 400; }
+
+  /* inventory table */
+  .scroller { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .88rem; }
+  th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+  th { background: var(--accent-soft); font-weight: 700; font-size: .78rem; letter-spacing: .03em; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  td.cat { font-weight: 600; white-space: nowrap; font-size: .85rem; }
+  td.money input { text-align: right; font-variant-numeric: tabular-nums; }
+  .col-name { width: 40%; }
+  .col-money { width: 24%; }
+  table.record td { height: 2.6rem; color: var(--ink-faint); }
+
+  footer { border-top: 1px solid var(--rule); padding-top: 1.1rem; font-size: .85rem; color: var(--ink-faint); display: flex; flex-direction: column; gap: .5rem; }
+
+  .toolbar { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+  button {
+    font: inherit; font-size: .85rem; padding: .4rem .9rem; cursor: pointer;
+    background: var(--card); color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 2px;
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 700; }
+  button.primary:hover { opacity: .9; color: #fff; }
+  .status { font-size: .82rem; color: var(--accent); }
+  .counter { font-size: .82rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+  #outbox { display: none; flex-direction: column; gap: .5rem; }
+  #outbox.on { display: flex; }
+
+  @media print {
+    :root { --paper:#fff; --card:#fff; --ink:#000; --ink-soft:#333; --ink-faint:#555; --rule:#ccc; --accent:#000; --accent-soft:#f0f0f0; --flag:#000; --flag-soft:#eee; --field:#fff; --shadow:none; }
+    .toolbar, #outbox { display: none; }
+    section, ul.items li { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">動物病院のIT環境</p>
+    <h1 class="mincho">IT環境の棚卸し ＋ 電子カルテ比較シート</h1>
+    <p class="lede">前半は「今うちが何にいくら払っているか」を洗い出す棚卸し。後半は各社の営業と話すときに順番に確認していく質問集です。入力とチェックは自動で保存されるので、何日かに分けて進められます。</p>
+    <div class="meta">
+      <span>2026年8月版</span>
+      <span>作成：荻窪ツイン動物病院</span>
+      <span>金額はすべて税別・月額で</span>
+    </div>
+  </header>
+
+  <div class="note">
+    <h2>先に前半をやると、後半の見積もりが読めるようになります</h2>
+    <p>電子カルテだけを比べても実は意味が薄くて、予約・診察券・LINE・勤怠・会計と、あちこちに毎月払っている合計が本当のコストです。ここを一度出しておくと、各社の見積もりが高いのか安いのか判断できるようになります。</p>
+    <p>前半を埋め終えたら、いちばん下の「回答をまとめてコピー」でテキストにできます。そのままLINEに貼って送れます。</p>
+    <div class="toolbar">
+      <button type="button" id="print">印刷 / PDFで保存</button>
+      <button type="button" id="reset">入力とチェックを全部消す</button>
+    </div>
+  </div>
+
+  <!-- ============ PART 1 ============ -->
+  <div class="part"><span class="part-num">前半</span><h2 class="mincho">自院のIT棚卸し</h2></div>
+  <p class="part-note">分かる範囲で大丈夫です。「たぶんこのくらい」でも十分役に立ちます。</p>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">1</span>
+      <h2 class="sec-title">契約しているサービスと毎月の金額</h2>
+      <p class="sec-note">使っていないものは空欄のままで。紙でやっているものは「紙」と書いてください</p>
+    </div>
+    <div class="scroller">
+      <table id="inv">
+        <thead>
+          <tr><th>用途</th><th class="col-name">サービス名</th><th class="col-money">月額（円）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="cat">電子カルテ・レセコン</td></tr>
+          <tr><td class="cat">予約システム</td></tr>
+          <tr><td class="cat">診察券（カード発行・デジタル）</td></tr>
+          <tr><td class="cat">Web問診</td></tr>
+          <tr><td class="cat">LINE公式・配信ツール</td></tr>
+          <tr><td class="cat">ホームページ・広告</td></tr>
+          <tr><td class="cat">クチコミ管理（Google等）</td></tr>
+          <tr><td class="cat">電話（クラウドPBX・CTI・電話代行）</td></tr>
+          <tr><td class="cat">検査結果の管理・外注検査</td></tr>
+          <tr><td class="cat">画像管理（レントゲン・エコー）</td></tr>
+          <tr><td class="cat">在庫・発注管理</td></tr>
+          <tr><td class="cat">ペット保険の請求</td></tr>
+          <tr><td class="cat">勤怠管理</td></tr>
+          <tr><td class="cat">給与計算</td></tr>
+          <tr><td class="cat">会計・経理ソフト</td></tr>
+          <tr><td class="cat">経営数値の集計・日報</td></tr>
+          <tr><td class="cat">スタッフ間の連絡（LINE WORKS等）</td></tr>
+          <tr><td class="cat">クラウド保存・バックアップ</td></tr>
+          <tr><td class="cat">カード・QR決済</td></tr>
+          <tr><td class="cat">トリミング・ホテルの予約管理</td></tr>
+          <tr><td class="cat">求人・採用</td></tr>
+          <tr><td class="cat">その他 1</td></tr>
+          <tr><td class="cat">その他 2</td></tr>
+          <tr><td class="cat">その他 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fields">
+      <div class="field">
+        <label for="inv-note">この中で「高いと感じている」もの、逆に「これは払う価値がある」もの<span class="hint">率直な感想がいちばん知りたいところです</span></label>
+        <textarea id="inv-note"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">2</span>
+      <h2 class="sec-title">まだ紙・手作業でやっていること</h2>
+      <p class="sec-note">当てはまるものにチェック（紙のほうが速いものも当然あります）</p>
+    </div>
+    <ul class="items nocode" id="paper">
+      <li><input type="checkbox"><span class="q">カルテ</span></li>
+      <li><input type="checkbox"><span class="q">予約台帳</span></li>
+      <li><input type="checkbox"><span class="q">問診票</span></li>
+      <li><input type="checkbox"><span class="q">同意書（手術・麻酔・入院）</span></li>
+      <li><input type="checkbox"><span class="q">手術記録・麻酔記録</span></li>
+      <li><input type="checkbox"><span class="q">入院の指示書・経過表</span></li>
+      <li><input type="checkbox"><span class="q">スタッフ間の申し送り</span></li>
+      <li><input type="checkbox"><span class="q">在庫の数え上げ・発注</span></li>
+      <li><input type="checkbox"><span class="q">小口現金・領収書の管理</span></li>
+      <li><input type="checkbox"><span class="q">シフト表</span></li>
+      <li><input type="checkbox"><span class="q">検査結果の控え・ファイリング</span></li>
+      <li><input type="checkbox"><span class="q">紹介状・報告書</span></li>
+      <li><input type="checkbox"><span class="q">ワクチン・フィラリアの案内はがき</span></li>
+    </ul>
+    <div class="fields">
+      <div class="field">
+        <label for="paper-note">この中で「本当は電子にしたいけど後回しになっている」のはどれですか<span class="hint">理由も一言あると助かります（費用・手間・スタッフの慣れ など）</span></label>
+        <textarea id="paper-note"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">3</span>
+      <h2 class="sec-title">あったら一番うれしい機能を3つ</h2>
+      <p class="sec-note"><span id="top3count" class="counter">0 / 3 選択中</span>　迷ったら「明日から効くもの」で選んでください</p>
+    </div>
+    <ul class="items nocode" id="top3">
+      <li><input type="checkbox"><span class="q">診察の会話から、AIがカルテの下書きを作ってくれる</span></li>
+      <li><input type="checkbox"><span class="q">過去のカルテを一覧でざっと見渡せる</span></li>
+      <li><input type="checkbox"><span class="q">会計の項目入力が速い（検索せず分類から選べる）</span></li>
+      <li><input type="checkbox"><span class="q">電話が鳴ったら患者情報が画面に出る</span></li>
+      <li><input type="checkbox"><span class="q">ネット予約が24時間受けられる</span></li>
+      <li><input type="checkbox"><span class="q">LINEで予約通知・検査結果を飼い主に送れる</span></li>
+      <li><input type="checkbox"><span class="q">飼い主が自分のスマホで登録内容を確認・修正できる</span></li>
+      <li><input type="checkbox"><span class="q">検査機器の結果が自動でカルテに入る</span></li>
+      <li><input type="checkbox"><span class="q">レントゲン・エコー画像が自動で患者にひも付く</span></li>
+      <li><input type="checkbox"><span class="q">在庫が減ったら自動で発注リストが出る</span></li>
+      <li><input type="checkbox"><span class="q">入院の指示・申し送りが画面で共有できる</span></li>
+      <li><input type="checkbox"><span class="q">ペット保険の請求が自動でできる</span></li>
+      <li><input type="checkbox"><span class="q">勤怠と給与がつながっている</span></li>
+      <li><input type="checkbox"><span class="q">売上や来院数が自動で集計されて毎日見られる</span></li>
+      <li><input type="checkbox"><span class="q">紹介状・報告書が下書きまで自動で作られる</span></li>
+      <li><input type="checkbox"><span class="q">「ここが不便」と言ったら、数日で直って返ってくる</span></li>
+    </ul>
+    <div class="fields">
+      <div class="field">
+        <label for="top3-note">リストにないけど欲しいもの／その3つを選んだ理由</label>
+        <textarea id="top3-note"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">4</span>
+      <h2 class="sec-title">病院の規模</h2>
+      <p class="sec-note">だいたいで大丈夫です。金額の話をするときの前提になります</p>
+    </div>
+    <div class="fields">
+      <div class="field"><label for="s1">獣医師の人数（常勤 / 非常勤）</label><input type="text" id="s1"></div>
+      <div class="field"><label for="s2">動物看護師・トリマー・受付の人数</label><input type="text" id="s2"></div>
+      <div class="field"><label for="s3">1日の平均来院数</label><input type="text" id="s3"></div>
+      <div class="field"><label for="s4">手術件数（月あたり・だいたい）</label><input type="text" id="s4"></div>
+      <div class="field"><label for="s5">診察室・処置台の数、パソコンやiPadの台数</label><input type="text" id="s5"></div>
+      <div class="field"><label for="s6">分院・トリミング・ホテルなど、他の施設はありますか</label><input type="text" id="s6"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">5</span>
+      <h2 class="sec-title">人手のこと</h2>
+      <p class="sec-note">ここがいちばん聞きたいところです</p>
+    </div>
+    <div class="fields">
+      <div class="field"><label for="h1">今いちばん人手が足りないのはどこですか<span class="hint">受付／看護／獣医師／トリミング／事務 など</span></label><input type="text" id="h1"></div>
+      <div class="field"><label for="h2">求人を出していますか。出してからどのくらいで採用できますか</label><input type="text" id="h2"></div>
+      <div class="field"><label for="h3">診療以外の事務作業に、1日どのくらい取られている感覚ですか<span class="hint">院長ご自身とスタッフ、それぞれで</span></label><input type="text" id="h3"></div>
+      <div class="field"><label for="h4">「人を1人増やす」か「システムに投資する」かで迷ったことはありますか。そのときどう考えましたか</label><textarea id="h4"></textarea></div>
+      <div class="field"><label for="h5">今のシステムまわりで、いちばんストレスを感じる瞬間はどんなときですか</label><textarea id="h5"></textarea></div>
+    </div>
+  </section>
+
+  <div class="note">
+    <h2>前半おつかれさまでした</h2>
+    <p>下のボタンで、入力した内容がテキストになります。そのままLINEに貼って送ってください。</p>
+    <div class="toolbar">
+      <button type="button" class="primary" id="collect">回答をまとめてコピー</button>
+      <span class="status" id="copystatus"></span>
+    </div>
+    <div id="outbox">
+      <textarea id="outtext" rows="10" aria-label="まとめた回答"></textarea>
+      <p style="margin:0;font-size:.82rem;color:var(--ink-faint)">コピーがうまくいかないときは、この枠の中を長押し（PCなら全選択）してコピーしてください。</p>
+    </div>
+  </div>
+
+  <!-- ============ PART 2 ============ -->
+  <div class="part"><span class="part-num">後半</span><h2 class="mincho">各社に確認すること</h2></div>
+  <p class="part-note">電話や訪問の最中に、上から順に潰していけます。必ず書面（PDF）の見積もりをもらってください。相見積もりだと正直に伝えて大丈夫です。むしろ条件が良くなります。</p>
+
+  <div class="note">
+    <p class="quote">「電子カルテの導入を検討していて、何社か比べています。院内で検討したいので、お見積りを書面でいただけますか。オプションも含めた総額が分かる形だと助かります。」</p>
+    <p>その場で申込書に署名したり、手付金を払ったりはしないでください。デモは必ず<strong>ご自身の手で触らせてもらう</strong>のがコツです。</p>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">A</span>
+      <h2 class="sec-title">初期費用</h2>
+      <p class="sec-note">「初期費用◯◯円〜」の「〜」の中身を必ず開けてもらう</p>
+    </div>
+    <ul class="items">
+      <li><input type="checkbox" class="done"><span class="code">A-1</span><span class="q">初期費用の総額はいくらか（税別か税込か）</span></li>
+      <li><input type="checkbox" class="done"><span class="code">A-2</span><span class="q">その内訳（ソフト代／初期設定／操作研修／出張費／ハードウェア）</span></li>
+      <li><input type="checkbox" class="done"><span class="code">A-3</span><span class="q">パソコン・サーバー・プリンタ・タブレットは自分で買えるか、指定機種か<span class="why">指定だと相場より高く買わされることがある</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">A-4</span><span class="q">データ移行の費用は初期費用に含まれるか、別料金か</span></li>
+      <li><input type="checkbox" class="done"><span class="code">A-5</span><span class="q">今なら値引き・キャンペーンはあるか（期限も聞く）</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">B</span>
+      <h2 class="sec-title">月額費用</h2>
+      <p class="sec-note">安いプランに肝心の機能が入っていないことがある</p>
+    </div>
+    <ul class="items">
+      <li><input type="checkbox" class="done"><span class="code">B-1</span><span class="q">プラン名と月額。プランは全部で何種類か</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">B-2</span><span class="q"><span class="tag">重要</span>そのプランに<strong>含まれない</strong>機能は何か<span class="why">カルテ本体・予約・経営分析が上位プラン限定のことがある。「一番安いプランでうちの診療は回りますか」と聞くのが早い</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">B-3</span><span class="q">パソコンやiPadを増やすと月額は上がるか。1台いくらか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">B-4</span><span class="q">スタッフのアカウントを増やすと上がるか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">B-5</span><span class="q">保存できるデータ容量の上限と、超えたときの料金<span class="why">レントゲンや写真を貯めると効いてくる</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">B-6</span><span class="q">保守・サポート料は月額に含まれるか、別か</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">B-7</span><span class="q"><span class="tag">重要</span>今使っている他のサービス（予約・診察券・LINE・勤怠など）は、これを入れたら不要になるか<span class="why">前半の棚卸し表を見せて聞くのが早い。重複して払い続けることになりがち</span></span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">C</span>
+      <h2 class="sec-title">データの移行と、やめるときのこと</h2>
+      <p class="sec-note">ここが一番あとで揉める。契約前にしか聞けない</p>
+    </div>
+    <ul class="items">
+      <li><input type="checkbox" class="done"><span class="code">C-1</span><span class="q">移行できるデータの範囲（飼主／ペット／予防歴／診療記録／検査結果／画像／未収金）</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">C-2</span><span class="q"><span class="tag">重要</span>カルテ本文（これまでの診療記録）は移行できるか<span class="why">多くの会社は「できない・旧システムを閲覧用に残してください」と答える。その場合どうするのかまで聞く</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">C-3</span><span class="q">移行にかかる費用と期間</span></li>
+      <li><input type="checkbox" class="done"><span class="code">C-4</span><span class="q">移行や設置の作業は、実際に人が来るのか、遠隔でやるのか。何日かかるのか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">C-5</span><span class="q">【紙カルテから移る場合】紙の内容を入力してもらえるサービスはあるか。費用は</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">C-6</span><span class="q"><span class="tag">重要</span>解約するとき、自院のデータをどんな形式で受け取れるか。<strong>契約書のその条項を見せてもらう</strong><span class="why">「解約時のデータ提供」が契約書に書かれていない製品は珍しくない</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">C-7</span><span class="q">解約後、過去のカルテを見る手段は残るか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">C-8</span><span class="q">日常的に自分でデータを書き出せる機能（CSV等）はあるか</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">D</span>
+      <h2 class="sec-title">AI・音声入力</h2>
+      <p class="sec-note">各社とも力を入れている領域。料金体系が会社ごとに全然違う</p>
+    </div>
+    <ul class="items">
+      <li><input type="checkbox" class="done"><span class="code">D-1</span><span class="q">診察の会話からSOAPを作る機能はあるか。標準搭載か別料金か</span></li>
+      <li><input type="checkbox" class="done"><span class="code">D-2</span><span class="q">別料金ならいくらか。<strong>録音時間や件数の上限</strong>はあるか。超えたら追加料金か</span></li>
+      <li><input type="checkbox" class="done"><span class="code">D-3</span><span class="q">何人・何台まで使えるか。台数分の課金か</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">D-4</span><span class="q"><span class="tag">重要</span>AIが作った文章を、獣医師が確認してから確定する仕組みになっているか<span class="why">確認なしで直接カルテに入る作りだと、言っていない検査名などが混ざったときに気づけない</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">D-5</span><span class="q">録音した音声はどこに保存され、何年残るか。取り出せるか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">D-6</span><span class="q">自分の声で試させてもらえるか（無料トライアルの有無）</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">E</span>
+      <h2 class="sec-title">他の機器・サービスとのつながり</h2>
+      <p class="sec-note">1つずつ有料か、まとめて標準かで総額が大きく変わる</p>
+    </div>
+    <ul class="items">
+      <li class="key"><input type="checkbox" class="done"><span class="code">E-1</span><span class="q"><span class="tag">重要</span>検査機器との連携は標準機能か別料金か。<strong>機器1台につきいくら</strong>か<span class="why">標準無料の会社と、1機種10〜20万円かかる会社がある</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-2</span><span class="q">対応機種リストをもらう。自院の機器（機種名を伝えて）が入っているか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-3</span><span class="q">外注検査（富士フイルムVET等）の結果は自動で取り込めるか。費用は</span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-4</span><span class="q">LINE連携（予約通知・結果送付・デジタル診察券）はあるか。初期費用と月額は</span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-5</span><span class="q">ネット予約・Web問診はあるか。費用は。今のホームページのままリンクを貼るだけで使えるか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-6</span><span class="q">電話が鳴ったときに患者情報が画面に出る機能（CTI）はあるか。費用は</span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-7</span><span class="q">ペット保険（アニコム・アイペット）の窓口精算に対応しているか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">E-8</span><span class="q">今使っている予約システムや診察券の仕組みは、そのまま併用できるか</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">F</span>
+      <h2 class="sec-title">実際の使い勝手（必ず自分で触る）</h2>
+      <p class="sec-note">カタログでは絶対に分からない。ここで差が出る</p>
+    </div>
+    <ul class="items">
+      <li class="key"><input type="checkbox" class="done"><span class="code">F-1</span><span class="q"><span class="tag">重要</span>過去のカルテを一覧でざっと見渡せるか<span class="why">1日ずつ開かないと中身が見えない作りだと、「前回いつ検査したか」を探すのに毎回時間がかかる</span></span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">F-2</span><span class="q"><span class="tag">重要</span>会計の項目入力は、毎回文字を打って検索する方式か。分類から選べるか<span class="why">1日に何十回も使う操作。数秒の差が積み上がる</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">F-3</span><span class="q">保存に時間がかかるか。保存中に次の入力ができるか</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">F-4</span><span class="q"><span class="tag">重要</span>iPadで使う場合、画面が横にはみ出さずに収まるか<span class="why">「iPad対応」と書いてあっても、横スクロールしないと見えない製品がある。実機で確認</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">F-5</span><span class="q">よく使う操作（受付→カルテ→会計）を最初から最後まで自分でやってみる</span></li>
+      <li><input type="checkbox" class="done"><span class="code">F-6</span><span class="q">できれば、実際に使っている病院を紹介してもらい話を聞く</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">G</span>
+      <h2 class="sec-title">契約の条件</h2>
+      <p class="sec-note">長く付き合うものなので、出口の条件まで見る</p>
+    </div>
+    <ul class="items">
+      <li><input type="checkbox" class="done"><span class="code">G-1</span><span class="q">契約期間と、最低利用期間の縛りはあるか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">G-2</span><span class="q">途中でやめたときの違約金</span></li>
+      <li><input type="checkbox" class="done"><span class="code">G-3</span><span class="q">これまでに値上げはあったか。今後の改定の考え方</span></li>
+      <li><input type="checkbox" class="done"><span class="code">G-4</span><span class="q">サポートの受付時間・連絡手段。土日祝は対応するか<span class="why">動物病院は土日が一番忙しい</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">G-5</span><span class="q">障害が起きたときの復旧の目安。過去にどのくらい止まったか</span></li>
+      <li class="key"><input type="checkbox" class="done"><span class="code">G-6</span><span class="q"><span class="tag">重要</span>【分院がある場合】2施設目・3施設目はいくらか。まとめて契約すると割引はあるか<span class="why">グループ向けの価格はどこにも公開されていない。聞かないと出てこない</span></span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">H</span>
+      <h2 class="sec-title">クラウド型の場合に追加で聞くこと</h2>
+      <p class="sec-note">院内にサーバーを置かない製品向け</p>
+    </div>
+    <ul class="items">
+      <li class="key"><input type="checkbox" class="done"><span class="code">H-1</span><span class="q"><span class="tag">重要</span>インターネットが切れたら診療は止まるか。止まる場合どうするのか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">H-2</span><span class="q">データはどこに保存されるか。バックアップの頻度は</span></li>
+      <li><input type="checkbox" class="done"><span class="code">H-3</span><span class="q">自宅など院外からも見られるか。見られる範囲を制限できるか<span class="why">誰でも自宅から全部見られる設定のまま使っている病院もある</span></span></li>
+      <li><input type="checkbox" class="done"><span class="code">H-4</span><span class="q">自院の手元にデータのコピーを持っておく方法はあるか</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">I</span>
+      <h2 class="sec-title">会社と実績</h2>
+      <p class="sec-note">数字は「いつ時点か」まで聞くと精度が上がる</p>
+    </div>
+    <ul class="items">
+      <li><input type="checkbox" class="done"><span class="code">I-1</span><span class="q">導入病院数（何年何月時点の数字か）</span></li>
+      <li><input type="checkbox" class="done"><span class="code">I-2</span><span class="q">自院と同じくらいの規模・近隣の導入例</span></li>
+      <li><input type="checkbox" class="done"><span class="code">I-3</span><span class="q">要望を出したら製品に反映されるか。実際に反映された例はあるか</span></li>
+      <li><input type="checkbox" class="done"><span class="code">I-4</span><span class="q">【院内にサーバーを置く製品の場合】WindowsやSQL Serverのサポートが終わるとき、費用は誰が持つのか</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-letter mincho">＊</span>
+      <h2 class="sec-title">記録欄</h2>
+      <p class="sec-note">各社ぶん、聞いた直後に埋めておくと後で比べやすい</p>
+    </div>
+    <div class="scroller">
+      <table class="record">
+        <thead>
+          <tr><th>会社名 / 担当者</th><th>日付</th><th>見積書</th><th>初期費用</th><th>月額</th><th>気になった点</th></tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0"><strong>共有するときのお願い</strong>：見積書やスクリーンショットを共有していただく際は、飼い主さんやペットの情報が写っていないかだけご確認ください（金額と機能一覧の部分だけで十分です）。</p>
+    <p style="margin:0">このシートは荻窪ツイン動物病院で実際に各社を比較した経験をもとに作成しています。分かりにくい回答があれば、そのまま町田までお知らせください。</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var KEY = "vet-it-sheet-v2";
+    var state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
+
+    function save() {
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    /* --- build inventory input cells --- */
+    var invBody = document.querySelector("#inv tbody");
+    Array.prototype.forEach.call(invBody.rows, function (row, i) {
+      var name = document.createElement("td");
+      var money = document.createElement("td");
+      money.className = "money";
+      var a = document.createElement("input");
+      a.type = "text"; a.id = "inv-n-" + i;
+      a.setAttribute("aria-label", row.cells[0].textContent + " サービス名");
+      var b = document.createElement("input");
+      b.type = "text"; b.id = "inv-m-" + i; b.inputMode = "numeric";
+      b.setAttribute("aria-label", row.cells[0].textContent + " 月額");
+      name.appendChild(a); money.appendChild(b);
+      row.appendChild(name); row.appendChild(money);
+    });
+
+    /* --- register all fields --- */
+    var texts = Array.prototype.slice.call(document.querySelectorAll('input[type="text"], textarea')).filter(function (el) { return el.id && el.id !== "outtext"; });
+    texts.forEach(function (el) {
+      if (state[el.id]) { el.value = state[el.id]; }
+      el.addEventListener("input", function () { state[el.id] = el.value; save(); });
+    });
+
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+    boxes.forEach(function (box, i) {
+      if (!box.id) { box.id = "chk-" + i; }
+      if (state[box.id]) { box.checked = true; }
+      var code = box.parentElement.querySelector(".code");
+      var q = box.parentElement.querySelector(".q");
+      box.setAttribute("aria-label", (code ? code.textContent + " " : "") + (q ? q.textContent.slice(0, 40) : "確認済み"));
+      box.addEventListener("change", function () {
+        state[box.id] = box.checked; save(); updateTop3();
+      });
+    });
+
+    /* --- TOP3 counter --- */
+    var top3boxes = Array.prototype.slice.call(document.querySelectorAll("#top3 input[type='checkbox']"));
+    var counter = document.getElementById("top3count");
+    function updateTop3() {
+      var n = top3boxes.filter(function (b) { return b.checked; }).length;
+      counter.textContent = n + " / 3 選択中" + (n > 3 ? "（3つまでに絞ってください）" : "");
+      counter.style.color = n > 3 ? "var(--flag)" : "";
+    }
+    updateTop3();
+
+    /* --- collect answers --- */
+    function labelOf(id) {
+      var el = document.querySelector('label[for="' + id + '"]');
+      if (!el) { return id; }
+      var clone = el.cloneNode(true);
+      var hint = clone.querySelector(".hint");
+      if (hint) { hint.remove(); }
+      return clone.textContent.trim();
+    }
+
+    document.getElementById("collect").addEventListener("click", function () {
+      var out = ["【IT棚卸しの回答】", ""];
+
+      out.push("■ 契約しているサービスと月額");
+      var any = false;
+      Array.prototype.forEach.call(invBody.rows, function (row, i) {
+        var n = (state["inv-n-" + i] || "").trim();
+        var m = (state["inv-m-" + i] || "").trim();
+        if (n || m) {
+          any = true;
+          out.push("・" + row.cells[0].textContent + "：" + (n || "—") + (m ? " / 月" + m + "円" : ""));
+        }
+      });
+      if (!any) { out.push("（未記入）"); }
+
+      if ((state["inv-note"] || "").trim()) { out.push("", "高い / 払う価値がある と感じるもの：", state["inv-note"].trim()); }
+
+      out.push("", "■ まだ紙・手作業でやっていること");
+      var paper = Array.prototype.slice.call(document.querySelectorAll("#paper input:checked"))
+        .map(function (b) { return "・" + b.parentElement.querySelector(".q").textContent; });
+      out.push(paper.length ? paper.join("\n") : "（該当なし）");
+      if ((state["paper-note"] || "").trim()) { out.push("", "電子にしたいが後回しになっているもの：", state["paper-note"].trim()); }
+
+      out.push("", "■ あったら一番うれしい機能");
+      var top3 = top3boxes.filter(function (b) { return b.checked; })
+        .map(function (b) { return "・" + b.parentElement.querySelector(".q").textContent; });
+      out.push(top3.length ? top3.join("\n") : "（未選択）");
+      if ((state["top3-note"] || "").trim()) { out.push("", "補足：", state["top3-note"].trim()); }
+
+      out.push("", "■ 病院の規模");
+      ["s1", "s2", "s3", "s4", "s5", "s6"].forEach(function (id) {
+        if ((state[id] || "").trim()) { out.push("・" + labelOf(id) + "：" + state[id].trim()); }
+      });
+
+      out.push("", "■ 人手のこと");
+      ["h1", "h2", "h3", "h4", "h5"].forEach(function (id) {
+        if ((state[id] || "").trim()) { out.push("・" + labelOf(id), "　" + state[id].trim()); }
+      });
+
+      var text = out.join("\n");
+      var box = document.getElementById("outbox");
+      var ta = document.getElementById("outtext");
+      var status = document.getElementById("copystatus");
+      ta.value = text;
+      box.classList.add("on");
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          status.textContent = "コピーしました";
+        }).catch(function () {
+          status.textContent = "下の枠から手動でコピーしてください";
+          ta.select();
+        });
+      } else {
+        status.textContent = "下の枠から手動でコピーしてください";
+        ta.select();
+      }
+    });
+
+    document.getElementById("print").addEventListener("click", function () { window.print(); });
+    document.getElementById("reset").addEventListener("click", function () {
+      boxes.forEach(function (b) { b.checked = false; });
+      texts.forEach(function (t) { t.value = ""; });
+      state = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      document.getElementById("outbox").classList.remove("on");
+      document.getElementById("copystatus").textContent = "";
+      updateTop3();
+    });
+  })();
+</script>
+
+</body>
+</html>
