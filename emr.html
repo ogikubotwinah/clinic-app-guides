@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>電子カルテ（患者タイムライン）使用ガイド｜荻窪ツイン動物病院</title>
+<style>
+  :root {
+    --sky: #0369a1; --sky-bg: #f0f9ff;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #075985, #0ea5e9); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--sky); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff { background: var(--sky-bg); color: var(--sky); border: 1px solid #bae6fd; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff { border-color: #7dd3fc; background: var(--sky-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shotw { display: block; width: 100%; max-width: 640px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--sky-bg); border: 1px solid #bae6fd; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>電子カルテ（患者タイムライン）使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>受付・看護師・獣医師向け ｜ 2026年8月15日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+当院オリジナルの<b>電子カルテ</b>です。カルテNo.を入れると、その子の<b>これまでの来院・検査・体重・会計・画像</b>が1本の時系列で出ます。ここから<b>カルテ記載・検査入力・会計（レジ）・領収書・紹介状・証明書</b>まで行えます。<br>
+<b>Ahmicsには書き込みません</b>（毎朝8:05に読み取ってコピーしているだけ）。この画面で入力したものは当院内の別のデータベースに保存されます。
+</div>
+
+<div class="imp">
+<b>院内ネットワーク限定です。</b>飼い主さまの情報が全部出ます。画面を開いたまま席を離れない、外来待合から見える向きに置かない、をお願いします。
+</div>
+
+<h2>1. 開き方</h2>
+<table>
+<tr><th>どこで</th><th>アドレス</th><th>ひとこと</th></tr>
+<tr><td><b>受付PC</b></td><td><b>https://192.168.20.250:3801/</b></td><td><b>受付は必ずこちら。</b>会計の呼び出し（Windows通知）が使えるのはこのアドレスだけです</td></tr>
+<tr><td>院内の他のPC・iPad</td><td>http://192.168.20.250:3800/</td><td>診察室・処置室はこちらで大丈夫です</td></tr>
+<tr><td>院外（自宅など）</td><td>https://serverpc.tail2de5bb.ts.net:8452/</td><td>Tailscaleに入っている端末のみ。iPhoneで開けないときは http://100.111.66.29:3800/</td></tr>
+</table>
+<p>パスコードは<b>音声カルテ・症例バンクと同じ</b>ものです。カルテNo.は <span class="chip c-blue">10000-2</span> のように、<b>ハイフンの後ろが「その飼い主さまの何頭目か」</b>です。1頭しかいなければ枝番なしでも出ます。</p>
+
+<h2>2. 画面の見かた</h2>
+<img class="shotw" src="emr-patient.png" alt="患者画面">
+<div class="cap">患者画面（この例は説明用の架空データです）</div>
+<table>
+<tr><th>場所</th><th>何が出るか</th></tr>
+<tr><td>いちばん上の帯</td><td>名前・品種・性別・年齢・カルテNo.・マイクロチップの有無</td></tr>
+<tr><td>その下の4つ</td><td><b>体重</b>（前回との差つき）・<b>保険</b>・<b>予防</b>（フィラリア／ワクチン／狂犬病の最終）・<b>来院回数</b></td></tr>
+<tr><td>赤い帯</td><td><b>アラート</b>＝薬剤アレルギー・有害反応・禁忌・<b>🐾取扱注意（咬む・暴れる等）</b>。<b>触る前に必ず見てください</b></td></tr>
+<tr><td>黄色い帯</td><td><b>受付からの経過時間</b>。30分を超えると黄、1時間を超えると赤になります</td></tr>
+<tr><td>ボタンの3グループ</td><td>診療（獣医師・トリマー）／会計（受付・看護師）／書類・出力</td></tr>
+<tr><td>その下</td><td>来院ごとの時系列。カルテ本文・検査値・体重・会計・画像が日付順に並びます</td></tr>
+</table>
+<div class="tip">上の検索窓の右にある絞り込みで「カルテだけ」「検査だけ」などに絞れます。虫めがねで<b>本文の言葉検索</b>もできます。</div>
+
+<h2>3. 受付のしごと</h2>
+
+<h3>3-1. 受付ボード</h3>
+<img class="shotw" src="emr-board.png" alt="受付ボード">
+<div class="cap">受付ボード（説明用の架空データです）</div>
+<p>左の<span class="chip c-blue">受付ボード</span>から開きます。<b>今日の予約は朝、自動で「予約」の列に並びます</b>（再来機で受付すると自動で「来院」に進みます）。</p>
+<table>
+<tr><th>列</th><th>意味</th></tr>
+<tr><td>予約</td><td>今日来る予定。まだ来ていない</td></tr>
+<tr><td>来院 → 診察中 → 会計待ち</td><td>青いボタンを押すだけで次に進みます</td></tr>
+<tr><td>会計保留</td><td>レジを途中まで作って保留にした状態</td></tr>
+<tr><td>未収</td><td>前の日までの未払い。翌日から自動で出ます</td></tr>
+</table>
+<p>各行に <span class="chip c-teal">🕐 受付から40分</span> が出ます。<b>30分超で黄、1時間超で赤</b>。お待たせしている子がひと目で分かります。</p>
+<div class="note"><b>「予約」のままの行には経過時間は出ません。</b>まだ来院していないためです。来院に進めた時刻から数え始めます。</div>
+
+<h3>3-2. 会計の呼び出し（受付PCだけ）</h3>
+<p>受付ボードの上に設定の帯があります。<b>受付PCで1回チェックを入れるだけ</b>で、その後はずっと有効です。<b>他のPCには一切出ません。</b></p>
+<div class="flow">
+<div class="fbox staff"><b>① このPCで「会計待ち」の呼び出しを受け取る にチェック</b>受付PCだけ。診察室のPCではチェックしないでください</div>
+<div class="farrow">▼</div>
+<div class="fbox staff"><b>② 「Windows通知を許可する」を押す</b>ブラウザが確認を出すので「許可」。これでAhmicsを見ていても右下に通知が出ます</div>
+<div class="farrow">▼</div>
+<div class="fbox auto"><b>③ あとは自動</b>診察室で「会計待ち」に進めた瞬間、受付PCに知らせが出ます</div>
+</div>
+<p>知らせは3つ同時に出ます。</p>
+<table>
+<tr><th>出るもの</th><th>説明</th></tr>
+<tr><td>緑のカード</td><td>画面の右上。<b>押すまで消えません</b>。<b>［💰 レジを開く］</b>を押すとその子の会計画面に直行します</td></tr>
+<tr><td>Windows通知</td><td>画面の右下。<b>Ahmicsを開いていても出ます</b>（①のhttpsで開いて許可した場合のみ）</td></tr>
+<tr><td>左の赤い数字</td><td>「受付ボード ❷」＝いま会計待ちが2件。どの画面にいても見えます</td></tr>
+</table>
+<div class="note"><b>音は最初オフです。</b>鳴らしたいときは「音を鳴らす」にチェック（入れた瞬間に1回鳴るので音量が確かめられます）。飼い主さまの目の前なので、必要なときだけで大丈夫です。</div>
+<div class="tip"><b>すでに並んでいた子では鳴りません。</b>新しく会計待ちに入った子だけ知らせます。ボードの上では、入って5分以内の行が<b>オレンジ色で「NEW ・ 3分前」</b>と出ます。</div>
+
+<h3>3-3. 会計（レジ）</h3>
+<p>患者画面の<b>［＋ 会計をつける（レジ）］</b>、または受付ボードの<b>［💰レジ］</b>から。</p>
+<ul>
+<li>診療項目は<b>名前の一部で検索</b>できます。よく使う組み合わせは「セット」から</li>
+<li><b>お薬は「💊薬を処方」</b>から。用法（SID/BID…）・日数・1回量を入れると<b>全量と金額が自動計算</b>されます</li>
+<li>保険を使う場合は保険会社と割合を選ぶと<b>保険負担分が自動で引かれます</b></li>
+<li>保存すると<b>領収書がそのまま印刷</b>できます。<b>薬袋</b>も処方したお薬ごとに出せます</li>
+<li>会計が終わると受付ボードが<b>自動で「会計済み」</b>になります</li>
+</ul>
+<div class="note">お薬を処方すると<b>在庫が自動で減ります</b>。在庫アプリに同じ名前が無い薬は減りません（「名寄せ」で一度ひも付ければ次から自動になります）。</div>
+
+<h2>4. 診察のしごと</h2>
+<table>
+<tr><th>やること</th><th>ボタン</th><th>ひとこと</th></tr>
+<tr><td>カルテを書く</td><td>＋ カルテを書く</td><td>記載者を選び<b>暗証番号</b>を入れて保存。誰が書いたかが残ります</td></tr>
+<tr><td>録音して書く</td><td>🎙 録音（音声カルテ）</td><td>その子の録音画面に直行します。<b>マイクを使うのでhttpsで開きます</b></td></tr>
+<tr><td>体重</td><td>＋ 体重</td><td>グラフに反映されます</td></tr>
+<tr><td>検査結果</td><td>＋ 検査結果</td><td>分類を選ぶと項目が出ます。単位と基準値は<b>犬猫別に自動</b>で入ります</td></tr>
+<tr><td>検査の推移を見る</td><td>📈 検査 比較表</td><td>項目×日付の表。基準から外れた値に色が付きます</td></tr>
+<tr><td>アレルギー等を登録</td><td>アラート帯の＋追加</td><td><b>次に開いた人全員に赤帯で出ます</b></td></tr>
+<tr><td>飼い主メモ／ペットメモ</td><td>👤飼主メモ</td><td>「元々動物看護師」「人見知りが強い」など次に活きる背景。<b>院内だけ・書類には出ません</b></td></tr>
+</table>
+<div class="imp"><b>🐾取扱注意と飼主対応メモは院内限定です。</b>紹介状・領収書・証明書には出ません（出さない作りになっています）。</div>
+
+<h2>5. 紹介状・診療情報提供書</h2>
+<p>患者画面の<b>［紹介状 / 診療情報提供書］</b>から。<b>まとめたい日を選ぶだけ</b>で、その日のカルテと検査結果が1通になります。</p>
+<div class="flow">
+<div class="fbox staff"><b>① 宛先</b>病院名・先生名・FAX・メールを入れて「💾この宛先を保存」。<b>次からは選ぶだけ</b>です。文書の種類（紹介状／経過報告書／セカンドオピニオン依頼）もここで選びます</div>
+<div class="farrow">▼</div>
+<div class="fbox staff"><b>② まとめる日を選ぶ</b>1日でも複数日でも。「最新3件」「直近6ヶ月」などのボタンでまとめて選べます</div>
+<div class="farrow">▼</div>
+<div class="fbox staff"><b>③ 載せる内容を選ぶ</b>検査結果は「異常値のみ／すべて」、並べ方は「項目ごと（推移が分かる）／日付ごと」。体重推移・予防歴・アレルギー・処方などをチェックで足せます</div>
+<div class="farrow">▼</div>
+<div class="fbox auto"><b>④ AIが下書き（任意）</b>「口腔内腫瘤のCT撮影をお願いしたい」のように一言入れて<b>［🤖 AIで下書き］</b>。選んだ日の記録<b>だけ</b>を材料に、紹介目的・経過・現在の状態・依頼事項を書きます</div>
+<div class="farrow">▼</div>
+<div class="fbox staff"><b>⑤ 獣医師が読んで直す</b>ここは必ず人が確認します</div>
+<div class="farrow">▼</div>
+<div class="fbox staff"><b>⑥ 出す（4つの形）</b>下記</div>
+</div>
+<table>
+<tr><th>ボタン</th><th>出るもの</th><th>使う場面</th></tr>
+<tr><td>📄 清書</td><td>きれいに組んだ紹介状</td><td>印刷して封筒で渡す／PDFで保存</td></tr>
+<tr><td>📠 FAX</td><td><b>1枚目＝FAX送信票、2枚目以降＝本文</b></td><td>印刷して複合機のFAXで送る</td></tr>
+<tr><td>✉️ メール</td><td>件名＋本文（コピーボタンつき）</td><td>メールに貼り付けて送る</td></tr>
+<tr><td>🌐 Web貼り付け</td><td>飾りのない素のテキスト</td><td>先方の病院のWeb紹介状フォームに貼り付ける</td></tr>
+</table>
+<img class="shotw" src="emr-referral-doc.png" alt="紹介状の清書">
+<div class="cap">📄 清書（説明用の架空データです）</div>
+<img class="shotw" src="emr-referral-fax.png" alt="FAX送信票">
+<div class="cap">📠 FAX（1枚目の送信票。枚数欄は手書きで埋めてください）</div>
+<div class="imp">
+<b>AIの下書きは必ず獣医師が確認してから出してください。</b>AIには<b>選んだ日のカルテ・検査値・処方だけ</b>を渡していて、飼い主さまとペットの名前は渡していません。それでも、書き方が診療の実際と合っているかを判断できるのは診た本人だけです。
+</div>
+<div class="tip">出したあとに<b>［💾 発行記録に残す］</b>を押すと、「いつ・どこへ・何日分を出したか」と本文がそのまま残ります。<b>［🕘 発行履歴］</b>から後で読めます。</div>
+
+<h2>6. 証明書</h2>
+<p>患者画面の<b>［証明書］</b>から、<b>ワクチン接種証明書</b>と<b>狂犬病予防注射済証</b>が出せます。接種日・ワクチン名・ロット番号・次回予定・獣医師名を入れて作成 → 印刷。<b>写真を入れることもできます</b>（その場で位置と大きさを調整できます）。</p>
+
+<h2>7. 困ったとき</h2>
+<table>
+<tr><th>症状</th><th>どうするか</th></tr>
+<tr><td>「該当患者が見つかりません」</td><td>カルテNo.の桁を確認。枝番（-2 など）を外して試す</td></tr>
+<tr><td>「複数の患者が該当します」</td><td>同じ飼い主さまに複数頭。枝番を付けて指定してください</td></tr>
+<tr><td>会計の呼び出しが出ない</td><td>①受付ボード上部のチェックが入っているか ②<b>https://192.168.20.250:3801/</b> で開いているか ③ブラウザで通知を「許可」したか。なお<b>すでに並んでいた子では鳴りません</b></td></tr>
+<tr><td>受付からの経過時間が出ない</td><td>その行がまだ「予約」のまま＝来院に進めていない可能性。ボードで「来院」に進めてください</td></tr>
+<tr><td>録音ボタンでマイクが使えない</td><td>httpで開いている可能性。https（:3801）で開き直してください</td></tr>
+<tr><td>画面が真っ白／表示が古い</td><td>いちど再読み込み（⌘R / Ctrl+R）。それでも直らなければ院長へ</td></tr>
+<tr><td>間違えて保存した</td><td>カルテ・体重・検査・会計は<b>編集と削除ができます</b>（記録は残ります）。分からなければ消さずに院長へ</td></tr>
+</table>
+
+<footer>
+このガイドは荻窪ツイン動物病院のスタッフ向けです。掲載している画面はすべて<b>説明用の架空データ</b>で、実在の飼い主さま・ペットの情報は含まれていません。<br>
+不明点・「ここが分かりにくい」は院長までお願いします。
+</footer>
+
+</div>
+</body>
+</html>
