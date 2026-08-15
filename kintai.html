@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>勤怠アプリ 使用ガイド｜荻窪ツイン動物病院</title>
+<style>
+  :root {
+    --sky: #0369a1; --sky-bg: #f0f9ff;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #075985, #0ea5e9); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--sky); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff { background: var(--sky-bg); color: var(--sky); border: 1px solid #bae6fd; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff { border-color: #7dd3fc; background: var(--sky-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shotw { display: block; width: 100%; max-width: 640px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--sky-bg); border: 1px solid #bae6fd; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>勤怠アプリ 使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>全スタッフ向け ｜ 2026年8月15日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+当院オリジナルの<b>勤怠アプリ</b>です。<b>打刻はセコムのカードをかざすだけ</b>。<br>
+スマホの<b>マイページ</b>から、<b>自分の勤務時間・休暇の残り・給与明細・打刻の履歴</b>がいつでも見られます。<b>休暇や中抜けの申請</b>もここから出せます。
+</div>
+
+<div class="imp">
+<b>見えるのは自分の分だけです。</b>マイページは自分で決めたPINで開きます。他の人の勤務や給与は見えません。
+</div>
+
+<h2>1. 打刻のしかた</h2>
+<h3>1-1. カードでの打刻（ふだんはこれ）</h3>
+<p><b>受付の打刻画面に、セコムのカードキーをかざしてください。</b>それだけです。画面に自分の名前と時刻が出れば打刻できています。</p>
+<div class="tip">かざす順番で「出勤」「退勤」が自動で判断されます。押し間違いはありません。</div>
+
+<h3>1-2. 画面のボタンで打刻</h3>
+<p>カードが手元にないときは、打刻画面のボタンからも打てます。</p>
+<table>
+<tr><th>ボタン</th><th>使うとき</th></tr>
+<tr><td><b>出勤</b></td><td>仕事を始めるとき</td></tr>
+<tr><td><b>退勤</b></td><td>仕事を終えるとき</td></tr>
+<tr><td><b>外出（中抜け）</b></td><td>途中で私用などで抜けるとき</td></tr>
+<tr><td><b>戻り</b></td><td>抜けた後に戻ったとき</td></tr>
+</table>
+<div class="note"><b>打ち忘れ・打ち間違いは、後から申請で直せます</b>（→ 3章）。その場で慌てなくて大丈夫です。</div>
+
+<h2>2. マイページ（自分の勤怠を見る）</h2>
+<h3>2-1. 開き方</h3>
+<table>
+<tr><th>どこで</th><th>アドレス</th></tr>
+<tr><td>院内のPC</td><td>http://192.168.20.250:4100/my</td></tr>
+<tr><td><b>自分のスマホ・自宅から</b></td><td><b>https://serverpc.tail2de5bb.ts.net:8453/my</b></td></tr>
+</table>
+<div class="imp"><b>スマホから見るには、事前にTailscale（タイルスケール）というアプリの設定が必要です。</b>案内は院長から配られます。設定が済むまではスマホからは開けません。</div>
+
+<h3>2-2. 最初の1回だけ：PINを決める</h3>
+<div class="flow">
+<div class="fbox staff"><b>① 自分の名前を選ぶ</b></div>
+<div class="farrow">▼</div>
+<div class="fbox staff"><b>② PIN（4〜8桁の数字）を自分で決めて入れる</b>2回入力します。誕生日など推測されやすい番号は避けてください</div>
+<div class="farrow">▼</div>
+<div class="fbox auto"><b>③ 次からはそのPINだけで開きます</b></div>
+</div>
+<div class="note"><b>PINを忘れたときは院長へ。</b>リセットできます（院長にも今のPINは見えません）。</div>
+
+<h3>2-3. 見られるもの</h3>
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td><b>休暇の残り</b></td><td>有給などの残日数（締め日時点）。<b>これからの付与予定</b>も出ます</td></tr>
+<tr><td><b>勤務時間</b></td><td>その月の勤務時間・時間外</td></tr>
+<tr><td><b>給与明細</b></td><td>確定した月の明細が見られます</td></tr>
+<tr><td><b>打刻履歴</b></td><td>直近14日ぶん。<b>打ち忘れがないか、ここで確認できます</b></td></tr>
+</table>
+
+<h2>3. 申請のしかた</h2>
+<p>マイページの<b>申請</b>から出します。出せるのは次の4つです。</p>
+<table>
+<tr><th>申請</th><th>こんなとき</th></tr>
+<tr><td><b>休暇の申請</b></td><td>有給を取りたい。<b>午前休（午後から出勤）／午後休（午前だけ出勤）</b>も選べます</td></tr>
+<tr><td><b>勤務時間の分割</b></td><td>1日の勤務を分けたとき（残った時間をどこに回すかも選べます）</td></tr>
+<tr><td><b>中抜けの申請</b></td><td>途中で抜けた時間を届け出るとき</td></tr>
+<tr><td><b>遅刻の届け出</b></td><td>遅れて出勤したとき</td></tr>
+</table>
+
+<div class="imp">
+<b>★申請の前に、必ず2つ済ませてください。</b>アプリでも確認を求められます。
+<ol>
+<li><b>院長か永野さんのどちらかに確認する</b></li>
+<li><b>その日に出勤するメンバーに確認する</b></li>
+</ol>
+この2つが済んでいる前提で、<b>申請は提出した時点で承認</b>となります。<b>チェックだけ入れて実際に確認していない、は無しでお願いします。</b>
+</div>
+
+<h2>4. 出勤簿（タイムカード）</h2>
+<p><b>出勤簿</b>で、月ごとの出退勤の一覧が見られます。給与の元になる記録なので、<b>月末に一度、自分の分に打ち忘れがないか見ておいてください</b>。</p>
+<div class="tip">おかしなところがあれば、その日の<b>申請</b>から直せます。分からなければ永野さんか院長へ。</div>
+
+<h2>5. 勤怠のきまり</h2>
+<p><b>きまり</b>のページに、就業規則から<b>勤務時間・休憩・残業・休日・休暇</b>のところをまとめてあります。「これは有給で取れるんだっけ？」と迷ったらここを見てください。</p>
+<div class="note">正式な内容は就業規則が優先です。このページは分かりやすくまとめたものです。</div>
+
+<h2>6. 予約との関係</h2>
+<p><b>シフトと休みは、翌朝に自動で予約システムへ反映されます</b>（出勤していない日は予約枠が開かない）。<br>
+そのため<b>シフトの変更や休暇の申請は、できるだけ早めに</b>お願いします。当日に直しても、予約の枠に反映されるのは翌朝になります。</p>
+
+<h2>7. 困ったとき</h2>
+<table>
+<tr><th>症状</th><th>どうするか</th></tr>
+<tr><td>カードをかざしても反応しない</td><td>もう一度ゆっくりかざす。それでも駄目なら<b>画面のボタンで打刻</b>して、後で永野さんへ</td></tr>
+<tr><td>打刻を忘れた</td><td><b>申請</b>から直せます。放置せずその週のうちに</td></tr>
+<tr><td>PINを忘れた</td><td>院長へ。リセットします</td></tr>
+<tr><td>スマホから開けない</td><td>Tailscaleの設定が済んでいない可能性。院長へ</td></tr>
+<tr><td>休暇の残りが思っていたのと違う</td><td>まず<b>きまり</b>を確認。それでも違うと思ったら永野さんか院長へ</td></tr>
+<tr><td>給与明細が出ていない</td><td>その月がまだ確定していない可能性があります。支給日を過ぎても出ないときは院長へ</td></tr>
+</table>
+
+<footer>
+このアプリは当院で作っているものです。「ここが使いにくい」「この申請が出せない」があれば、遠慮なく院長までお知らせください。直せます。
+</footer>
+
+</div>
+</body>
+</html>
