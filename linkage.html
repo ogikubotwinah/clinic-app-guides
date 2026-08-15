@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>アプリどうしのつながり（連携ガイド）｜荻窪ツイン動物病院</title>
+<style>
+  :root {
+    --sky: #0369a1; --sky-bg: #f0f9ff;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #075985, #0ea5e9); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--sky); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff { background: var(--sky-bg); color: var(--sky); border: 1px solid #bae6fd; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff { border-color: #7dd3fc; background: var(--sky-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shotw { display: block; width: 100%; max-width: 640px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--sky-bg); border: 1px solid #bae6fd; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+</style><style>
+  .map { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:16px 0; }
+  .map .mbox { border:2px solid var(--border); border-radius:12px; padding:10px 12px; background:#fff; font-size:.86rem; }
+  .map .mbox b { display:block; font-size:.95rem; margin-bottom:3px; }
+  .map .mbox small { color:#64748b; }
+  .map .core { grid-column:2; border-color:#0d9488; background:var(--teal-bg); }
+  .map .arrowrow { grid-column:1 / -1; text-align:center; color:#94a3b8; font-size:1.1rem; margin:-4px 0; }
+  .lg { display:inline-block; font-size:.72rem; font-weight:700; border-radius:999px; padding:1px 8px; margin-right:6px; white-space:nowrap; }
+  .lg-auto { background:var(--green-bg); color:var(--green); border:1px solid #bbf7d0; }
+  .lg-hand { background:var(--sky-bg); color:var(--sky); border:1px solid #bae6fd; }
+  .lg-soon { background:#f1f5f9; color:#64748b; border:1px solid #e2e8f0; }
+  @media(max-width:700px){ .map { grid-template-columns:1fr; } .map .core { grid-column:1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>アプリどうしのつながり（連携ガイド）
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>全スタッフ向け ｜ 2026年8月15日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+当院のアプリは<b>電子カルテを真ん中にして、予約・在庫・勤怠・画像などが自動でつながっています</b>。<br>
+このページは「<b>どこに入れたものが、どこに出てくるか</b>」の一覧です。<b>二度入力しなくていいところ</b>と、<b>手で動かす必要があるところ</b>が分かります。
+</div>
+
+<div class="tip"><span class="lg lg-auto">自動</span>＝人が何もしなくてもつながる　<span class="lg lg-hand">ボタン</span>＝人が押して渡す　<span class="lg lg-soon">これから</span>＝まだつながっていない</div>
+
+<h2>1. 全体図</h2>
+<div class="map">
+  <div class="mbox"><b>📅 予約</b><small>診察・トリミング・ホテル</small></div>
+  <div class="mbox core"><b>🩺 電子カルテ</b><small>受付ボード／カルテ／会計／書類</small></div>
+  <div class="mbox"><b>📦 在庫・発注</b><small>薬・材料</small></div>
+  <div class="arrowrow">▲ ▼</div>
+  <div class="mbox"><b>🎙 音声カルテ</b><small>録音→SOAP下書き</small></div>
+  <div class="mbox"><b>🖼 画像（レントゲン・エコー）</b><small>撮影したものが自動で並ぶ</small></div>
+  <div class="mbox"><b>🧪 検査（外注ラボ）</b><small>結果ファイルの取り込み</small></div>
+  <div class="arrowrow">▲ ▼</div>
+  <div class="mbox"><b>⏰ 勤怠</b><small>出退勤・シフト・休み</small></div>
+  <div class="mbox"><b>📄 各報告書</b><small>歯科・健診・フィラリア・入院・症例</small></div>
+  <div class="mbox"><b>💚 公式LINE</b><small>飼い主さまへの連絡</small></div>
+</div>
+
+<h2>2. 予約 ⇄ 電子カルテ</h2>
+<table>
+<tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
+<tr><td><span class="lg lg-auto">自動</span>予約 → 受付ボード</td><td><b>今日の予約が朝、受付ボードの「予約」列に自動で並びます</b>。手で入力する必要はありません</td><td>ボードを開いたとき</td></tr>
+<tr><td><span class="lg lg-auto">自動</span>再来機 → 受付ボード</td><td>飼い主さまが再来機で受付すると、<b>「予約」から「来院」へ自動で進みます</b>。ここから<b>受付からの経過時間</b>が数え始めます</td><td>受付した瞬間</td></tr>
+<tr><td><span class="lg lg-auto">自動</span>予約 → 患者画面</td><td>患者を開くと<b>次回予約</b>が上に出ます</td><td>患者を開くたび</td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 予約</td><td>患者画面の<b>［次回予約を取る］</b>で、その子を選んだ状態で予約画面が開きます</td><td>押したとき</td></tr>
+</table>
+<div class="note"><b>まだ来ていない予約には経過時間が出ません。</b>「来院」に進めた時刻から数えます。再来機を使わなかった方は、受付でボードの<b>［来院］</b>を押してください。</div>
+
+<h2>3. 電子カルテ ⇄ 在庫</h2>
+<table>
+<tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
+<tr><td><span class="lg lg-auto">自動</span>会計（処方） → 在庫</td><td><b>お薬を処方して会計を保存すると、在庫が自動で減ります</b>。在庫アプリで引く操作は要りません</td><td>会計を保存した瞬間</td></tr>
+<tr><td><span class="lg lg-auto">自動</span>在庫 → 電子カルテ</td><td>処方するとき<b>今の在庫数</b>が見えます。<b>発注点を割った薬</b>も一覧できます</td><td>常時</td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>名寄せ</td><td>処方名と在庫の品名が違う薬は減りません。<b>一度ひも付ければ次から自動</b>になります（📦在庫連携→🔗名寄せ）</td><td>気づいたとき</td></tr>
+</table>
+<div class="imp"><b>注射・輸液など「処方として会計に載らない消費」は自動で減りません。</b>これは在庫アプリ側で調整してください。</div>
+
+<h2>4. 勤怠のつながり</h2>
+<table>
+<tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
+<tr><td><span class="lg lg-auto">自動</span>勤怠 → 予約</td><td><b>シフトと休みが予約の枠に反映されます</b>（出勤していない日は枠が開かない）</td><td>毎朝 7:15</td></tr>
+<tr><td><span class="lg lg-auto">自動</span>勤怠 → 院内DB</td><td>打刻データが院内のデータベースに写されます（勤怠ビューアで見られます）</td><td>毎朝 7:20</td></tr>
+<tr><td><span class="lg lg-auto">自動</span>勤怠 → 会計事務所</td><td><b>月次の勤怠集計が自動で作られ</b>、承認のうえ会計事務所へ送られます。ここが<b>給与の元データ</b>です</td><td>30分ごとに確認</td></tr>
+<tr><td><span class="lg lg-soon">これから</span>電子カルテ ⇄ 勤怠</td><td><b>今はつながっていません。</b>「誰がどれだけ診たか」（人別の生産性）は、自作カルテの記録が貯まってから出します</td><td>—</td></tr>
+</table>
+<div class="note"><b>打刻を直したいとき</b>は勤怠側で申請します。予約の枠に反映されるのは<b>翌朝</b>です（当日すぐには変わりません）。</div>
+
+<h2>5. 診療の記録まわり</h2>
+<table>
+<tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 音声カルテ</td><td>患者画面の<b>［🎙 録音］</b>で、その子の録音画面が開きます（カルテNo.を入れ直さなくていい）</td><td>押したとき</td></tr>
+<tr><td><span class="lg lg-auto">自動</span>画像 → 電子カルテ</td><td><b>撮影したレントゲン・エコーが、その子の時系列に自動で並びます</b></td><td>撮影後まもなく</td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>外注ラボ → 電子カルテ</td><td>届いた結果ファイルを<b>検査取込トレイ</b>で患者に割り当てると、検査値として入ります</td><td>結果が届いたとき</td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 各報告書</td><td>患者画面から<b>歯科・健診・フィラリア</b>の報告書アプリを、その子で開けます</td><td>押したとき</td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 入院・症例バンク</td><td>同じくその子で開きます</td><td>押したとき</td></tr>
+</table>
+
+<h2>6. 飼い主さまへ出ていくもの</h2>
+<table>
+<tr><th>つながり</th><th>何が起きるか</th></tr>
+<tr><td><span class="lg lg-auto">自動</span>予約 → 公式LINE</td><td>予約完了・キャンセル・<b>前日18時のリマインド</b></td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>健診 → 公式LINE</td><td>健診結果を公式LINEで送ります</td></tr>
+<tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 紹介先の病院</td><td>紹介状をFAX・メール・Web貼り付けで</td></tr>
+</table>
+
+<h2>7. まだつながっていないもの（正直な一覧）</h2>
+<table>
+<tr><th>これは</th><th>今どうなっているか</th></tr>
+<tr><td>電子カルテ ⇄ 勤怠</td><td>つながっていません。人別の生産性は準備中です</td></tr>
+<tr><td>電子カルテ → Ahmics（正カルテ）</td><td><b>書き込みません</b>（読むだけ）。Ahmicsへの転記は音声カルテ側が行います</td></tr>
+<tr><td>レセプト（保険請求）</td><td>作りません</td></tr>
+<tr><td>注射・輸液の在庫消費</td><td>自動で減りません（在庫側で調整）</td></tr>
+</table>
+
+<h2>8. 「入れ直さなくていい」早見表</h2>
+<table>
+<tr><th>一度入れる場所</th><th>入れ直さなくていい場所</th></tr>
+<tr><td>予約</td><td>受付ボード・患者画面の次回予約</td></tr>
+<tr><td>再来機の受付</td><td>受付ボードの来院・受付からの経過時間</td></tr>
+<tr><td>電子カルテの処方</td><td>在庫の残数</td></tr>
+<tr><td>勤怠の打刻・シフト</td><td>予約の枠・月次集計・給与の元データ</td></tr>
+<tr><td>撮影した画像</td><td>患者の時系列</td></tr>
+<tr><td>カルテ・検査（選んだ日）</td><td>紹介状の中身</td></tr>
+</table>
+
+<footer>
+つながりが増えたらこのページを更新します。「ここも自動になるはず」と思うところがあれば院長までお知らせください。
+</footer>
+
+</div>
+</body>
+</html>
