@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#06452F">
+<title>院内アプリ メニュー｜荻窪ツイン動物病院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     ラマルクのロゴ色（深緑 → 銅色）に合わせた配色
+     深緑 ≈ #005038–#006040 ／ 銅色 ≈ #D87828（ロゴ原本から実測）
+     ============================================================ */
+  :root{
+    --green:#0B5B41;
+    --green-deep:#06452F;
+    --green-bright:#157A57;
+    --green-ink:#0F3B2E;
+    --green-soft:#E4F0EA;
+    --green-soft-2:#CFE3D8;
+    --mint:#B8D8C8;
+
+    --copper:#D9782A;
+    --copper-ink:#B45E1C;
+    --copper-soft:#FBEADB;
+
+    --paper:#F3F7F4;
+    --tile:#FFFFFF;
+    --ink:#16302A;
+    --muted:#5F7A70;
+    --line:rgba(11,91,65,.10);
+    --link:var(--green);
+
+    --shadow-tile:0 1px 2px rgba(6,69,47,.05), 0 10px 28px rgba(6,69,47,.07);
+    --shadow-tile-hover:0 2px 4px rgba(6,69,47,.06), 0 18px 40px rgba(6,69,47,.14);
+    --r-tile:22px;
+    --r-icon:20px;
+
+    --font:"Hiragino Sans","Noto Sans JP","Yu Gothic UI","Meiryo UI",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#0E1A16;
+      --tile:#172622;
+      --ink:#E7F0EB;
+      --muted:#93ABA1;
+      --line:rgba(184,216,200,.12);
+      --green-soft:rgba(21,122,87,.18);
+      --green-soft-2:rgba(21,122,87,.30);
+      --green-bright:#2E9C74;
+      --link:#5FC39A;
+      --shadow-tile:0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.28);
+      --shadow-tile-hover:0 2px 4px rgba(0,0,0,.3), 0 18px 40px rgba(0,0,0,.45);
+    }
+  }
+
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; font-family:var(--font); color:var(--ink); background:var(--paper);
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+    min-height:100dvh;
+  }
+  a{ color:inherit; }
+
+  /* ---------- ヘッダー（深緑の帯 ＋ 銅色の上昇カーブ） ---------- */
+  .hero{
+    position:relative; overflow:hidden; color:#fff;
+    background:
+      radial-gradient(120% 90% at 100% 0%, rgba(217,120,42,.22) 0%, rgba(217,120,42,0) 55%),
+      linear-gradient(135deg, #06452F 0%, #0B5B41 55%, #0F6B4C 100%);
+    padding: calc(28px + env(safe-area-inset-top)) 20px 64px;
+  }
+  .hero svg.arcs{
+    position:absolute; right:-40px; top:-30px; width:min(420px, 78vw); height:auto;
+    pointer-events:none; opacity:.95;
+  }
+  .hero-in{ max-width:960px; margin:0 auto; position:relative; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; letter-spacing:.08em; color:var(--mint);
+    margin:0 0 12px;
+  }
+  .eyebrow::before{
+    content:""; width:8px; height:8px; border-radius:50%;
+    background:var(--copper); box-shadow:0 0 0 4px rgba(217,120,42,.25);
+  }
+  .hero h1{
+    margin:0; font-size:clamp(26px, 6.4vw, 38px); font-weight:900; line-height:1.18; letter-spacing:.01em;
+  }
+  .hero h1 small{
+    display:block; font-size:clamp(14px, 3.6vw, 18px); font-weight:700; color:rgba(255,255,255,.82);
+    margin-top:6px; letter-spacing:.04em;
+  }
+  .hero p{ margin:14px 0 0; font-size:14px; color:rgba(255,255,255,.78); }
+
+  /* ---------- 本体（ヘッダーに少し重ねる） ---------- */
+  .sheet{
+    max-width:960px; margin:-36px auto 0; padding:0 14px calc(40px + env(safe-area-inset-bottom));
+    position:relative;
+  }
+
+  /* 絞り込みチップ */
+  .chips{
+    display:flex; gap:8px; overflow-x:auto; padding:6px 2px 14px; margin:0 -2px;
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
+  }
+  .chips::-webkit-scrollbar{ display:none; }
+  .chip{
+    flex:0 0 auto; appearance:none; border:1px solid rgba(255,255,255,.35);
+    background:rgba(255,255,255,.16); color:#fff; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    font:inherit; font-size:13px; font-weight:700; padding:8px 14px; border-radius:999px;
+    cursor:pointer; transition:background .15s, color .15s, border-color .15s, transform .1s;
+  }
+  .chip:active{ transform:scale(.97); }
+  .chip[aria-pressed="true"]{ background:#fff; color:var(--green-deep); border-color:#fff; }
+  .chip:focus-visible{ outline:3px solid var(--copper); outline-offset:2px; }
+
+  /* タイルのグリッド */
+  .grid{
+    display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px;
+  }
+  @media (min-width:560px){ .grid{ grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px; } }
+  @media (min-width:820px){ .grid{ grid-template-columns:repeat(5, minmax(0,1fr)); gap:16px; } }
+
+  .tile{
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:10px;
+    text-decoration:none; background:var(--tile); border:1px solid var(--line);
+    border-radius:var(--r-tile); padding:18px 8px 14px; min-height:132px;
+    box-shadow:var(--shadow-tile);
+    transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s, border-color .18s;
+    position:relative; isolation:isolate;
+  }
+  .tile::after{ /* 下端の銅色アクセント（hoverで伸びる） */
+    content:""; position:absolute; left:50%; bottom:0; width:0; height:3px; border-radius:3px 3px 0 0;
+    background:linear-gradient(90deg, var(--copper), #EFA262); transform:translateX(-50%);
+    transition:width .22s cubic-bezier(.2,.8,.2,1);
+  }
+  .tile:hover, .tile:focus-visible{ transform:translateY(-3px); box-shadow:var(--shadow-tile-hover); border-color:var(--green-soft-2); }
+  .tile:hover::after, .tile:focus-visible::after{ width:46%; }
+  .tile:active{ transform:translateY(0) scale(.97); transition-duration:.08s; }
+  .tile:focus-visible{ outline:3px solid var(--copper); outline-offset:2px; }
+  .tile[hidden]{ display:none; }
+
+  .ic{
+    width:62px; height:62px; border-radius:var(--r-icon); display:grid; place-items:center;
+    background:var(--green-soft); color:var(--green);
+    transition:background .18s, color .18s, transform .18s;
+  }
+  .tile:hover .ic, .tile:focus-visible .ic{ background:var(--green); color:#fff; transform:scale(1.04); }
+  .ic svg{ width:34px; height:34px; display:block; }
+  .ic svg *{ vector-effect:non-scaling-stroke; }
+  .ic path, .ic rect, .ic circle{ fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  .ic .ac{ fill:var(--copper); stroke:none; }            /* 銅色：塗り */
+  .ic .acs{ stroke:var(--copper); fill:none; }           /* 銅色：線 */
+  .tile:hover .ic .acs, .tile:focus-visible .ic .acs{ stroke:#F4B27A; }
+  .tile:hover .ic .ac, .tile:focus-visible .ic .ac{ fill:#F4B27A; }
+
+  .lb{
+    font-size:13.5px; font-weight:700; line-height:1.3; text-align:center; color:var(--ink);
+    letter-spacing:.01em; white-space:pre-line;
+  }
+  @media (min-width:560px){ .lb{ font-size:14px; } .tile{ min-height:140px; padding-top:20px; } .ic{ width:66px; height:66px; } .ic svg{ width:36px; height:36px; } }
+
+  /* フッター */
+  .foot{ margin-top:28px; text-align:center; }
+  .more{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    font-size:14px; font-weight:700; color:var(--link); background:var(--tile);
+    border:1.5px solid var(--green-soft-2); padding:12px 18px; border-radius:999px;
+    box-shadow:var(--shadow-tile); transition:transform .15s, box-shadow .15s, background .15s;
+  }
+  .more:hover{ transform:translateY(-2px); box-shadow:var(--shadow-tile-hover); }
+  .more svg{ width:18px; height:18px; }
+  .note{ margin:18px 0 0; font-size:12px; color:var(--muted); }
+  .note b{ color:var(--copper-ink); font-weight:700; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <!-- ロゴの「2本の上昇する矢印」を抽象化した飾り（ロゴ本体は置かない） -->
+  <svg class="arcs" viewBox="0 0 420 300" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="cu" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#D9782A" stop-opacity="0"/>
+        <stop offset=".55" stop-color="#D9782A" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#F4B27A" stop-opacity=".95"/>
+      </linearGradient>
+      <linearGradient id="mn" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#B8D8C8" stop-opacity="0"/>
+        <stop offset="1" stop-color="#B8D8C8" stop-opacity=".45"/>
+      </linearGradient>
+    </defs>
+    <path d="M-10 300 C 120 280, 220 220, 300 120 S 380 40, 420 10" fill="none" stroke="url(#cu)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-10 340 C 140 330, 250 270, 330 170 S 400 90, 440 60" fill="none" stroke="url(#mn)" stroke-width="5" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-in">
+    <p class="eyebrow">荻窪ツイン動物病院</p>
+    <h1>院内アプリ<small>使用方法ガイド</small></h1>
+    <p>見たいアプリをタップすると、使い方のページが開きます。</p>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <div class="chips" role="group" aria-label="職種で絞り込む">
+    <button class="chip" type="button" data-role="all" aria-pressed="true">すべて</button>
+    <button class="chip" type="button" data-role="reception" aria-pressed="false">受付</button>
+    <button class="chip" type="button" data-role="nurse" aria-pressed="false">看護師・スタッフ</button>
+    <button class="chip" type="button" data-role="vet" aria-pressed="false">獣医師</button>
+  </div>
+
+  <nav class="grid" aria-label="アプリ一覧">
+
+    <a class="tile" href="kintai.html" data-roles="reception nurse vet" title="勤怠アプリ（全スタッフ向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/><circle class="ac" cx="12" cy="12" r="1.4"/></svg></span>
+      <span class="lb">勤怠</span>
+    </a>
+
+    <a class="tile" href="emr.html" data-roles="reception nurse vet" title="電子カルテ（患者タイムライン）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16" rx="2.5"/><rect x="9" y="2.8" width="6" height="3.2" rx="1.2"/><path class="acs" d="M8 13.5h2l1.4-3 2.2 6 1.4-3h2"/></svg></span>
+      <span class="lb">電子カルテ</span>
+    </a>
+
+    <a class="tile" href="resv.html" data-roles="reception nurse vet" title="予約管理アプリ（受付・スタッフ・獣医師・トリマー向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v3M15.5 3.5v3"/><circle class="ac" cx="14.6" cy="15" r="1.7"/></svg></span>
+      <span class="lb">予約管理</span>
+    </a>
+
+    <a class="tile" href="vet-link.html" data-roles="reception nurse vet" title="VetLink（院内診療サポート）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M10.5 18.2h3"/><path class="acs" d="M8.8 11l2.3 2.3 4.3-4.8"/></svg></span>
+      <span class="lb">VetLink</span>
+    </a>
+
+    <a class="tile" href="nyuin.html" data-roles="nurse vet" title="入院カルテアプリ（獣医師・動物看護師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 18.5V6.5M3.5 15h17v3.5M20.5 15v-3a2.5 2.5 0 0 0-2.5-2.5H10V15"/><rect class="ac" x="5" y="9.8" width="4.2" height="3" rx="1.1"/></svg></span>
+      <span class="lb">入院カルテ</span>
+    </a>
+
+    <a class="tile" href="karte-voice.html" data-roles="vet" title="カルテ音声SOAPアプリ（主に獣医師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4"/><path class="acs" d="M9.2 15.5v-2M11.2 16.8v-4.6M13.2 15.5v-2M15.2 17.2v-5.4"/></svg></span>
+      <span class="lb">カルテ
+音声SOAP</span>
+    </a>
+
+    <a class="tile" href="case-bank.html" data-roles="vet" title="症例音声メモアプリ（主に獣医師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3.5" width="6" height="10.5" rx="3"/><path d="M6 11.5a6 6 0 0 0 12 0M12 17.5v3M9.5 20.5h5"/><path class="acs" d="M3.6 9.8v3.4M20.4 9.8v3.4"/></svg></span>
+      <span class="lb">症例
+音声メモ</span>
+    </a>
+
+    <a class="tile" href="health.html" data-roles="vet" title="定期健康診断アプリ（主に獣医師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/><path class="acs" d="M6.5 12h2.6l1.3-2.3 2 4.6 1.4-2.3h3.7"/></svg></span>
+      <span class="lb">定期
+健康診断</span>
+    </a>
+
+    <a class="tile" href="filaria.html" data-roles="reception nurse vet" title="フィラリア健診アプリ（受付・スタッフ・獣医師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5s-6 6.6-6 11a6 6 0 0 0 12 0c0-4.4-6-11-6-11z"/><path class="acs" d="M9.1 14.6a2.9 2.9 0 0 0 2.3 2.9"/></svg></span>
+      <span class="lb">フィラリア
+健診</span>
+    </a>
+
+    <a class="tile" href="dental.html" data-roles="nurse vet" title="歯科治療報告書アプリ（主に獣医師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 3.8c-2.4 0-4 1.9-4 4.4 0 2 1 3.3 1.4 5 .5 2.2.7 6.8 2.4 6.8 1.6 0 1.6-4.2 4-4.2s2.4 4.2 4 4.2c1.7 0 1.9-4.6 2.4-6.8.4-1.7 1.4-3 1.4-5 0-2.5-1.6-4.4-4-4.4-1.5 0-2.4.8-3.8.8s-2.3-.8-3.8-.8z"/><path class="acs" d="M8.6 8.4c.5-1.1 1.5-1.7 2.7-1.7"/></svg></span>
+      <span class="lb">歯科治療
+報告書</span>
+    </a>
+
+    <a class="tile" href="inventory.html" data-roles="reception nurse" title="在庫・発注管理アプリ（受付・スタッフ向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.8 8 12 4l8.2 4v8L12 20l-8.2-4z"/><path d="M3.8 8 12 12l8.2-4M12 12v8"/><path class="acs" d="M7.9 6 16.1 10"/></svg></span>
+      <span class="lb">在庫・発注</span>
+    </a>
+
+    <a class="tile" href="petty-cash.html" data-roles="reception nurse" title="小口管理アプリ（病院小口）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="17" height="13" rx="2.5"/><path d="M3.5 10.5h17M7 6.5V5.4A1.9 1.9 0 0 1 8.9 3.5h7.3"/><circle class="ac" cx="16.4" cy="15" r="1.6"/></svg></span>
+      <span class="lb">小口管理</span>
+    </a>
+
+    <a class="tile" href="lit-library.html" data-roles="vet" title="文献ライブラリ（獣医師向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-1.6-1.4-3.8-2-7-2v13c3.2 0 5.4.6 7 2 1.6-1.4 3.8-2 7-2V5c-3.2 0-5.4.6-7 2z"/><path d="M12 7v13"/><path class="ac" d="M15.3 5.1v5.4l1.5-1.1 1.5 1.1V5.1z"/></svg></span>
+      <span class="lb">文献
+ライブラリ</span>
+    </a>
+
+    <a class="tile" href="linkage.html" data-roles="reception nurse vet" title="アプリどうしのつながり（全スタッフ向け）">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="6.5" r="2.6"/><circle class="acs" cx="18" cy="17.5" r="2.6"/><path d="M8.3 10.8l7.4-3.1M8.3 13.2l7.4 3.1"/></svg></span>
+      <span class="lb">アプリの
+つながり</span>
+    </a>
+
+  </nav>
+
+  <div class="foot">
+    <a class="more" href="index.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      説明つきの一覧を見る
+    </a>
+    <p class="note">スマホ・院外からも見られます ｜ ガイドの追加・修正は<b>院長</b>まで</p>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+  var KEY = 'clinic-app-guides.role';
+  function apply(role){
+    chips.forEach(function(c){ c.setAttribute('aria-pressed', String(c.dataset.role === role)); });
+    tiles.forEach(function(t){
+      var ok = role === 'all' || (' ' + t.dataset.roles + ' ').indexOf(' ' + role + ' ') >= 0;
+      if (ok) t.removeAttribute('hidden'); else t.setAttribute('hidden', '');
+    });
+    try { localStorage.setItem(KEY, role); } catch(e){}
+  }
+  chips.forEach(function(c){ c.addEventListener('click', function(){ apply(c.dataset.role); }); });
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch(e){}
+  if (saved && chips.some(function(c){ return c.dataset.role === saved; })) apply(saved);
+})();
+</script>
+</body>
+</html>
