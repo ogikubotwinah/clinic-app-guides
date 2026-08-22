@@ -173,7 +173,7 @@ a { color: inherit; }
   transition: color .16s ease, border-color .16s ease, background .16s ease, transform .12s ease;
 }
 
-.chip[data-role="nurse"] { min-width: 218px; }
+.chip[data-role="staff"] { min-width: 218px; }
 .chip:active { transform: scale(.98); }
 
 .chip[aria-pressed="true"] {
@@ -420,7 +420,7 @@ a { color: inherit; }
   }
 
   .chip,
-  .chip[data-role="nurse"] {
+  .chip[data-role="staff"] {
     min-width: auto;
     padding: 8px 15px;
     font-size: 12px;
