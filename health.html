@@ -51,6 +51,7 @@
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
   .tophint { font-size: .8rem; }
   .tophint a { color: #fff; text-decoration: underline; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -72,9 +73,9 @@
 
 <div class="card" style="background:var(--teal-bg);border-color:#99f6e4">
 <b>アクセス</b>（院内PC・iPad・院外も可）<br>
-・院内LAN：<b>http://192.168.20.250:3100</b><br>
-・院外（Tailスケール ON）：<b>http://100.111.66.29:3100</b><br>
-・<b>音声入力を使うとき</b>はHTTPSが必要：<b>https://serverpc.tail2de5bb.ts.net:8443</b>（Tailscale ON）
+・院内LAN：<b><a class="applink" href="http://192.168.20.250:3100" target="_blank" rel="noopener">http://192.168.20.250:3100</a></b><br>
+・院外（Tailスケール ON）：<b><a class="applink" href="http://100.111.66.29:3100" target="_blank" rel="noopener">http://100.111.66.29:3100</a></b><br>
+・<b>音声入力を使うとき</b>はHTTPSが必要：<b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8443" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8443</a></b>（Tailscale ON）
 </div>
 
 <div class="card" style="border-color:#f9a8d4">
@@ -314,7 +315,7 @@
 <tr><td>内容</td><td>からだ全体（身体検査・血液・画像・尿便・臓器評価）</td><td>血液中心（CBC＋生化学18項目）</td></tr>
 <tr><td>結果の送信</td><td><b>必ず獣医師がレビューしてから</b>送信</td><td>正常は自動送信（異常のみ獣医師確認）</td></tr>
 <tr><td>主な使い手</td><td>獣医師</td><td>受付・スタッフ・獣医師</td></tr>
-<tr><td>URL</td><td>http://192.168.20.250:3100</td><td>http://192.168.20.250:3300</td></tr>
+<tr><td>URL</td><td><a class="applink" href="http://192.168.20.250:3100" target="_blank" rel="noopener">http://192.168.20.250:3100</a></td><td><a class="applink" href="http://192.168.20.250:3300" target="_blank" rel="noopener">http://192.168.20.250:3300</a></td></tr>
 </table>
 <p style="font-size:.88rem;margin-bottom:0">患者情報・既往歴・過去レポート・LINE連携は<b>両アプリ共通</b>。一度入れた情報はどちらでも使えます。</p>
 </div>
@@ -337,7 +338,7 @@
 <tr><td>検査値が取り込まれない</td><td>取込は8/12/15/18時の自動実行。急ぐときは検査結果ページの「再取得」。まだカルテに結果が無い場合は揃ってから入ります。来ない必須項目は受付が「未実施」にできます。</td></tr>
 <tr><td>同じ家にもう1頭いる</td><td>患者一覧の「👪 同じ家にもう1頭」から、枝番違いで別個体として登録できます。</td></tr>
 <tr><td>保存ボタンがない</td><td>自動保存です（「✓保存済」表示）。保存操作は不要。</td></tr>
-<tr><td>音声入力が使えない</td><td>音声はHTTPSが必要です。<b>https://serverpc.tail2de5bb.ts.net:8443</b>（Tailscale ON）を開いてください。</td></tr>
+<tr><td>音声入力が使えない</td><td>音声はHTTPSが必要です。<b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8443" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8443</a></b>（Tailscale ON）を開いてください。</td></tr>
 <tr><td>レポートを間違えて作った</td><td>レポート編集画面のヘッダ「🗑削除」で削除できます（バックアップは残ります）。</td></tr>
 <tr><td><b>ガイドに書いてある新しい画面が出てこない</b></td><td>お使いの端末が<b>古い画面を覚えている</b>ためです。<b>ハード再読み込み</b>（Mac＝<b>⌘+Shift+R</b>／Windows＝<b>Ctrl+F5</b>／iPad＝画面を下に引っぱって更新）をしてから、レポートを開き直してください。</td></tr>
 <tr><td>追加ページの撮影部位に、選びたい部位が無い</td><td>プルダウンの<b>「その他（自由入力）」</b>を選ぶと、下に文字を入れる欄が出ます（例：頸部（LAT））。書いた文字がそのまま印刷に載ります。</td></tr>

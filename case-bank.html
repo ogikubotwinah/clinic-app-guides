@@ -46,6 +46,7 @@
   .c-pet  { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
   .c-species { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -70,8 +71,8 @@
 <div class="card">
 <table>
 <tr><th style="width:32%">場所</th><th>URL・必要なもの</th></tr>
-<tr><td>院内（病院のWi-Fi）</td><td><b>https://192.168.20.250:3701</b><br><span style="font-size:.85rem;color:#64748b"><b>Tailscaleは要りません。</b>病院のWi-Fiにつないで、このURLをそのまま開いてください。初回だけ「接続はプライベートではありません」等の警告が出ますが →「詳細（を表示）」→「このWebサイトにアクセス／このまま進む」で開けます（院内の安全なアプリです）。</span></td></tr>
-<tr><td>院外（自宅など）</td><td><b>https://serverpc.tail2de5bb.ts.net:8448</b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
+<tr><td>院内（病院のWi-Fi）</td><td><b><a class="applink" href="https://192.168.20.250:3701" target="_blank" rel="noopener">https://192.168.20.250:3701</a></b><br><span style="font-size:.85rem;color:#64748b"><b>Tailscaleは要りません。</b>病院のWi-Fiにつないで、このURLをそのまま開いてください。初回だけ「接続はプライベートではありません」等の警告が出ますが →「詳細（を表示）」→「このWebサイトにアクセス／このまま進む」で開けます（院内の安全なアプリです）。</span></td></tr>
+<tr><td>院外（自宅など）</td><td><b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8448" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8448</a></b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
 </table>
 <div class="note">📱 <b>iPhone・iPad は Safari で開くのがおすすめ</b>です（マイクと証明書の許可がスムーズです）。パソコンは Chrome / Edge / Safari のどれでもOKです。</div>
 <div class="note">🎙️ <b>音声を使うには「https（鍵マーク）」のURL</b>で開いてください。マイクは https でしか使えません。上のURLはどちらも https です。</div>

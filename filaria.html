@@ -58,6 +58,7 @@
   .bubble .link { display: block; margin-top: 6px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 6px 8px; color: var(--blue); font-size: .76rem; word-break: break-all; }
   .qr { width: 160px; display: block; margin: 8px auto 2px; image-rendering: pixelated; border: 1px solid #eee; border-radius: 10px; padding: 6px; background: #fff; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -80,8 +81,8 @@
 
 <div class="card" style="border-color:#a5b4fc">
 <b>アクセス</b>（院内PC・iPad・院外も可）<br>
-・院内LAN：<b>http://192.168.20.250:3300</b><br>
-・院外（端末で Tailscale を ON）：<b>https://serverpc.tail2de5bb.ts.net:8451</b>（証明書の警告なし）<br>
+・院内LAN：<b><a class="applink" href="http://192.168.20.250:3300" target="_blank" rel="noopener">http://192.168.20.250:3300</a></b><br>
+・院外（端末で Tailscale を ON）：<b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8451" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8451</a></b>（証明書の警告なし）<br>
 <span style="font-size:.85rem;color:#64748b">※院外から使うには端末で Tailscale を ON にします。初回設定（導入・ログイン）は院長にお願いしてください。</span>
 </div>
 
@@ -119,7 +120,7 @@
 <h2>2. アプリの操作手順（受付・スタッフ）<span class="badge b-staff" style="margin-left:6px">スタッフ</span></h2>
 <div class="card">
 <div class="note" style="margin-top:0"><b>2026-06-28〜：通常は登録不要になりました</b>（会計から自動登録）。以下は<b>会計前にすぐ結果を出したい・自動で登録されなかった等の手動登録</b>の手順です。</div>
-<p style="margin-top:0">院内PCのブラウザで <b>http://192.168.20.250:3300</b>（院外からは端末で Tailscale を ON にして <b>https://serverpc.tail2de5bb.ts.net:8451</b>）を開きます。トップにそのまま登録フォームがあります。</p>
+<p style="margin-top:0">院内PCのブラウザで <b><a class="applink" href="http://192.168.20.250:3300" target="_blank" rel="noopener">http://192.168.20.250:3300</a></b>（院外からは端末で Tailscale を ON にして <b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8451" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8451</a></b>）を開きます。トップにそのまま登録フォームがあります。</p>
 <img class="shot" src="filaria-home.png" alt="フィラリア健康診断アプリの登録画面">
 <div class="cap">▲ 実際の登録画面（トップページ）</div>
 <table>
@@ -252,7 +253,7 @@
 <tr><th></th><th>フィラリア健診（このアプリ）</th><th>定期健康診断</th></tr>
 <tr><td>内容</td><td>血液中心で手早く（CBC＋生化学18項目）</td><td>からだ全体をじっくり（身体検査・画像・尿便など）</td></tr>
 <tr><td>結果の送信</td><td><b>正常は自動送信</b>（異常のみ獣医師確認）</td><td><b>必ず獣医師がレビューしてから</b>送信</td></tr>
-<tr><td>アプリのURL</td><td>院内 http://192.168.20.250:3300<br>院外 https://serverpc.tail2de5bb.ts.net:8451</td><td>http://192.168.20.250:3100</td></tr>
+<tr><td>アプリのURL</td><td>院内 <a class="applink" href="http://192.168.20.250:3300" target="_blank" rel="noopener">http://192.168.20.250:3300</a><br>院外 <a class="applink" href="https://serverpc.tail2de5bb.ts.net:8451" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8451</a></td><td><a class="applink" href="http://192.168.20.250:3100" target="_blank" rel="noopener">http://192.168.20.250:3100</a></td></tr>
 </table>
 </div>
 

@@ -49,6 +49,7 @@
   .c-next { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
   .c-done { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -73,11 +74,11 @@
 <div class="card">
 <table>
 <tr><th style="width:32%">場所</th><th>URL</th></tr>
-<tr><td>院内のPC・iPad</td><td><b>http://192.168.20.250:3007</b></td></tr>
-<tr><td>院外・iPadのホーム画面追加（アプリ化）</td><td><b>https://serverpc.tail2de5bb.ts.net:8450</b>（院の Tailscale 設定が必要）</td></tr>
+<tr><td>院内のPC・iPad</td><td><b><a class="applink" href="http://192.168.20.250:3007" target="_blank" rel="noopener">http://192.168.20.250:3007</a></b></td></tr>
+<tr><td>院外・iPadのホーム画面追加（アプリ化）</td><td><b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8450" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8450</a></b>（院の Tailscale 設定が必要）</td></tr>
 </table>
 <p style="margin:6px 0 0">共有端末で使う想定のため<b>ログイン（パスコード）はありません</b>。開けばすぐ使えます。</p>
-<div class="note"><b>iPadでアプリのように使うには：</b>Safari で <b>https://…:8450</b> を開き、共有ボタンから「<b>ホーム画面に追加</b>」。PDFの表示・印刷・「戻る」もアプリ内で動くようになっています。</div>
+<div class="note"><b>iPadでアプリのように使うには：</b>Safari で <b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8450" target="_blank" rel="noopener">https://…:8450</a></b> を開き、共有ボタンから「<b>ホーム画面に追加</b>」。PDFの表示・印刷・「戻る」もアプリ内で動くようになっています。</div>
 </div>
 
 <h2>2. 上のメニュー（全体像）</h2>
@@ -199,7 +200,7 @@
 <tr><td>ログイン（パスコード）は要りますか？</td><td>いりません。共有端末用に、開けばすぐ使えます。</td></tr>
 <tr><td>手術予定が出てこない</td><td>予約管理表（予約革命）への登録・メニュー名をご確認ください。反映は約30分ごとの自動同期です。急ぐ時は「＋手術予定を登録」で手動追加できます。</td></tr>
 <tr><td>患者情報が自動で入らない</td><td>アーミックス取込は<b>受付PCが動いている日中のみ</b>です。動いていない時は手動入力／仮患者で進められます。</td></tr>
-<tr><td>iPadでPDFの「戻る」や印刷ができない</td><td>ホーム画面追加した <b>https://…:8450</b> から開いてください。アプリ内ビューアで戻る・印刷ができます。</td></tr>
+<tr><td>iPadでPDFの「戻る」や印刷ができない</td><td>ホーム画面追加した <b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8450" target="_blank" rel="noopener">https://…:8450</a></b> から開いてください。アプリ内ビューアで戻る・印刷ができます。</td></tr>
 <tr><td>使いにくい・こうしてほしい</td><td>改善リクエストはいつでも院長・永野さんまで。すぐ直せることが多いです。</td></tr>
 </table>
 </div>

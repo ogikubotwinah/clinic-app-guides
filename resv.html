@@ -46,6 +46,7 @@
   .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
   .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -70,8 +71,8 @@
 <div class="card">
 <table>
 <tr><th style="width:32%">場所</th><th>URL・必要なもの</th></tr>
-<tr><td>院内（病院のWi-Fi）</td><td><b>http://192.168.20.250:4000</b></td></tr>
-<tr><td>院外（自宅など）</td><td><b>http://100.111.66.29:4000</b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
+<tr><td>院内（病院のWi-Fi）</td><td><b><a class="applink" href="http://192.168.20.250:4000" target="_blank" rel="noopener">http://192.168.20.250:4000</a></b></td></tr>
+<tr><td>院外（自宅など）</td><td><b><a class="applink" href="http://100.111.66.29:4000" target="_blank" rel="noopener">http://100.111.66.29:4000</a></b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
 </table>
 <p style="margin:6px 0 0">初回だけ<b>パスコード</b>を聞かれます（院内掲示・不明なら院長へ）。一度入れると同じ端末ではそのまま使えます。スマホでも操作できます（横スクロール・ピンチ拡大対応）。</p>
 </div>

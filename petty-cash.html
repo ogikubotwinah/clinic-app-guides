@@ -53,6 +53,7 @@
   .shot { width: 100%; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,.10); display: block; }
   .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 6px; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -74,8 +75,8 @@
 
 <div class="card" style="background:var(--green-bg);border-color:#bbf7d0">
 <b>アクセス</b>（スマホ・院内PC・院外も可）<br>
-・院外・スマホ（おすすめ）：<b>https://serverpc.tail2de5bb.ts.net:8445</b><br>
-・院内のWi-Fi／LAN：<b>http://192.168.20.250:3400</b><br>
+・院外・スマホ（おすすめ）：<b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8445" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8445</a></b><br>
+・院内のWi-Fi／LAN：<b><a class="applink" href="http://192.168.20.250:3400" target="_blank" rel="noopener">http://192.168.20.250:3400</a></b><br>
 <span style="font-size:.88rem;color:#166534">※ 院外URLは<b>Tailscale（VPN）がオンの端末</b>からのみ開けます。開けないときはスマホのTailscaleがオンか確認してください。</span><br>
 <span style="font-size:.88rem;color:#166534">※ 最初に<b>スタッフ用パスコード</b>を入れてログインします（パスコードは院長から共有されます）。</span>
 </div>
@@ -199,7 +200,7 @@
 <div class="card">
 <table>
 <tr><th style="width:40%">Q</th><th>A</th></tr>
-<tr><td>院外（スマホ）から開けない</td><td>スマホの<b>Tailscale をオン</b>にして <b>https://serverpc.tail2de5bb.ts.net:8445</b> を開いてください。</td></tr>
+<tr><td>院外（スマホ）から開けない</td><td>スマホの<b>Tailscale をオン</b>にして <b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8445" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8445</a></b> を開いてください。</td></tr>
 <tr><td>カードで払ったのに残高が減らない</td><td>正常です。<b>カードは現金残高に影響しません</b>（記録だけ残ります）。現金で払った分だけ残高が減ります。</td></tr>
 <tr><td>大きい支払いで現金が足りない</td><td>領収書追加で<b>「いまは保留にする」</b>をON。お金を用意できたらホームの<b>「支払う」</b>で確定します。保留中は残高から引かれません。</td></tr>
 <tr><td>銀行からいくら下ろせばいい？</td><td>ホームの<b>「銀行から引き出す目安」</b>（不足分＋保留の合計）を参考にしてください。</td></tr>

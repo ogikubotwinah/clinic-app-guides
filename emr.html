@@ -46,6 +46,7 @@
   .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
   .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -68,9 +69,9 @@
 <h2>1. 開き方</h2>
 <table>
 <tr><th>どこで</th><th>アドレス</th><th>ひとこと</th></tr>
-<tr><td><b>受付PC</b></td><td><b>https://192.168.20.250:3801/</b></td><td><b>受付は必ずこちら。</b>会計の呼び出し（Windows通知）が使えるのはこのアドレスだけです</td></tr>
-<tr><td>院内の他のPC・iPad</td><td>http://192.168.20.250:3800/</td><td>診察室・処置室はこちらで大丈夫です</td></tr>
-<tr><td>院外（自宅など）</td><td>https://serverpc.tail2de5bb.ts.net:8452/</td><td>Tailscaleに入っている端末のみ。iPhoneで開けないときは http://100.111.66.29:3800/</td></tr>
+<tr><td><b>受付PC</b></td><td><b><a class="applink" href="https://192.168.20.250:3801/" target="_blank" rel="noopener">https://192.168.20.250:3801/</a></b></td><td><b>受付は必ずこちら。</b>会計の呼び出し（Windows通知）が使えるのはこのアドレスだけです</td></tr>
+<tr><td>院内の他のPC・iPad</td><td><a class="applink" href="http://192.168.20.250:3800/" target="_blank" rel="noopener">http://192.168.20.250:3800/</a></td><td>診察室・処置室はこちらで大丈夫です</td></tr>
+<tr><td>院外（自宅など）</td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8452/" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8452/</a></td><td>Tailscaleに入っている端末のみ。iPhoneで開けないときは <a class="applink" href="http://100.111.66.29:3800/" target="_blank" rel="noopener">http://100.111.66.29:3800/</a></td></tr>
 </table>
 <p>パスコードは<b>音声カルテ・症例バンクと同じ</b>ものです。カルテNo.は <span class="chip c-blue">10000-2</span> のように、<b>ハイフンの後ろが「その飼い主さまの何頭目か」</b>です。1頭しかいなければ枝番なしでも出ます。</p>
 
@@ -215,7 +216,7 @@
 <tr><th>症状</th><th>どうするか</th></tr>
 <tr><td>「該当患者が見つかりません」</td><td>カルテNo.の桁を確認。枝番（-2 など）を外して試す</td></tr>
 <tr><td>「複数の患者が該当します」</td><td>同じ飼い主さまに複数頭。枝番を付けて指定してください</td></tr>
-<tr><td>会計の呼び出しが出ない</td><td>①受付ボード上部のチェックが入っているか ②<b>https://192.168.20.250:3801/</b> で開いているか ③ブラウザで通知を「許可」したか。なお<b>すでに並んでいた子では鳴りません</b></td></tr>
+<tr><td>会計の呼び出しが出ない</td><td>①受付ボード上部のチェックが入っているか ②<b><a class="applink" href="https://192.168.20.250:3801/" target="_blank" rel="noopener">https://192.168.20.250:3801/</a></b> で開いているか ③ブラウザで通知を「許可」したか。なお<b>すでに並んでいた子では鳴りません</b></td></tr>
 <tr><td>受付からの経過時間が出ない</td><td>その行がまだ「予約」のまま＝来院に進めていない可能性。ボードで「来院」に進めてください</td></tr>
 <tr><td>録音ボタンでマイクが使えない</td><td>httpで開いている可能性。https（:3801）で開き直してください</td></tr>
 <tr><td>画面が真っ白／表示が古い</td><td>いちど再読み込み（⌘R / Ctrl+R）。それでも直らなければ院長へ</td></tr>

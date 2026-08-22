@@ -52,6 +52,7 @@
   .shot { width: 100%; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,.10); display: block; }
   .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 6px; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -72,8 +73,8 @@
 
 <div class="card" style="background:var(--amber-bg);border-color:#fed7aa">
 <b>アクセス</b>（院内PC・iPad・スマホ・院外も可）<br>
-・院内PC（LAN）：<b>https://192.168.20.250:3000</b>（Edge / Chrome）<br>
-・iPhone / iPad・院外：<b>https://serverpc.tail2de5bb.ts.net</b>（Tailscale を ON。<b>証明書警告なし</b>）<br>
+・院内PC（LAN）：<b><a class="applink" href="https://192.168.20.250:3000" target="_blank" rel="noopener">https://192.168.20.250:3000</a></b>（Edge / Chrome）<br>
+・iPhone / iPad・院外：<b><a class="applink" href="https://serverpc.tail2de5bb.ts.net" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net</a></b>（Tailscale を ON。<b>証明書警告なし</b>）<br>
 <span style="font-size:.88rem;color:#9a3412">※ 院内PC（LAN）は院内ツールのため、初回は「この接続ではプライバシーが保護されません」等の証明書の警告が出ることがあります。<b>「詳細設定 → アクセスする（続行）」</b>で進んで問題ありません（Tailscaleの方は警告は出ません）。</span><br>
 <span style="font-size:.88rem;color:#9a3412">※ iPhone / iPad で<b>初めて使うとき</b>は、Tailscale のインストールとログイン（初回設定）が必要です。Gmailの二段階認証が要るため、<b>初回設定は院長が行います</b>。</span><br>
 <span style="font-size:.88rem;color:#9a3412">※ Safari で開いたら<b>「ホーム画面に追加」→「Webアプリとして表示」を ON</b> にすると、アプリのように使えます。</span><br>
@@ -261,7 +262,7 @@
 <tr><td>発注アラートを出したい／消したい</td><td>設定の<b>発注アラート設定（分類）</b>または<b>（商品別）</b>で調整します。</td></tr>
 <tr><td>発注や棚卸の担当者が選べない</td><td>設定の<b>スタッフ管理</b>で担当者を追加してください。</td></tr>
 <tr><td>1個あたりの値段を出したい</td><td>商品編集で<b>箱単価</b>と<b>入数</b>を入れると「1個あたり単価」が自動計算されます。</td></tr>
-<tr><td>院外・iPhone/iPadから使いたい</td><td>Tailscale を ON にして <b>https://serverpc.tail2de5bb.ts.net</b> を開きます（証明書警告なし）。初回設定（Tailscaleの導入・ログイン）は院長にお願いしてください。</td></tr>
+<tr><td>院外・iPhone/iPadから使いたい</td><td>Tailscale を ON にして <b><a class="applink" href="https://serverpc.tail2de5bb.ts.net" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net</a></b> を開きます（証明書警告なし）。初回設定（Tailscaleの導入・ログイン）は院長にお願いしてください。</td></tr>
 <tr><td>データが表示されない／最新にならない</td><td><b>画面を下に引っ張って更新</b>してください。他の人の入力が反映されないときは、少し待つか画面を更新します。</td></tr>
 <tr><td>このアプリの修正・要望は？</td><td>院内ツールです。不具合・追加要望は院長までお伝えください。</td></tr>
 </table>

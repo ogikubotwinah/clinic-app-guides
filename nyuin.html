@@ -47,6 +47,7 @@
   .c-next { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
   .c-done { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
   footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -70,8 +71,8 @@
 <div class="card">
 <table>
 <tr><th style="width:32%">場所</th><th>URL</th></tr>
-<tr><td>院内のPC・iPad</td><td><b>http://192.168.20.250:3500</b></td></tr>
-<tr><td>院外（スマホなど）</td><td><b>https://serverpc.tail2de5bb.ts.net:8446</b>（院の Tailscale 設定が必要）</td></tr>
+<tr><td>院内のPC・iPad</td><td><b><a class="applink" href="http://192.168.20.250:3500" target="_blank" rel="noopener">http://192.168.20.250:3500</a></b></td></tr>
+<tr><td>院外（スマホなど）</td><td><b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8446" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8446</a></b>（院の Tailscale 設定が必要）</td></tr>
 </table>
 <p style="margin:6px 0 0">最初に<b>パスコード</b>を入力します（院内で共有しているもの。分からなければ院長へ）。一度入れると同じ端末では約30日間は再入力不要です。</p>
 <div class="note">画面が見づらい夜間は、右上の <b>🌓 ボタン</b>でダークモード（黒背景）に切り替えられます。夜のICU当番におすすめです。</div>
