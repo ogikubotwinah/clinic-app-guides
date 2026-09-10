@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>画像ビューア 使用ガイド（診察室・獣医師／スタッフ向け）</title>
+<style>
+  :root {
+    --cyan: #0891b2; --cyan-bg: #ecfeff;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --violet: #7c3aed; --violet-bg: #f5f3ff;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #164e63, #0891b2); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .85; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--cyan); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-vet { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #a5f3fc; background: var(--cyan-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shotw { display: block; width: 100%; max-width: 760px; margin: 10px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.10); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: var(--amber-bg); border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--cyan-bg); border: 1px solid #a5f3fc; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  kbd { background: #f1f5f9; border: 1px solid #cbd5e1; border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; font-size: .85rem; font-family: inherit; white-space: nowrap; }
+  .dot { display: inline-block; width: .8em; height: .8em; border-radius: 50%; vertical-align: -1px; margin-right: 3px; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink { color: #1d4ed8; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>画像ビューア 使用ガイド
+<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>診察室・獣医師／スタッフ向け ｜ 2026年9月11日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+診察室のMacで<b>レントゲン・エコー・CT・MRIを見るためのアプリ</b>です。OsiriX の置き換えで、ブラウザで開くだけで使えます。<b>今日撮った検査が自動で一覧に出る</b>ので、患者さんを探さなくてもそのまま開けます。過去の検査は<b>カルテNoで自動的にひも付いて</b>いるので、日付を押せば去年のレントゲンとも並べて見比べられます。
+<div style="margin-top:8px">
+<span class="badge b-vet">獣医師・スタッフが使う画面です</span>
+<span class="badge b-auto">緑 = 自動（システム）</span>
+</div>
+</div>
+
+<div class="imp">🔒 <b>この画面はどこを撮っても飼い主さん・ペットの名前が写ります。</b>画面を院外の人に見せたり、写真に撮って外に送ったりしないでください。<br>
+（このガイドの画面写真は、そのために<b>架空の見本データ</b>で撮っています。実際の患者さんではありません。）</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">場所</th><th>URL</th></tr>
+<tr><td>院内（病院のWi-Fi・診察室のMac）</td><td><b><a class="applink" href="http://192.168.20.250:4400/" target="_blank" rel="noopener">http://192.168.20.250:4400/</a></b><br><span style="font-size:.85rem;color:#64748b">診察室のMacはこのページをブックマークしてあります。<b>Tailscaleは要りません。</b></span></td></tr>
+<tr><td>院外（自宅など）</td><td><b><a class="applink" href="http://100.111.66.29:4400/" target="_blank" rel="noopener">http://100.111.66.29:4400/</a></b><br><span style="font-size:.85rem;color:#64748b">院外から使う時<b>だけ</b> Tailscale の設定が必要です（分からなければ院長へ）。</span></td></tr>
+</table>
+
+<h3>パスコード</h3>
+<img class="shotw" src="dv-login.png" alt="ログイン画面">
+<div class="cap">▲ 最初の1回だけ、パスコードを入れます</div>
+<p style="margin:6px 0 0">パスコードは院内で共有しているものを入れてください（分からなければ院長へ）。<b>一度入れると、そのMacは次回から覚えます。</b></p>
+<div class="note">💡 <b>右上の「版 09/11 07:52」</b>は、いま見ている画面がいつ更新されたものかを表します。「直したはずなのに変わっていない」と思ったときは、ここの日時を院長に伝えてください。</div>
+</div>
+
+<h2>2. 基本の流れ</h2>
+<div class="flow">
+  <div class="fbox auto"><b>① 撮影する</b>エコー・レントゲンで撮ると、画像は自動でサーバへ送られます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox auto"><b>② 「本日」の一覧に自動で出る</b>3つの診察室すべてに、20秒以内に出ます。探す必要はありません。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>③ 患者を押す → 上の一列から画像を選ぶ</b>過去の検査も同じ一列に並びます。</div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>④ 見る・見比べる・測る・コメントを残す</b></div>
+  <div class="farrow">▼</div>
+  <div class="fbox vet"><b>⑤ 必要なら外に出す</b>JPEG保存／印刷／DICOM一式。</div>
+</div>
+
+<h2>3. 画像を出す</h2>
+<div class="card">
+<h3>本日の検査（開くと最初に出る画面）</h3>
+<img class="shotw" src="dv-today.png" alt="本日の検査の一覧">
+<div class="cap">▲ 今日撮った検査が新しい順に並びます</div>
+<ul>
+<li><b>20秒ごとに自動で増えます。</b>撮ったらそのまま待っていれば出ます（更新ボタンは要りません）。</li>
+<li>カルテNoが機器に入力されていなかった検査は<b>⚠印</b>が付きます。誰の画像か分かるように、機器側で入れてください。</li>
+<li>別の患者を見たあとで戻りたいときは、左上の<b>📋 本日</b>を押します。</li>
+</ul>
+
+<h3>患者を探す</h3>
+<table>
+<tr><th style="width:26%">やりたいこと</th><th>やり方</th></tr>
+<tr><td>カルテNoで探す</td><td>上の枠に番号を入れて<b>検索</b>。<b>枝番は要りません</b>（<b>9178</b> と入れれば 9178-1・9178-2 も出ます）。</td></tr>
+<tr><td>名前で探す</td><td>同じ枠に飼い主さん・ペットの名前を入れて<b>検索</b>。</td></tr>
+<tr><td>日付で絞る</td><td><b>直近1か月</b>／<b>今月</b>のボタン、または日付の枠で期間を指定。解除は<b>日付クリア</b>。</td></tr>
+<tr><td>日付が入力しにくい</td><td><b>🔢 スクロール</b>を押すと、年・月・日を<b>選ぶ方式</b>に切り替わります（古いMacで日付の枠が出ないとき用）。</td></tr>
+</table>
+
+<h3>患者を開く</h3>
+<img class="shotw" src="dv-open.png" alt="患者を開いたところ">
+<div class="cap">▲ 押した患者の中身が、<b>その行の下にそのまま開きます</b>（一覧は消えません）</div>
+<ul>
+<li>左の一覧で<b>患者を押す</b>と、その下に<b>検査が日付ごとに折りたたまれて</b>出ます。日付を押すと開閉します。</li>
+<li>日付の中の<b>「X-ray 3枚」</b>のような行を押すと、その種類の1枚目が画面に出ます。</li>
+<li>もう一度患者を押すと閉じます。</li>
+</ul>
+<div class="tip">🔗 <b>過去の検査は自動でひも付きます。</b>同じカルテNoで撮られた画像は、何年前のものでも同じ患者の下に並びます。CD で取り込んだ他院の画像も、カルテNoを割り当てれば同じ場所に並びます。</div>
+<div class="note">👨‍👩‍👧 <b>同じ飼い主さんの別の子</b>（枝番違い）は、混ぜずに<b>別枠</b>で「別の子の画像です」と出ます。取り違えを防ぐためです。</div>
+
+<h3>上の一列（画像一覧）</h3>
+<ul>
+<li><b>その患者の画像が、日付の区切り付きで全部並びます。</b>だから<b>違う日どうしを見比べられます</b>。</li>
+<li>左端の<b>日付のラベル（09/11 など）</b>を押すと、その日の先頭までスクロールします。</li>
+<li>一覧と画像の<b>間の線を上下にドラッグ</b>すると、サムネイルを大きく／小さくできます。</li>
+<li>エコーは<b>撮影時に入れた臓器名（L kidney など）</b>がサムネの下に出ます。</li>
+</ul>
+</div>
+
+<h2>4. 見る・並べて見比べる</h2>
+<div class="card">
+<table>
+<tr><th style="width:30%">操作</th><th>できること</th></tr>
+<tr><td><b>左ドラッグ</b></td><td>左右＝コントラスト／上下＝明るさ（既定の「☀ 調整」のとき）</td></tr>
+<tr><td><b>ホイール</b></td><td>拡大・縮小。向きが逆なら上の<b>「ホイール ⇅」</b>で入れ替えられます</td></tr>
+<tr><td><b>右ドラッグ・中ドラッグ</b></td><td>画像を動かす（「✋ 移動」でも同じ）</td></tr>
+<tr><td><b>ダブルクリック</b></td><td>全画面。<kbd>Esc</kbd> で戻ります</td></tr>
+<tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>次の画像・次の断面へ（<kbd>Shift</kbd>＋ホイールでも同じ）</td></tr>
+<tr><td><b>☰</b>（左上）</td><td>左の一覧を隠して、画像を大きく見る</td></tr>
+<tr><td><b>文字 大</b></td><td>文字の大きさを変える（Macごとに覚えます）</td></tr>
+</table>
+
+<h3>1〜4画面に分けて見比べる</h3>
+<img class="shotw" src="dv-split.png" alt="2画面で見比べているところ">
+<div class="cap">▲ 2画面。<b>枠の色と番号</b>が、上の一覧・画面の中の丸と揃っています</div>
+<ul>
+<li><b>1画面〜4画面</b>のボタンで分けます（<kbd>1</kbd>〜<kbd>4</kbd> キーでも）。<b>拡大もコントラストも計測も、画面ごとに別々</b>です。</li>
+<li><b><span class="dot" style="background:#22d3ee"></span>水色の枠が「いま操作している画面」</b>です。画面の中と、上の一覧のサムネにも同じ色の丸・番号が付きます。</li>
+<li><b>別の画面に出したいとき</b>は ①その画面をクリックしてから上の一覧を選ぶ、または ②<b>上の一覧から画面へドラッグして落とす</b>。</li>
+</ul>
+<div class="tip">📄 <b>印刷は「並べたまま」出ます。</b>2画面で見比べている状態で印刷すると、その2枚が横に並んで紙になります。</div>
+</div>
+
+<h2>5. 動画（エコーのクリップ）</h2>
+<div class="card">
+<p style="margin-top:0">コマ数が複数ある画像を選ぶと、下に<b>再生の操作</b>が出ます。</p>
+<table>
+<tr><th style="width:28%">ボタン</th><th>意味</th></tr>
+<tr><td><b>▶ 再生 / ■ 停止</b></td><td>再生・停止。先に全コマを読み込むので、<b>カクつかずに流れます</b>。</td></tr>
+<tr><td><b>🔁 繰り返す</b></td><td>最後まで行ったら最初に戻ります（<b>既定は繰り返す</b>）。押すと1回だけ再生に変わります。</td></tr>
+<tr><td><b>つまみ</b></td><td>好きなコマまで送る。ホイールでも1コマずつ動きます。</td></tr>
+</table>
+<div class="note">👍 <b>「◀ 前 / 次 ▶」の位置は動きません。</b>動画の操作が出てもボタンがずれないようにしてあるので、押しっぱなしで次々送れます。</div>
+</div>
+
+<h2>6. 測る</h2>
+<div class="card">
+<table>
+<tr><th style="width:26%">道具</th><th>使い方・出るもの</th></tr>
+<tr><td><b>📏 長さ</b></td><td>2点をクリック。<b>実寸（mm・cm）</b>で出ます。実寸の情報が画像に無いときは <b>px</b> と明記されます。</td></tr>
+<tr><td><b>📐 角度</b></td><td>3点（端 → 頂点 → 端）をクリック。</td></tr>
+<tr><td><b>⭕ ROI</b></td><td>範囲を囲むと、その中の<b>平均CT値（HU）</b>が出ます（CT向け）。</td></tr>
+<tr><td><b>❤️ VHS</b></td><td>心臓の長軸2点・短軸2点 → T4前縁 → 椎骨の境目を順にクリック。<b>手で測るのと同じ考え方</b>で椎骨何個ぶんかを計算します（目安：犬 8.5〜10.6／猫 6.7〜8.1）。</td></tr>
+<tr><td><b>臨床計測を選ぶ…</b></td><td>よく使う計測が<b>26項目</b>入っています（循環器・呼吸器・消化器・泌尿器・整形外科）。選ぶと<b>どこを押せばよいかが順番に案内</b>され、参考値も一緒に出ます。</td></tr>
+<tr><td><b>計測クリア</b></td><td>その画像の計測をまとめて消します（1本ずつ消すこともできます）。</td></tr>
+</table>
+<div class="tip">📐 計測の線は<b>画像そのものの座標</b>で持っているので、あとから拡大しても数値は変わりません。線は<b>JPEG保存・印刷にもそのまま入ります</b>。</div>
+<div class="note">⚠️ 参考値は<b>判定ではなく目安</b>です。犬種差・撮影条件で動きます。</div>
+</div>
+
+<h2>7. コメントを残す</h2>
+<div class="card">
+<img class="shotw" src="dv-note.png" alt="コメント欄">
+<div class="cap">▲ <b>📝 コメント</b>を押すと、いま出している画像へのメモが書けます</div>
+<ul>
+<li><b>向きの記号</b>（R・L・VD・DV・RL・LL・立位・拡大）を押すと、<b>画像の右上に大きく表示</b>されます。歯科・整形で左右を間違えないための印です。</li>
+<li><b>「計測値を入れる」</b>を押すと、その画像で測った値（VHSなど）が<b>そのままコメント文に入ります</b>。打ち直す必要はありません。</li>
+<li><b>「画像に焼き込む」</b>にチェックを入れると、コメントの文字が画像の下に入り、<b>JPEG保存・印刷にも一緒に出ます</b>（飼い主さんへお渡しする紙に便利です）。</li>
+<li>コメントを書いた画像には、<b>上の一覧のサムネと画面の中に 📝 の印</b>が付きます。押すとコメント欄が開きます。</li>
+<li>書くと<b>自動で保存</b>されます（「保存しました」と出ます）。ボタンはありません。</li>
+</ul>
+<div class="tip">🗂 コメントは画像ごとに残るので、<b>次回その画像を開いた人にも見えます</b>。「前回どこを見たか」の申し送りに使えます。</div>
+</div>
+
+<h2>8. 参考画像（正常な犬・猫の見本）</h2>
+<div class="card">
+<p style="margin-top:0">きれいに撮れたレントゲンを<b>見本として登録</b>しておき、あとから<b>並べて見比べる</b>ための機能です。飼い主さんへの説明にも使えます。</p>
+
+<h3>登録する（きれいに撮れたと思ったその場で）</h3>
+<img class="shotw" src="dv-refadd.png" alt="参考画像の登録画面">
+<div class="cap">▲ 画像の上で<b>右クリック</b>するだけで出ます</div>
+<ul>
+<li>画像の上で<b>右クリック</b>（またはツールバーの<b>📚 参考画像に登録</b>）。</li>
+<li><b>いま画面に出ている見た目のまま</b>（明るさ・向きを調整したあとの状態）が保存されます。</li>
+<li><b>分類（フォルダ）</b>を選ぶか、新しく作れます（例：胸部・腹部・歯科）。<b>名前</b>は任意です。</li>
+<li>最後に<b>🐕 犬に登録</b>／<b>🐈 猫に登録</b>を押します。</li>
+<li><b>動画（コマが複数ある画像）も登録できます。</b>参考画像として開いたときも動画のまま再生できます。</li>
+</ul>
+<div class="imp">⚠️ <b>エコーは患者名が画像に焼き込まれていることがあります。</b>登録画面にも注意が出ます。名前が写っていないか、登録前に必ず画面を見てください。</div>
+
+<h3>使う</h3>
+<img class="shotw" src="dv-ref.png" alt="参考画像の一覧">
+<div class="cap">▲ <b>📚 参考画像</b>を押すと、犬・猫／種類／分類の順に並びます</div>
+<ul>
+<li>見たい見本を<b>画面へドラッグして落とす</b>と、そこに出ます（2画面にしておけば患者の画像と並びます）。</li>
+<li>分類を間違えたら<b>「分類を移す」</b>、要らなくなったら<b>「削除」</b>。</li>
+</ul>
+</div>
+
+<h2>9. 外に出す・取り込む</h2>
+<div class="card">
+<table>
+<tr><th style="width:26%">ボタン</th><th>できること</th></tr>
+<tr><td><b>JPEG保存</b></td><td>いま出している画像を、<b>計測の線・向きの記号・焼き込んだコメントごと</b>画像ファイルにします。</td></tr>
+<tr><td><b>印刷</b></td><td>出している画面を<b>全部横に並べて</b>印刷します。</td></tr>
+<tr><td><b>DICOM一式</b></td><td>その検査を<b>DICOMのまま</b>まとめて取り出します（他院へ渡すとき用）。</td></tr>
+<tr><td><b>📀 取り込み</b></td><td>他院のCDや、トナリからダウンロードしたDICOMを<b>この画面にドラッグ＆ドロップ</b>。DICOM以外は自動で捨てられます。取り込んだあと<b>カルテNoを割り当てる</b>と、その患者の検査一覧に並びます。</td></tr>
+</table>
+<div class="note">🔐 カルテNoの割り当ては<b>取り込んだ画像だけ</b>できます。院内の機器から来た画像は、間違って書き換えないように<b>拒否</b>されます。</div>
+</div>
+
+<h2>10. CT・MRI のとき</h2>
+<div class="card">
+<ul>
+<li><b>窓</b>で見たい濃さに切り替えます（肺野・縦隔・骨など）。カーソルの位置のCT値（HU）が左下に出ます。</li>
+<li><b>🔗 同期</b>で、2画面のスライス位置が揃います。</li>
+<li><b>🧊 MPR / 3D</b>で、横断・前額断・矢状断の3方向と立体を同時に出します。</li>
+</ul>
+<h3>3Dの出し方は「目的」で選びます</h3>
+<table>
+<tr><th style="width:38%">選ぶもの</th><th>用途</th></tr>
+<tr><td>骨・歯を立体で見る</td><td>飼い主さんへの説明向き</td></tr>
+<tr><td>骨を透かして見る（MIP）</td><td>骨折線・骨病変を探す</td></tr>
+<tr><td>造影した血管を見る（MIP）</td><td>造影の血管</td></tr>
+</table>
+<p><b>「薄いものを消す」のバー</b>を右へ動かすと、撮影台やクッションなど<b>薄く写っているものから順に消えます</b>。骨だけを見たいときに使ってください。動かしたら<b>「3Dを作り直す」</b>を押します。</p>
+<div class="note">⏳ 立体の組み立ては<b>初回だけ10〜20秒</b>かかります（枚数が多いため）。2回目からはすぐ出ます。</div>
+</div>
+
+<h2>11. 「ここが不便」を送る</h2>
+<div class="card">
+<img class="shotw" src="dv-imp.png" alt="ここが不便ボタン">
+<div class="cap">▲ <b>💡 ここが不便</b>から、そのまま書いて送れます</div>
+<p style="margin-top:0">使っていて「ここが面倒」「こうなってほしい」と思ったことは、<b>その場で書いて送ってください</b>。うまく言えなくて構いません。院長に届いて、直せるものから直します。直ったら連絡します。</p>
+<div class="tip">💬 「どう書けばいいか分からない」ときは、<b>やろうとしたこと</b>と<b>困ったこと</b>を1行ずつ書けば十分です（例：「2枚並べたあと、片方だけ大きくしたい／やり方が分からない」）。</div>
+</div>
+
+<h2>12. 困ったとき</h2>
+<div class="card">
+<table>
+<tr><th style="width:34%">こんなとき</th><th>どうするか</th></tr>
+<tr><td>画面が真っ暗・何を押しても反応しない</td><td>画面に<b>赤い文字で理由</b>が出ます。<b>その文章をそのまま院長へ</b>伝えてください（原因が分かるようになっています）。</td></tr>
+<tr><td>直したはずの機能が無いように見える</td><td>右上の<b>「版 ○○/○○ ○○:○○」</b>の日時を院長へ。古い画面を掴んでいる可能性があります。</td></tr>
+<tr><td>今日撮ったのに一覧に出ない</td><td>20秒お待ちください。それでも出なければ、機器側で<b>カルテNoが入っていない</b>可能性があります（⚠印で出ます）。</td></tr>
+<tr><td>患者が見つからない</td><td><b>枝番なし</b>（9178）で検索してみてください。名前でも探せます。</td></tr>
+<tr><td>エコーの動画が出るまで待たされる</td><td>1本ずつ読み込みます。<b>▶ 再生</b>を押す前に少し待つと、そのあとは滑らかに流れます。</td></tr>
+<tr><td>文字が小さくて読めない</td><td>上の<b>「文字 大」</b>を押してください。そのMacが覚えます。</td></tr>
+</table>
+</div>
+
+<footer>
+荻窪ツイン動物病院 ｜ 画像ビューア 使用ガイド ｜ 2026年9月11日<br>
+分からないことは院長までご連絡ください。
+</footer>
+
+</div>
+</body>
+</html>
