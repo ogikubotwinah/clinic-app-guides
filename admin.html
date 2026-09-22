@@ -15,8 +15,12 @@
     box-shadow:0 10px 30px rgba(0,63,54,.10)}
   .lockbox h2{font-size:19px;margin:0 0 6px}
   .lockbox p{font-size:14px;line-height:1.8;color:#4a5a56;margin:0 0 14px}
+  /* ★iPhoneで type="password" にするとキーボードが出ない/数字しか打てないことがあった（2026-09-22 院長報告）。
+     入力欄は文字入力のままにして、見た目だけ●で隠す。合言葉は「のれん」で鍵ではないので、これで十分。 */
   .lockbox input{width:100%;font-size:17px;padding:13px 14px;border:1.5px solid #cfe0da;border-radius:12px;
-    font-family:inherit;box-sizing:border-box}
+    font-family:inherit;box-sizing:border-box;-webkit-text-security:disc;text-security:disc}
+  .lockbox .showcode{margin-top:8px;font-size:13px;color:#4a5a56;display:flex;align-items:center;gap:6px}
+  .lockbox input.plain{-webkit-text-security:none;text-security:none}
   .lockbox button{margin-top:12px;width:100%;background:#003F36;color:#fff;border:0;border-radius:12px;
     padding:14px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer}
   .err{color:#C24C3B;font-size:14px;margin-top:10px;min-height:1.2em}
@@ -47,8 +51,11 @@
   <section id="lock" class="lockbox">
     <h2>合言葉を入れてください</h2>
     <p>ここは院長用の入口です。合言葉を入れると、管理者用アプリの一覧が出ます。</p>
-    <input id="code" type="password" inputmode="text" autocomplete="off" placeholder="合言葉"
+    <input id="code" type="text" inputmode="text" autocomplete="off"
+      autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="合言葉"
       onkeydown="if(event.key==='Enter')unlock()">
+    <label class="showcode"><input type="checkbox" style="width:auto;-webkit-text-security:none"
+      onchange="document.getElementById('code').classList.toggle('plain', this.checked)"> 入力した文字を表示する</label>
     <button type="button" onclick="unlock()">開く</button>
     <div class="err" id="err"></div>
   </section>
