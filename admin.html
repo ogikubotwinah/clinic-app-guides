@@ -31,11 +31,14 @@
   .adm .row span{font-size:13.5px;color:#5a6a66;line-height:1.7}
   .noteblk{max-width:720px;margin:18px auto 0;background:#FFF8E1;border:1px solid #F0D88A;
     border-radius:14px;padding:16px 18px;font-size:13.5px;line-height:1.9;color:#4a4433}
-  .adm .grp{max-width:720px;margin:22px auto 8px;font-size:12.5px;font-weight:700;letter-spacing:.04em;
-    color:#6a7a76}
-  .adm .grp:first-child{margin-top:4px}
-  .adm .row b i{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:#eef3f1;
-    color:#4a5a56;font-size:11.5px;font-style:normal;font-weight:700;vertical-align:middle}
+  .adm .grp{max-width:720px;margin:24px auto 10px;padding-left:2px;font-size:13px;font-weight:700;
+    color:#48605a;border-left:4px solid #cfe0da;padding-left:10px;line-height:1.4}
+  .adm .grp:first-of-type{margin-top:2px}
+  .adm .row{position:relative;padding:18px 18px}
+  .adm .row b{font-size:19px;line-height:1.35;margin-bottom:2px}
+  .adm .row em{position:absolute;top:16px;right:18px;padding:2px 10px;border-radius:999px;background:#F1F6F4;
+    color:#42615a;font-size:12px;font-style:normal;font-weight:700}
+  .adm .row span{font-size:13.5px;color:#6b7a76}
   .hide{display:none}
 </style>
 </head>
@@ -67,57 +70,63 @@
 
   <section id="apps" class="adm hide">
 
-    <h2 class="grp">お金の管理</h2>
+    <h2 class="grp">毎日・毎月つかう</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8445/" style="--c:#7E57C2">
-      <b>小口管理<i>動物病院</i></b>
-      <span>領収書の登録・一覧・月次・接待交際費・振込（未払い）</span>
+      <b>小口管理</b>
+      <em>動物病院</em>
+      <span>領収書を撮って登録。振込（未払い）もここ</span>
     </a>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8448/" style="--c:#2E7D6B">
-      <b>小口管理<i>ラマルク</i></b>
-      <span>ラマルクの領収書だけ。病院の帳簿とは完全に別</span>
+      <b>小口管理</b>
+      <em>ラマルク</em>
+      <span>ラマルクの領収書だけ。病院とは別の帳簿</span>
     </a>
-
-    <h2 class="grp">給与・人件費</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll" style="--c:#003F36">
       <b>給与計算</b>
-      <span>毎月の給与・賞与、明細の確定、振込ファイル</span>
+      <em>毎月</em>
+      <span>試算・明細の確定・振込ファイルづくり</span>
+    </a>
+
+    <h2 class="grp">ときどき見る</h2>
+
+    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/analysis" style="--c:#4a9a86">
+      <b>人件費の分析</b>
+      <span>職種ごと・月ごとの推移</span>
     </a>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/settings" style="--c:#2f7f6f">
       <b>給与の設定</b>
-      <span>一人ずつの給与・手当・社会保険、会社の設定</span>
+      <span>一人ずつの給与・手当・社会保険</span>
     </a>
 
-    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/analysis" style="--c:#4a9a86">
-      <b>人件費の分析</b>
-      <span>職種ごと・月ごとの人件費の推移</span>
-    </a>
-
-    <h2 class="grp">使い方・その他</h2>
+    <h2 class="grp">困ったときに読む</h2>
 
     <a class="row" href="payroll-guide.html" style="--c:#F2AD45">
       <b>給与計算の使い方</b>
-      <span>毎月の流れ、昇給・賞与、振込までの手順</span>
+      <span>毎月の流れと、振込までの手順</span>
     </a>
 
     <a class="row" href="kintai.html" style="--c:#62B7FF">
       <b>勤怠アプリの使い方</b>
-      <span>スタッフ向けと同じページ。勤怠の鍵は給与とは別</span>
+      <span>スタッフ向けと同じページ</span>
     </a>
+
+    <h2 class="grp">ラマルク（外販）の準備</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/setup" style="--c:#7ab5a2">
       <b>導入の設定</b>
-      <span>ラマルクとして新しい医院に入れるときの初期設定</span>
+      <span>新しい医院に給与計算を入れるときの初期設定</span>
     </a>
 
     <div class="noteblk">
-      <b>この入口について</b><br>
-      ・このページの合言葉は<strong>目隠し</strong>です。スタッフが迷い込まないためのもので、鍵ではありません。<br>
-      ・<strong>本当の鍵はアプリ側のパスコード</strong>です。給与のパスコードは勤怠の管理パスコードとは別で、勤怠の管理者は給与の中身を開けません。<br>
-      ・給与のリンクは<strong>院内ネットワークかTailscaleに繋がっている端末</strong>からだけ開きます。外部からは届きません。
+      <b>ここの鍵について</b><br>
+      ・このページの合言葉は<strong>目隠し</strong>（スタッフが迷い込まないため）。<strong>本当の鍵は各アプリのパスコード</strong>です。<br>
+      ・給与のパスコードは勤怠の管理パスコードとは<strong>別</strong>。勤怠の管理者は給与を開けません。<br>
+      ・小口管理は<strong>院長のパスコード</strong>で開くと院長小口まで見えます。<br>
+      ・リンクは<strong>院内ネットワークかTailscaleに繋がった端末</strong>からだけ開きます。
     </div>
 
   </section>
