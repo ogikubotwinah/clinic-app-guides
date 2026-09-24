@@ -11,34 +11,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="apps.css">
 <style>
-  .lockbox{max-width:560px;margin:0 auto;background:#fff;border-radius:18px;padding:28px 24px;
-    box-shadow:0 10px 30px rgba(0,63,54,.10)}
-  .lockbox h2{font-size:19px;margin:0 0 6px}
-  .lockbox p{font-size:14px;line-height:1.8;color:#4a5a56;margin:0 0 14px}
-  /* ★iPhoneで type="password" にするとキーボードが出ない/数字しか打てないことがあった（2026-09-22 院長報告）。
-     入力欄は文字入力のままにして、見た目だけ●で隠す。合言葉は「のれん」で鍵ではないので、これで十分。 */
-  .lockbox input{width:100%;font-size:17px;padding:13px 14px;border:1.5px solid #cfe0da;border-radius:12px;
+  /* 管理者用の一覧（2026-09-24 全面見直し）
+     ・ページの地は濃い緑（apps.css）。白い大箱＋黒文字は読みにくいので、
+       緑になじむ半透明のカード＋金色の見出しに変える
+     ・行は「タイトル＋一言」を1〜2行に収め、余白を詰めて一覧性を上げる */
+  .lockbox{max-width:520px;margin:0 auto;background:rgba(255,253,248,.07);
+    border:1px solid rgba(255,196,93,.28);border-radius:16px;padding:22px 20px}
+  .lockbox h2{font-size:17px;margin:0 0 6px;color:var(--guide-white)}
+  .lockbox p{font-size:13.5px;line-height:1.7;color:var(--guide-soft-white);margin:0 0 12px}
+  /* iPhoneで type="password" だとキーボードが出ない事象があったため、文字入力のまま見た目だけ隠す */
+  .lockbox input{width:100%;font-size:16px;padding:12px 14px;border-radius:10px;
+    border:1px solid rgba(255,253,248,.3);background:rgba(0,40,34,.5);color:var(--guide-white);
     font-family:inherit;box-sizing:border-box;-webkit-text-security:disc;text-security:disc}
-  .lockbox .showcode{margin-top:8px;font-size:13px;color:#4a5a56;display:flex;align-items:center;gap:6px}
+  .lockbox .showcode{margin-top:8px;font-size:12.5px;color:var(--guide-soft-white);
+    display:flex;align-items:center;gap:6px}
   .lockbox input.plain{-webkit-text-security:none;text-security:none}
-  .lockbox button{margin-top:12px;width:100%;background:#003F36;color:#fff;border:0;border-radius:12px;
-    padding:14px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer}
-  .err{color:#C24C3B;font-size:14px;margin-top:10px;min-height:1.2em}
-  .adm{max-width:720px;margin:0 auto}
-  .adm .row{display:block;background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:12px;
-    text-decoration:none;color:inherit;box-shadow:0 6px 18px rgba(0,63,54,.08);border-left:6px solid var(--c,#003F36)}
-  .adm .row b{display:block;font-size:17px;margin-bottom:4px}
-  .adm .row span{font-size:13.5px;color:#5a6a66;line-height:1.7}
-  .noteblk{max-width:720px;margin:18px auto 0;background:#FFF8E1;border:1px solid #F0D88A;
-    border-radius:14px;padding:16px 18px;font-size:13.5px;line-height:1.9;color:#4a4433}
-  .adm .grp{max-width:720px;margin:26px auto 10px;font-size:16px;font-weight:900;color:#0F2E27;
-    border-left:5px solid #003F36;padding-left:12px;line-height:1.5}
-  .adm .grp:first-of-type{margin-top:2px}
-  .adm .row{position:relative;padding:18px 18px}
-  .adm .row b{font-size:19px;line-height:1.35;margin-bottom:2px}
-  .adm .row em{position:absolute;top:16px;right:18px;padding:2px 10px;border-radius:999px;background:#F1F6F4;
-    color:#42615a;font-size:12px;font-style:normal;font-weight:700}
-  .adm .row span{font-size:13.5px;color:#6b7a76}
+  .lockbox button{margin-top:12px;width:100%;border:0;border-radius:10px;padding:13px;
+    background:linear-gradient(90deg,var(--guide-gold),var(--guide-gold-bright));color:#2a1c06;
+    font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
+  .err{color:#ffb4a2;font-size:13px;margin-top:8px;min-height:1.1em}
+
+  .adm{max-width:640px;margin:0 auto}
+  /* 見出し＝金色の小見出し（緑地でいちばん読みやすい） */
+  .adm .grp{display:flex;align-items:center;gap:8px;margin:20px 0 8px;
+    font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--guide-gold-bright)}
+  .adm .grp::after{content:"";flex:1;height:1px;background:var(--guide-gold-line);opacity:.5}
+  .adm .grp:first-of-type{margin-top:6px}
+
+  /* 行＝余白を詰めた1行カード */
+  .adm .row{display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:8px;
+    background:rgba(255,253,248,.06);border:1px solid rgba(255,253,248,.12);border-radius:12px;
+    text-decoration:none;color:var(--guide-white);transition:background .15s ease,border-color .15s ease}
+  .adm .row:active{background:rgba(255,253,248,.12);border-color:var(--guide-gold-line)}
+  .adm .row .ico{flex:0 0 34px;height:34px;display:grid;place-items:center;border-radius:9px;
+    background:var(--c,#0b5c4c);font-size:17px}
+  .adm .row .txt{min-width:0;flex:1}
+  .adm .row b{display:block;font-size:15.5px;font-weight:800;line-height:1.35}
+  .adm .row span{display:block;font-size:12.5px;line-height:1.45;color:var(--guide-soft-white);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .adm .row em{flex:0 0 auto;font-style:normal;font-size:11px;font-weight:800;
+    padding:3px 8px;border-radius:999px;background:rgba(255,196,93,.16);color:var(--guide-gold-bright)}
+
+  .noteblk{max-width:640px;margin:20px auto 0;padding:14px 16px;border-radius:12px;
+    background:rgba(0,45,39,.35);border:1px solid rgba(255,253,248,.12);
+    font-size:12.5px;line-height:1.8;color:var(--guide-soft-white)}
+  .noteblk b{color:var(--guide-white)}
   .hide{display:none}
 </style>
 </head>
@@ -70,71 +87,70 @@
 
   <section id="apps" class="adm hide">
 
-    <h2 class="grp">🧾 領収書・支払い</h2>
+    <h2 class="grp">領収書・支払い</h2>
 
-    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8445/" style="--c:#7E57C2">
-      <b>領収書管理</b>
+    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8445/" style="--c:#6D4AA8">
+      <span class="ico">🧾</span>
+      <span class="txt"><b>領収書管理</b><span>撮って登録・一覧・月次・振込</span></span>
       <em>動物病院</em>
-      <span>領収書を撮って登録・一覧・月次・接待交際費・振込（未払い）</span>
     </a>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8448/" style="--c:#2E7D6B">
-      <b>領収書管理</b>
+      <span class="ico">🧾</span>
+      <span class="txt"><b>領収書管理</b><span>ラマルクの帳簿（病院とは別）</span></span>
       <em>ラマルク</em>
-      <span>ラマルクの領収書だけ。病院とは別の帳簿</span>
     </a>
 
-    <h2 class="grp">📈 売上データ</h2>
+    <h2 class="grp">売上データ</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8452/?view=keiei" style="--c:#1F8F63">
-      <b>売上データ</b>
+      <span class="ico">📈</span>
+      <span class="txt"><b>売上データ</b><span>月ごとの売上・来院・新患</span></span>
       <em>カルテ</em>
-      <span>月ごとの売上・来院・新患の集計と推移（経営パスコード）</span>
     </a>
 
-    <h2 class="grp">💴 給与データ</h2>
+    <h2 class="grp">給与データ</h2>
 
-    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll" style="--c:#003F36">
-      <b>給与計算</b>
+    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll" style="--c:#0B5C4C">
+      <span class="ico">💴</span>
+      <span class="txt"><b>給与計算</b><span>試算・明細の確定・振込ファイル</span></span>
       <em>毎月</em>
-      <span>試算・明細の確定・振込ファイルづくり</span>
     </a>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/settings" style="--c:#2f7f6f">
-      <b>給与の設定</b>
-      <span>一人ずつの給与・手当・社会保険</span>
+      <span class="ico">⚙️</span>
+      <span class="txt"><b>給与の設定</b><span>給与・手当・社会保険</span></span>
     </a>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/analysis" style="--c:#4a9a86">
-      <b>人件費</b>
-      <span>職種ごと・月ごとの人件費の推移</span>
+      <span class="ico">📊</span>
+      <span class="txt"><b>人件費</b><span>職種ごと・月ごとの推移</span></span>
     </a>
 
-    <h2 class="grp">📖 使い方</h2>
+    <h2 class="grp">使い方</h2>
 
-    <a class="row" href="payroll-guide.html" style="--c:#F2AD45">
-      <b>給与計算の使い方</b>
-      <span>毎月の流れと、振込までの手順</span>
+    <a class="row" href="payroll-guide.html" style="--c:#B9832A">
+      <span class="ico">📖</span>
+      <span class="txt"><b>給与計算の使い方</b><span>毎月の流れと振込まで</span></span>
     </a>
 
-    <a class="row" href="kintai.html" style="--c:#62B7FF">
-      <b>勤怠アプリの使い方</b>
-      <span>スタッフ向けと同じページ</span>
+    <a class="row" href="kintai.html" style="--c:#3C7FB1">
+      <span class="ico">🕒</span>
+      <span class="txt"><b>勤怠アプリの使い方</b><span>スタッフ向けと同じページ</span></span>
     </a>
 
-    <h2 class="grp">🏢 ラマルク（外販）の準備</h2>
+    <h2 class="grp">ラマルク（外販）</h2>
 
-    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/setup" style="--c:#7ab5a2">
-      <b>導入の設定</b>
-      <span>新しい医院に給与計算を入れるときの初期設定</span>
+    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/setup" style="--c:#5C8F80">
+      <span class="ico">🏢</span>
+      <span class="txt"><b>導入の設定</b><span>新しい医院に入れるときの初期設定</span></span>
     </a>
 
     <div class="noteblk">
-      <b>ここの鍵について</b><br>
-      ・このページの合言葉は<strong>目隠し</strong>（スタッフが迷い込まないため）。<strong>本当の鍵は各アプリのパスコード</strong>です。<br>
-      ・給与のパスコードは勤怠の管理パスコードとは<strong>別</strong>。勤怠の管理者は給与を開けません。<br>
-      ・小口管理は<strong>院長のパスコード</strong>で開くと院長小口まで見えます。<br>
-      ・リンクは<strong>院内ネットワークかTailscaleに繋がった端末</strong>からだけ開きます。
+      <b>鍵について</b><br>
+      ・このページの合言葉は<b>目隠し</b>。本当の鍵は各アプリのパスコードです。<br>
+      ・給与と勤怠のパスコードは別。勤怠の管理者は給与を開けません。<br>
+      ・院内ネットワークかTailscaleに繋がった端末からだけ開きます。
     </div>
 
   </section>
