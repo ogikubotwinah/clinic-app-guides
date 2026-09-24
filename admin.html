@@ -31,8 +31,8 @@
   .adm .row span{font-size:13.5px;color:#5a6a66;line-height:1.7}
   .noteblk{max-width:720px;margin:18px auto 0;background:#FFF8E1;border:1px solid #F0D88A;
     border-radius:14px;padding:16px 18px;font-size:13.5px;line-height:1.9;color:#4a4433}
-  .adm .grp{max-width:720px;margin:24px auto 10px;padding-left:2px;font-size:13px;font-weight:700;
-    color:#48605a;border-left:4px solid #cfe0da;padding-left:10px;line-height:1.4}
+  .adm .grp{max-width:720px;margin:26px auto 10px;font-size:16px;font-weight:900;color:#0F2E27;
+    border-left:5px solid #003F36;padding-left:12px;line-height:1.5}
   .adm .grp:first-of-type{margin-top:2px}
   .adm .row{position:relative;padding:18px 18px}
   .adm .row b{font-size:19px;line-height:1.35;margin-bottom:2px}
@@ -70,19 +70,29 @@
 
   <section id="apps" class="adm hide">
 
-    <h2 class="grp">毎日・毎月つかう</h2>
+    <h2 class="grp">🧾 領収書・支払い</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8445/" style="--c:#7E57C2">
-      <b>小口管理</b>
+      <b>領収書管理</b>
       <em>動物病院</em>
-      <span>領収書を撮って登録。振込（未払い）もここ</span>
+      <span>領収書を撮って登録・一覧・月次・接待交際費・振込（未払い）</span>
     </a>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8448/" style="--c:#2E7D6B">
-      <b>小口管理</b>
+      <b>領収書管理</b>
       <em>ラマルク</em>
       <span>ラマルクの領収書だけ。病院とは別の帳簿</span>
     </a>
+
+    <h2 class="grp">📈 売上データ</h2>
+
+    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8452/?view=keiei" style="--c:#1F8F63">
+      <b>売上データ</b>
+      <em>カルテ</em>
+      <span>月ごとの売上・来院・新患の集計と推移（経営パスコード）</span>
+    </a>
+
+    <h2 class="grp">💴 給与データ</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll" style="--c:#003F36">
       <b>給与計算</b>
@@ -90,19 +100,17 @@
       <span>試算・明細の確定・振込ファイルづくり</span>
     </a>
 
-    <h2 class="grp">ときどき見る</h2>
-
-    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/analysis" style="--c:#4a9a86">
-      <b>人件費の分析</b>
-      <span>職種ごと・月ごとの推移</span>
-    </a>
-
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/settings" style="--c:#2f7f6f">
       <b>給与の設定</b>
       <span>一人ずつの給与・手当・社会保険</span>
     </a>
 
-    <h2 class="grp">困ったときに読む</h2>
+    <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/analysis" style="--c:#4a9a86">
+      <b>人件費</b>
+      <span>職種ごと・月ごとの人件費の推移</span>
+    </a>
+
+    <h2 class="grp">📖 使い方</h2>
 
     <a class="row" href="payroll-guide.html" style="--c:#F2AD45">
       <b>給与計算の使い方</b>
@@ -114,7 +122,7 @@
       <span>スタッフ向けと同じページ</span>
     </a>
 
-    <h2 class="grp">ラマルク（外販）の準備</h2>
+    <h2 class="grp">🏢 ラマルク（外販）の準備</h2>
 
     <a class="row" href="https://serverpc.tail2de5bb.ts.net:8453/payroll/setup" style="--c:#7ab5a2">
       <b>導入の設定</b>
