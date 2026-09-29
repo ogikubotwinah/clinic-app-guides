@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>飼い主マイページ 使い方ガイド（受付・トリマー・看護師・獣医師向け）</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="院内アプリ">
+<style>
+  :root {
+    --cyan: #0891b2; --cyan-bg: #ecfeff;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --violet: #7c3aed; --violet-bg: #f5f3ff;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #9a3412, #e8791c); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .85; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid #e8791c; padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-vet { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #a5f3fc; background: var(--cyan-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shotw { display: block; width: 100%; max-width: 760px; margin: 10px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.10); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: var(--amber-bg); border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--cyan-bg); border: 1px solid #a5f3fc; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  kbd { background: #f1f5f9; border: 1px solid #cbd5e1; border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; font-size: .85rem; font-family: inherit; white-space: nowrap; }
+  .dot { display: inline-block; width: .8em; height: .8em; border-radius: 50%; vertical-align: -1px; margin-right: 3px; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink { color: #1d4ed8; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+  .shotp { display: block; width: 100%; max-width: 320px; margin: 10px auto 0; border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.10); }
+  .pair { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .pair figure { margin: 0; flex: 1 1 260px; max-width: 320px; }
+  .fbox.own { border-color: #fed7aa; background: #fff7ed; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>飼い主マイページ 使い方ガイド
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>受付・トリマー・看護師・獣医師向け ｜ 2026年9月30日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b>
+<ul style="margin:6px 0 0;padding-left:1.2em">
+<li>飼い主さまが<b>公式LINEの「マイページ」</b>で、予約・診察の履歴・健康手帳・写真・先生からのお渡し・ポイントを見られます。</li>
+<li>スタッフがすることは3つだけ：<b>①トリミング・ホテルの写真と日報を送る</b>（予約表）／<b>②先生が画像や検査結果を送る</b>（画像ビューア）／<b>③ポイントの特典を「使った」にする</b>（予約表の「⋯」）。</li>
+<li>体重・ワクチン・フィラリア・健診・診察の履歴は、カルテから<b>自動</b>で出ます（その日の分は翌朝）。</li>
+<li>写真は<b>送る前に、ほかの子や人が写っていないか</b>を必ず確かめてください。</li>
+</ul>
+</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<p style="margin:0 0 6px"><b>飼い主さま</b>：公式LINEのメニュー → 「マイページ」。はじめての方は、診察券番号とペットのお誕生日でLINE連携をしてから使えます。<b>ご家族それぞれのLINE</b>でも連携できます。</p>
+<p style="margin:0"><b>スタッフ・先生</b>：マイページそのものは開きません。操作はいつもの<b>予約表</b>（<a href="resv.html">予約管理のガイド</a>）と、診察室の<b>画像ビューア</b>（<a href="dicom.html">画像ビューアのガイド</a>）の中で行います。</p>
+</div>
+
+<h2>2. 全体の流れ</h2>
+<h3>だれが何をすると、飼い主さまに何が届くか</h3>
+<table>
+<tr><th style="width:30%">スタッフ・先生の操作</th><th>飼い主さまのマイページ</th></tr>
+<tr><td>予約表でトリミング・ホテルの写真を送る</td><td>「アルバム」に並ぶ。ホテル中は「ホーム」の<b>いまお預かり中</b>にも出る</td></tr>
+<tr><td>予約表でホテルの日報を書く</td><td>その日のうちに「アルバム」と「いまお預かり中」に出る</td></tr>
+<tr><td>画像ビューアで「📱 飼い主さんに送る」</td><td>「お渡し」に画像・検査結果・先生のひとこと。<b>LINEにお知らせ</b>が届く（夜は翌朝9時）</td></tr>
+<tr><td>（何もしなくてよい）</td><td>「手帳」＝体重・ワクチン・フィラリア・健診／「履歴」＝来院日と内容。カルテから自動（翌朝）</td></tr>
+<tr><td>お会計（何もしなくてよい）</td><td>「ポイント」＝対象の合計（税込）1000円につき1ポイント、翌朝に自動でつく ※始める日が決まってから</td></tr>
+<tr><td>予約表「⋯」→「🎁 ポイント」で「使った」</td><td>特典が「使用済み」になる</td></tr>
+</table>
+<h3>飼い主さまの画面の全体像</h3>
+<p>下のタブ：<b>ホーム／手帳／お渡し／アルバム／ポイント／履歴</b>。</p>
+<div class="imp">手術・避妊去勢・歯科処置の来院は、<b>履歴には出しません</b>（院長の決まり）。先生が画像ビューアから自分で選んで送った物だけは「お渡し」に出ます。</div>
+
+<h2>3. トリミング・ホテルの写真と日報を送る（予約表）</h2>
+<ol>
+<li>予約表でトリミングかホテルの予約を押して、詳細を開きます。</li>
+<li>「📷 飼い主さんのマイページへ」の欄の <kbd>写真を撮る・選ぶ</kbd> を押します。iPhone ならその場で撮るか、写真ライブラリから選べます（何枚でも）。</li>
+<li>送った写真は欄に並びます。まちがえたら右上の <kbd>×</kbd> で飼い主さまのマイページから外せます。</li>
+<li>ホテルの予約では同じ欄に<b>日報</b>（ごはん・うんち・おしっこ・ようす）があります。日付を選んで書き、<kbd>日報を保存</kbd>。</li>
+</ol>
+<img class="shotw" src="mp-staff-photo.png" alt="予約の詳細画面の「飼い主さんのマイページへ」の欄（見本の予約）">
+<div class="cap">予約の詳細画面の上の方に出ます（写真は見本の予約）</div>
+<div class="imp"><b>送る前に、ほかの子・ほかの飼い主さま・スタッフの顔などが写っていないか</b>を必ず確かめてください。</div>
+<div class="note">診察券番号（枝番つき）が入っていない予約では送れません（欄にそう出ます）。</div>
+
+<h2>4. 先生からのお渡しを送る（画像ビューア・獣医師）</h2>
+<ol>
+<li>画像ビューアでその子を開き、上のボタンの <kbd>📀 CD書き出し</kbd> を押します（CDに焼くときと同じ □ で選ぶ画面になります）。</li>
+<li>上の一列のサムネの □ で、送るレントゲン・エコー・歯の写真を選びます（日付の下の □ でその日を全部）。</li>
+<li>帯の <kbd>📱 飼い主さんに送る</kbd> を押すと確認画面が出ます。その日の<b>検査値</b>（血液・尿の分類ごと）に☑、<b>先生のひとこと</b>（任意）を書いて <kbd>この内容で送る</kbd>。</li>
+</ol>
+<img class="shotw" src="mp-vet-send.png" alt="画像ビューアの「飼い主さんのマイページへ送る」確認画面（見本の子）">
+<div class="cap">確認画面（見本の子）</div>
+<div class="note">検査値はカルテの写し（毎朝8時）から読みます。<b>その日の検査値は翌朝から選べます</b>。画像だけ先に送り、検査値は翌日に送る、でも大丈夫です。</div>
+<div class="tip">エコーの動画は1コマ目の静止画になります。画像は自動で小さくしてから送ります。</div>
+
+<h2>5. ポイントカード（受付）</h2>
+<p>サプリメント・フード・トリミング・ホテル・ケア用品などの<b>お会計の合計（税込）1000円につき1ポイント</b>。お会計が済むと<b>翌朝に自動で</b>つきます。有効期限はありません。10ポイントごとに特典（10＝歯みがき、20＝肉球ケア、30＝シルクパック、40＝マイクロバブルバス、または500円割引）。</p>
+<div class="imp"><b>いまは「準備中」</b>です。領収項目の整理が済んで始める日が決まるまで、ポイントは自動ではつきません（マイページにも「準備中」と出ます）。それまでは今のLINEのショップカードを使ってください。</div>
+<ol>
+<li>予約表の <kbd>⋯</kbd> → <kbd>🎁 ポイント</kbd>。診察券番号（枝番なしでよい）を入れて <kbd>見る</kbd>。予約の詳細画面にも「🎁 ポイント 23　使える特典 1つ」と出て、<kbd>ポイントを開く</kbd> で同じ画面になります。</li>
+<li><b>特典を使ったら</b>：その特典の <kbd>使った</kbd>。ポイントは減りません（スタンプ式）。</li>
+<li><b>LINEのショップカードからの引き継ぎ</b>：飼い主さまのショップカードのスタンプの数を見て、「ショップカードからの引き継ぎ」に入れて <kbd>入れる</kbd>（お家ごとに1回）。</li>
+<li>まちがえた記録は、履歴の <kbd>取消</kbd> で取り消せます。</li>
+</ol>
+<img class="shotw" src="mp-staff-points.png" alt="予約表のポイントカードの小窓（見本のお家）">
+<div class="cap">ポイントカードの小窓（見本のお家）</div>
+
+<h2>6. 飼い主さまのマイページでできること</h2>
+<p>飼い主さまに聞かれたときのために、画面を載せておきます（名前・写真・数値はすべて見本です）。</p>
+<h3>ホーム・お預かり中</h3>
+<div class="pair">
+<figure><img class="shotp" src="mp-home.png" alt="ホーム（見本）"><div class="cap">プロフィール（丸を押すと写真を撮る・選ぶ）・次のご予約・いまお預かり中</div></figure>
+</div>
+<h3>健康手帳・フィラリア予防の日のお知らせ</h3>
+<div class="pair">
+<figure><img class="shotp" src="mp-note.png" alt="健康手帳（見本）"><div class="cap">体重のグラフ・ワクチン・フィラリア</div></figure>
+<figure><img class="shotp" src="mp-remind.png" alt="予防の日のお知らせ（見本）"><div class="cap">決めた日にLINEでお知らせ。あげた月にチェック</div></figure>
+</div>
+<h3>先生からのお渡し</h3>
+<div class="pair"><figure><img class="shotp" src="mp-hand.png" alt="先生からのお渡し（見本）"><div class="cap">画像・検査の表（高い↑・低い↓）・先生のひとこと</div></figure></div>
+<h3>アルバム・紹介する</h3>
+<div class="pair">
+<figure><img class="shotp" src="mp-album.png" alt="アルバム（見本）"><div class="cap">日付ごとの写真と日報</div></figure>
+<figure><img class="shotp" src="mp-share.png" alt="紹介カード（見本）"><div class="cap">「紹介する」＝病院のロゴとURL入りのカードをSNSへ（トリミング・ホテルの写真だけ）</div></figure>
+</div>
+<h3>ポイント・履歴</h3>
+<div class="pair">
+<figure><img class="shotp" src="mp-points.png" alt="ポイントカード（見本）"><div class="cap">10ポイントごとに特典</div></figure>
+<figure><img class="shotp" src="mp-hist.png" alt="診察の履歴（見本）"><div class="cap">来院日と内容（手術系は出ない）</div></figure>
+</div>
+
+<h2>7. よくある質問・困ったとき</h2>
+<table>
+<tr><th style="width:36%">こんなとき</th><th>こうする</th></tr>
+<tr><td>「マイページに今日の体重・検査が出ない」</td><td>カルテの写しは毎朝8時です。<b>翌朝に出ます</b>。</td></tr>
+<tr><td>「写真が届かない」</td><td>その予約に診察券番号（枝番つき）が入っているか確かめてください。LINE連携がまだの方は、マイページを開けません（連携の案内を）。</td></tr>
+<tr><td>「お渡しのLINEが来ない」</td><td>夜（21時〜翌9時）に送った分は翌朝9時に届きます。LINE連携がまだのお家には届きません。</td></tr>
+<tr><td>まちがった写真を送った</td><td>予約の詳細の写真の <kbd>×</kbd> で外せます。お渡しをまちがえたときは院長へ。</td></tr>
+<tr><td>「ポイントがつかない」</td><td>いまは準備中です（始める日が決まってから自動でつきます）。始まってからは、お会計の翌朝につきます。</td></tr>
+<tr><td>家族もマイページを見たい</td><td>ご家族それぞれのLINEで連携できます（同じ診察券番号でOK）。</td></tr>
+<tr><td>亡くなった子の写真</td><td>亡くなってから1年間は見られます。</td></tr>
+</table>
+
+<footer>荻窪ツイン動物病院 ｜ 飼い主マイページ 使い方ガイド（2026年9月30日版）</footer>
+</div>
+</body>
+</html>
