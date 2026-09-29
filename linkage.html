@@ -70,8 +70,8 @@
 <div class="wrap">
 
 <h1>アプリどうしのつながり（連携ガイド）
-<small><a href="./" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
-<small>全スタッフ向け ｜ 2026年9月2日版 ｜ 荻窪ツイン動物病院</small></h1>
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>全スタッフ向け ｜ 2026年9月30日版 ｜ 荻窪ツイン動物病院</small></h1>
 
 <div class="card">
 <b>30秒まとめ</b><br>
@@ -81,7 +81,27 @@
 
 <div class="tip"><span class="lg lg-auto">自動</span>＝人が何もしなくてもつながる　<span class="lg lg-hand">ボタン</span>＝人が押して渡す　<span class="lg lg-soon">これから</span>＝まだつながっていない</div>
 
-<h2>1. 全体図</h2>
+<h2>1. アプリを開くURL（院内／院外の早見表）</h2>
+<p style="margin:0 0 6px">アプリ名を押すと使い方ガイド、URLを押すとアプリが開きます。<b>院外のURLは、その端末で Tailscale（タイルスケール）を ON にしているときだけ開きます</b>（初回の設定は院長へ）。</p>
+<table>
+<tr><th style="width:26%">アプリ</th><th>院内（病院のWi-Fi）</th><th>院外（自宅・外出先）</th></tr>
+<tr><td><a class="applink" href="resv.html">📅 予約管理</a></td><td><a class="applink" href="http://192.168.20.250:4000" target="_blank" rel="noopener">http://192.168.20.250:4000</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8455" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8455</a></td></tr>
+<tr><td><a class="applink" href="kintai.html">⏰ 勤怠（マイページ）</a></td><td><a class="applink" href="http://192.168.20.250:4100/my" target="_blank" rel="noopener">http://192.168.20.250:4100/my</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8453/my" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8453/my</a></td></tr>
+<tr><td><a class="applink" href="inventory.html">📦 在庫・発注</a></td><td><a class="applink" href="https://192.168.20.250:3000" target="_blank" rel="noopener">https://192.168.20.250:3000</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net</a></td></tr>
+<tr><td><a class="applink" href="petty-cash.html">💴 小口管理</a></td><td><a class="applink" href="http://192.168.20.250:3400" target="_blank" rel="noopener">http://192.168.20.250:3400</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8445" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8445</a></td></tr>
+<tr><td><a class="applink" href="vet-link.html">🐾 VetLink</a></td><td><a class="applink" href="http://192.168.20.250:3007" target="_blank" rel="noopener">http://192.168.20.250:3007</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8450" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8450</a></td></tr>
+<tr><td><a class="applink" href="emr.html">🩺 電子カルテ</a></td><td><b>受付PCは必ず</b> <a class="applink" href="https://192.168.20.250:3801/" target="_blank" rel="noopener">https://192.168.20.250:3801/</a><br>その他のPC・iPad <a class="applink" href="http://192.168.20.250:3800/" target="_blank" rel="noopener">http://192.168.20.250:3800/</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8452/" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8452/</a><br><span style="font-size:.85rem;color:#64748b">iPhoneで開けないとき <a class="applink" href="http://100.111.66.29:3800/" target="_blank" rel="noopener">http://100.111.66.29:3800/</a></span></td></tr>
+<tr><td><a class="applink" href="karte-voice.html">🎙 カルテ音声SOAP</a></td><td><a class="applink" href="https://192.168.20.250:3601" target="_blank" rel="noopener">https://192.168.20.250:3601</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8449" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8449</a></td></tr>
+<tr><td><a class="applink" href="nyuin.html">🛏 入院管理</a></td><td><a class="applink" href="http://192.168.20.250:3500" target="_blank" rel="noopener">http://192.168.20.250:3500</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8446" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8446</a></td></tr>
+<tr><td><a class="applink" href="filaria.html">🩸 フィラリア健康診断</a></td><td><a class="applink" href="http://192.168.20.250:3300" target="_blank" rel="noopener">http://192.168.20.250:3300</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8451" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8451</a></td></tr>
+<tr><td><a class="applink" href="health.html">💚 定期健康診断</a></td><td><a class="applink" href="http://192.168.20.250:3100" target="_blank" rel="noopener">http://192.168.20.250:3100</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8443" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8443</a><br><span style="font-size:.85rem;color:#64748b">音声入力を使うときは院内でもこちら</span></td></tr>
+<tr><td><a class="applink" href="dental.html">🦷 歯科治療報告書</a></td><td><a class="applink" href="http://192.168.20.250:5173" target="_blank" rel="noopener">http://192.168.20.250:5173</a></td><td><a class="applink" href="http://serverpc.tail2de5bb.ts.net:5173" target="_blank" rel="noopener">http://serverpc.tail2de5bb.ts.net:5173</a></td></tr>
+<tr><td><a class="applink" href="lit-library.html">📚 文献ライブラリ</a></td><td><a class="applink" href="http://192.168.20.250:3900" target="_blank" rel="noopener">http://192.168.20.250:3900</a></td><td><a class="applink" href="http://100.111.66.29:3900" target="_blank" rel="noopener">http://100.111.66.29:3900</a><br><span style="font-size:.85rem;color:#64748b">このアプリだけ数字のアドレスです</span></td></tr>
+<tr><td><a class="applink" href="case-bank.html">🎤 症例音声メモ</a></td><td><a class="applink" href="https://192.168.20.250:3701" target="_blank" rel="noopener">https://192.168.20.250:3701</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8456" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8456</a></td></tr>
+</table>
+<div class="note"><b>「保護されていない通信」「証明書」の警告が出たら</b>：院内のアプリなので<b>「詳細」→「このまま進む（アクセスする）」</b>で開いて大丈夫です。院外（…ts.net）のURLでは警告は出ません。</div>
+
+<h2>2. 全体の流れ（全体図）</h2>
 <div class="map">
   <div class="mbox"><b>📅 予約</b><small>診察・トリミング・ホテル</small></div>
   <div class="mbox core"><b>🩺 電子カルテ</b><small>受付ボード／カルテ／会計／書類</small></div>
@@ -96,7 +116,7 @@
   <div class="mbox"><b>💚 公式LINE</b><small>飼い主さまへの連絡</small></div>
 </div>
 
-<h2>2. 予約 ⇄ 電子カルテ</h2>
+<h2>3. 予約 ⇄ 電子カルテ</h2>
 <table>
 <tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
 <tr><td><span class="lg lg-auto">自動</span>予約 → 受付ボード</td><td><b>今日の予約が朝、受付ボードの「予約」列に自動で並びます</b>。手で入力する必要はありません</td><td>ボードを開いたとき</td></tr>
@@ -106,7 +126,7 @@
 </table>
 <div class="note"><b>まだ来ていない予約には経過時間が出ません。</b>「来院」に進めた時刻から数えます。再来機を使わなかった方は、受付でボードの<b>［来院］</b>を押してください。</div>
 
-<h2>3. 電子カルテ ⇄ 在庫</h2>
+<h2>4. 電子カルテ ⇄ 在庫</h2>
 <table>
 <tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
 <tr><td><span class="lg lg-auto">自動</span>会計（処方） → 在庫</td><td><b>お薬を処方して会計を保存すると、在庫が自動で減ります</b>。在庫アプリで引く操作は要りません</td><td>会計を保存した瞬間</td></tr>
@@ -115,7 +135,7 @@
 </table>
 <div class="imp"><b>注射・輸液など「処方として会計に載らない消費」は自動で減りません。</b>これは在庫アプリ側で調整してください。</div>
 
-<h2>4. 勤怠のつながり</h2>
+<h2>5. 勤怠のつながり</h2>
 <table>
 <tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
 <tr><td><span class="lg lg-auto">自動</span>勤怠 → 予約</td><td><b>シフトと休みが予約の枠に反映されます</b>（出勤していない日は枠が開かない）</td><td>毎朝 7:15</td></tr>
@@ -125,7 +145,7 @@
 </table>
 <div class="note"><b>打刻を直したいとき</b>は勤怠側で申請します。予約の枠に反映されるのは<b>翌朝</b>です（当日すぐには変わりません）。</div>
 
-<h2>5. 診療の記録まわり</h2>
+<h2>6. 診療の記録まわり</h2>
 <table>
 <tr><th>つながり</th><th>何が起きるか</th><th>いつ</th></tr>
 <tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 音声カルテ</td><td>患者画面の<b>［🎙 録音］</b>で、その子の録音画面が開きます（カルテNo.を入れ直さなくていい）</td><td>押したとき</td></tr>
@@ -135,7 +155,7 @@
 <tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 入院・症例バンク</td><td>同じくその子で開きます</td><td>押したとき</td></tr>
 </table>
 
-<h2>6. 飼い主さまへ出ていくもの</h2>
+<h2>7. 飼い主さまへ出ていくもの</h2>
 <table>
 <tr><th>つながり</th><th>何が起きるか</th></tr>
 <tr><td><span class="lg lg-auto">自動</span>予約 → 公式LINE</td><td>予約完了・キャンセル・<b>前日18時のリマインド</b></td></tr>
@@ -143,7 +163,7 @@
 <tr><td><span class="lg lg-hand">ボタン</span>電子カルテ → 紹介先の病院</td><td>紹介状をFAX・メール・Web貼り付けで</td></tr>
 </table>
 
-<h2>7. まだつながっていないもの（正直な一覧）</h2>
+<h2>8. まだつながっていないもの（正直な一覧）</h2>
 <table>
 <tr><th>これは</th><th>今どうなっているか</th></tr>
 <tr><td>電子カルテ ⇄ 勤怠</td><td>つながっていません。人別の生産性は準備中です</td></tr>
@@ -152,7 +172,7 @@
 <tr><td>注射・輸液の在庫消費</td><td>自動で減りません（在庫側で調整）</td></tr>
 </table>
 
-<h2>8. 「入れ直さなくていい」早見表</h2>
+<h2>9. 「入れ直さなくていい」早見表</h2>
 <table>
 <tr><th>一度入れる場所</th><th>入れ直さなくていい場所</th></tr>
 <tr><td>予約</td><td>受付ボード・患者画面の次回予約</td></tr>
@@ -162,26 +182,6 @@
 <tr><td>撮影した画像</td><td>患者の時系列</td></tr>
 <tr><td>カルテ・検査（選んだ日）</td><td>紹介状の中身</td></tr>
 </table>
-
-<h2>9. アプリを開くURL（院内／院外の早見表）</h2>
-<p style="margin:0 0 6px">アプリ名を押すと使い方ガイド、URLを押すとアプリが開きます。<b>院外のURLは、その端末で Tailscale（タイルスケール）を ON にしているときだけ開きます</b>（初回の設定は院長へ）。</p>
-<table>
-<tr><th style="width:26%">アプリ</th><th>院内（病院のWi-Fi）</th><th>院外（自宅・外出先）</th></tr>
-<tr><td><a class="applink" href="resv.html">📅 予約管理</a></td><td><a class="applink" href="http://192.168.20.250:4000" target="_blank" rel="noopener">http://192.168.20.250:4000</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8455" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8455</a></td></tr>
-<tr><td><a class="applink" href="kintai.html">⏰ 勤怠（マイページ）</a></td><td><a class="applink" href="http://192.168.20.250:4100/my" target="_blank" rel="noopener">http://192.168.20.250:4100/my</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8453/my" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8453/my</a></td></tr>
-<tr><td><a class="applink" href="inventory.html">📦 在庫・発注</a></td><td><a class="applink" href="https://192.168.20.250:3000" target="_blank" rel="noopener">https://192.168.20.250:3000</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net</a></td></tr>
-<tr><td><a class="applink" href="petty-cash.html">💴 小口管理</a></td><td><a class="applink" href="http://192.168.20.250:3400" target="_blank" rel="noopener">http://192.168.20.250:3400</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8445" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8445</a></td></tr>
-<tr><td><a class="applink" href="vet-link.html">🐾 VetLink</a></td><td><a class="applink" href="http://192.168.20.250:3007" target="_blank" rel="noopener">http://192.168.20.250:3007</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8450" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8450</a></td></tr>
-<tr><td><a class="applink" href="emr.html">🩺 電子カルテ</a></td><td><b>受付PCは必ず</b> <a class="applink" href="https://192.168.20.250:3801/" target="_blank" rel="noopener">https://192.168.20.250:3801/</a><br>その他のPC・iPad <a class="applink" href="http://192.168.20.250:3800/" target="_blank" rel="noopener">http://192.168.20.250:3800/</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8452/" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8452/</a><br><span style="font-size:.85rem;color:#64748b">iPhoneで開けないとき <a class="applink" href="http://100.111.66.29:3800/" target="_blank" rel="noopener">http://100.111.66.29:3800/</a></span></td></tr>
-<tr><td><a class="applink" href="karte-voice.html">🎙 カルテ音声SOAP</a></td><td><a class="applink" href="https://192.168.20.250:3601" target="_blank" rel="noopener">https://192.168.20.250:3601</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8449" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8449</a></td></tr>
-<tr><td><a class="applink" href="nyuin.html">🛏 入院管理</a></td><td><a class="applink" href="http://192.168.20.250:3500" target="_blank" rel="noopener">http://192.168.20.250:3500</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8446" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8446</a></td></tr>
-<tr><td><a class="applink" href="filaria.html">🩸 フィラリア健康診断</a></td><td><a class="applink" href="http://192.168.20.250:3300" target="_blank" rel="noopener">http://192.168.20.250:3300</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8451" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8451</a></td></tr>
-<tr><td><a class="applink" href="health.html">💚 定期健康診断</a></td><td><a class="applink" href="http://192.168.20.250:3100" target="_blank" rel="noopener">http://192.168.20.250:3100</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8443" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8443</a><br><span style="font-size:.85rem;color:#64748b">音声入力を使うときは院内でもこちら</span></td></tr>
-<tr><td><a class="applink" href="dental.html">🦷 歯科治療報告書</a></td><td><a class="applink" href="http://192.168.20.250:5173" target="_blank" rel="noopener">http://192.168.20.250:5173</a></td><td><b>開けません</b>（院内のみ）</td></tr>
-<tr><td><a class="applink" href="lit-library.html">📚 文献ライブラリ</a></td><td><a class="applink" href="http://192.168.20.250:3900" target="_blank" rel="noopener">http://192.168.20.250:3900</a></td><td><a class="applink" href="http://100.111.66.29:3900" target="_blank" rel="noopener">http://100.111.66.29:3900</a><br><span style="font-size:.85rem;color:#64748b">このアプリだけ数字のアドレスです</span></td></tr>
-<tr><td><a class="applink" href="case-bank.html">🎤 症例音声メモ</a></td><td><a class="applink" href="https://192.168.20.250:3701" target="_blank" rel="noopener">https://192.168.20.250:3701</a></td><td><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8456" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8456</a></td></tr>
-</table>
-<div class="note"><b>「保護されていない通信」「証明書」の警告が出たら</b>：院内のアプリなので<b>「詳細」→「このまま進む（アクセスする）」</b>で開いて大丈夫です。院外（…ts.net）のURLでは警告は出ません。</div>
 
 <footer>
 つながりが増えたらこのページを更新します。「ここも自動になるはず」と思うところがあれば院長までお知らせください。

@@ -65,8 +65,8 @@
 <div class="wrap">
 
 <h1>小口管理アプリ 使い方ガイド
-<small class="tophint"><a href="./">← ガイド一覧へ</a></small>
-<small>受付・スタッフ向け（病院小口） ｜ 2026年6月16日版 ｜ 荻窪ツイン動物病院</small></h1>
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>受付・スタッフ向け（病院小口） ｜ 2026年9月30日版 ｜ 荻窪ツイン動物病院</small></h1>
 
 <div class="card">
 <b>30秒まとめ</b><br>
@@ -78,6 +78,11 @@
 </div>
 </div>
 
+<div class="imp">
+<b>「病院小口」だけを使います。</b>画面上部のタブに<b>病院小口</b>（みなさんが使う方）と <b>🔒 院長小口</b> がありますが、スタッフ用パスコードでは<b>病院小口だけ</b>が見えます。院長小口はスタッフからは見えません。
+</div>
+
+<h2>1. アプリを開く</h2>
 <div class="card" style="background:var(--green-bg);border-color:#bbf7d0">
 <b>アクセス</b>（スマホ・院内PC・院外も可）<br>
 ・院外・スマホ（おすすめ）：<b><a class="applink" href="https://serverpc.tail2de5bb.ts.net:8445" target="_blank" rel="noopener">https://serverpc.tail2de5bb.ts.net:8445</a></b><br>
@@ -86,25 +91,8 @@
 <span style="font-size:.88rem;color:#166534">※ 最初に<b>スタッフ用パスコード</b>を入れてログインします（パスコードは院長から共有されます）。</span>
 </div>
 
-<div class="imp">
-<b>「病院小口」だけを使います。</b>画面上部のタブに<b>病院小口</b>（みなさんが使う方）と <b>🔒 院長小口</b> がありますが、スタッフ用パスコードでは<b>病院小口だけ</b>が見えます。院長小口はスタッフからは見えません。
-</div>
-
-<h2>1. 画面の全体像</h2>
-<div class="card">
-<div class="tabs">
-  <div class="tab"><b>🏠 ホーム</b>現金残高・引き出し目安・保留・最近の記録</div>
-  <div class="tab"><b>📋 一覧</b>記録の一覧・月や店名で検索</div>
-  <div class="tab"><b>📅 月次</b>月のまとめ・カテゴリ別・CSV出力</div>
-  <div class="tab"><b>⚙️ 設定</b>箱の名前・開始残高・目標残高</div>
-</div>
-<div class="shots">
-  <div class="shotwrap"><img class="shot" src="pcash-home.png" alt="ホーム画面"><div class="cap">▲ ホーム：現金残高、引き出し目安、保留中の支払い、最近の記録</div></div>
-</div>
-<p style="font-size:.88rem;margin-bottom:0">上の3つ（ホーム／一覧／月次）で画面を切り替え、右上の<b>⚙</b>で設定を開きます。</p>
-</div>
-
-<h2>2. 基本の流れ（領収書を記録する）</h2>
+<h2>2. 全体の流れ</h2>
+<h3>2-1. 流れ（領収書を記録する）</h3>
 <div class="flow">
   <div class="fbox staff"><b>① 買い物をしたらレシートを用意</b>
   病院のお金（小口）で支払った買い物のレシート・領収書を用意します。</div>
@@ -122,6 +110,20 @@
   保存すると記録され、<b>現金で払った分はホームの残高から自動で引かれます</b>。</div>
 </div>
 
+<h3>2-2. 画面の全体像</h3>
+<div class="card">
+<div class="tabs">
+  <div class="tab"><b>🏠 ホーム</b>現金残高・引き出し目安・保留・最近の記録</div>
+  <div class="tab"><b>📋 一覧</b>記録の一覧・月や店名で検索</div>
+  <div class="tab"><b>📅 月次</b>月のまとめ・カテゴリ別・CSV出力</div>
+  <div class="tab"><b>⚙️ 設定</b>箱の名前・開始残高・目標残高</div>
+</div>
+<div class="shots">
+  <div class="shotwrap"><img class="shot" src="pcash-home.png" alt="ホーム画面"><div class="cap">▲ ホーム：現金残高、引き出し目安、保留中の支払い、最近の記録</div></div>
+</div>
+<p style="font-size:.88rem;margin-bottom:0">上の3つ（ホーム／一覧／月次）で画面を切り替え、右上の<b>⚙</b>で設定を開きます。</p>
+</div>
+
 <h2>3. 領収書を追加（入力項目）</h2>
 <div class="card">
 <div class="shots">
@@ -131,7 +133,7 @@
 <tr><th style="width:26%">項目</th><th>内容</th></tr>
 <tr><td>金額</td><td>税込の支払額。レシート撮影なら自動で入ります。</td></tr>
 <tr><td>支払方法</td><td><span class="badge b-cash">現金</span>＝金庫から払った（残高が減る）／<span class="badge b-card">カード</span>＝カード払い（<b>残高は減りません</b>。記録だけ）。</td></tr>
-<tr><td>いまは保留にする</td><td>現金が足りなそうな時に「あとで支払う」として待たせます（<b>現金のときだけ</b>表示。次の章を参照）。</td></tr>
+<tr><td>いまは保留にする</td><td>現金が足りなそうな時に「あとで支払う」として待たせます（<b>現金のときだけ</b>表示。5章を参照）。</td></tr>
 <tr><td>日付</td><td>レシートの日付。</td></tr>
 <tr><td>支払先・店名</td><td>お店の名前。</td></tr>
 <tr><td>カテゴリ</td><td>消耗品費・旅費交通費・荷造運賃・会議費・福利厚生費 など（税理士さん用の科目）。</td></tr>
@@ -201,7 +203,7 @@
 <p style="font-size:.88rem;margin-bottom:0">変更したら<b>「保存する」</b>を押します。</p>
 </div>
 
-<h2>9. よくある質問</h2>
+<h2>9. よくある質問・困ったとき</h2>
 <div class="card">
 <table>
 <tr><th style="width:40%">Q</th><th>A</th></tr>
@@ -219,7 +221,7 @@
 
 <div class="warn"><b>レシート撮影の注意：</b>領収書はお店のレシートが基本ですが、撮影のときに<b>飼い主さん・ペットのお名前やカルテ</b>などが一緒に写り込まないようにしてください。万一写った写真は保存・共有しないでください。</div>
 
-<footer>荻窪ツイン動物病院 ｜ 小口管理アプリ 使い方ガイド（2026-06-16版）<br>不明点・要望は院長まで</footer>
+<footer>荻窪ツイン動物病院 ｜ 小口管理アプリ 使い方ガイド（2026年9月30日版）<br>不明点・要望は院長まで</footer>
 </div>
 </body>
 </html>
