@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>カルテ音声の効果（見本）</title>
+<link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="apps.css">
+<style>
+  /* 他院へ見せる見本（2026-10-16 院長）。★獣医師も給与も架空。当院の実データは使わない（実額は院内の集計画面で院長だけが見る） */
+  .wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px;color:var(--guide-white)}
+  h1{font-size:22px;margin:4px 0 6px}
+  .lead{font-size:13.5px;line-height:1.8;color:var(--guide-soft-white);margin:0 0 14px}
+  .tag{display:inline-block;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:var(--guide-gold);color:#2a1c06;margin-bottom:8px}
+  .box{background:rgba(255,253,248,.07);border:1px solid rgba(255,253,248,.18);border-radius:14px;padding:14px;margin:14px 0}
+  .scroll{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;white-space:nowrap}
+  th,td{padding:8px 8px;border-bottom:1px solid rgba(255,253,248,.14);text-align:right}
+  th{font-size:11.5px;color:var(--guide-soft-white);font-weight:700}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#04463a}
+  tfoot td{font-weight:900;color:var(--guide-gold-bright)}
+  input{width:6.5em;font-size:14px;padding:5px 6px;border-radius:8px;border:1px solid rgba(255,253,248,.3);background:rgba(0,40,34,.55);color:var(--guide-white);text-align:right;font-family:inherit}
+  .params{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .params label{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--guide-soft-white)}
+  .note{font-size:12.5px;line-height:1.8;color:var(--guide-soft-white)}
+  .big{font-size:26px;font-weight:900;color:var(--guide-gold-bright)}
+  a{color:var(--guide-gold-bright)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="admin.html">← 管理者用へ</a>
+  <div style="margin-top:10px"><span class="tag">見本・数字はすべて架空です</span></div>
+  <h1>カルテ音声で、カルテ入力の時間と人件費がどれだけ減るか</h1>
+  <p class="lead">
+    診察を録音すると、AIが要点（S・O・A・P）を作り、獣医師は読んで1〜2か所直してカルテに入れるだけになります。<br>
+    手で打ち込んだ場合の時間と、アプリでの作業時間の差に、各獣医師の「残業1時間あたりの単価」をかけた額を、1か月の削減できた人件費として出しています。
+  </p>
+
+  <div class="box">
+    <b>1か月で削減できた人件費（5人の合計・AI費用を引いた後）</b>
+    <div class="big" id="sumSaved">—</div>
+    <div class="note" id="sumNote"></div>
+  </div>
+
+  <div class="box scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>獣医師</th><th>基本給（月）</th><th>残業時間（月）</th><th>残業1時間の単価</th>
+          <th>カルテ件数（月）</th><th>短くなった時間</th><th>削減できた人件費</th><th>AI費用</th><th>差し引き</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+      <tfoot><tr id="tot"></tr></tfoot>
+    </table>
+  </div>
+
+  <div class="box">
+    <b>計算の前提（打ち替えると計算し直します）</b>
+    <div class="params" style="margin-top:10px">
+      <label>1件の要点の字数 <input id="p_chars" type="number" value="300"></label>
+      <label>考えながら打つ速さ（字/分） <input id="p_type" type="number" value="30"></label>
+      <label>要点を読む速さ（字/分） <input id="p_read" type="number" value="500"></label>
+      <label>書き換えと転記（分/件） <input id="p_edit" type="number" value="1.5" step="0.1"></label>
+      <label>月の所定労働時間（時間） <input id="p_div" type="number" value="170"></label>
+      <label>時間外の割増率 <input id="p_rate" type="number" value="1.25" step="0.01"></label>
+      <label>AI費用（円/件） <input id="p_ai" type="number" value="10" step="1"></label>
+    </div>
+    <p class="note" style="margin-top:10px">
+      ・手で打つ時間＝字数 ÷ 考えながら打つ速さ。アプリの作業時間＝字数 ÷ 読む速さ ＋ 書き換えと転記。<br>
+      ・残業1時間の単価＝基本給 ÷ 月の所定労働時間 × 割増率（固定の手当がある医院は、手当も足した額で計算します）。<br>
+      ・AI費用は要点づくりと言葉の補正に使うAIの料金です。文字起こしは院内のパソコンで動かすので料金はかかりません。<br>
+      ・この見本の速さ・AI費用は仮の値です。導入した医院では、アプリが作業時間とAI費用を実際に測って、同じ表を毎月出します。
+    </p>
+  </div>
+</div>
+
+<script>
+// 架空の獣医師（実在の人・当院の給与とは関係ない）。基本給・残業時間・カルテ件数は見本用に置いた数字
+const VETS = [
+  { name: '獣医師A', base: 420000, ot: 22, cases: 260 },
+  { name: '獣医師B', base: 360000, ot: 18, cases: 220 },
+  { name: '獣医師C', base: 330000, ot: 25, cases: 240 },
+  { name: '獣医師D', base: 300000, ot: 12, cases: 180 },
+  { name: '獣医師E', base: 280000, ot: 15, cases: 150 },
+];
+const $ = (id) => document.getElementById(id);
+const n = (id) => Number($(id).value) || 0;
+const yen = (v) => Math.round(v).toLocaleString('ja-JP') + '円';
+const hm = (min) => { const m = Math.round(min); return m >= 60 ? `${Math.floor(m / 60)}時間${m % 60}分` : `${m}分`; };
+function render() {
+  const chars = n('p_chars'), type = n('p_type'), read = n('p_read'), edit = n('p_edit'), div = n('p_div'), rate = n('p_rate'), ai = n('p_ai');
+  const perCase = (type > 0 ? chars / type : 0) - ((read > 0 ? chars / read : 0) + edit); // 1件で短くなる分
+  let T = { base: 0, ot: 0, cases: 0, min: 0, saved: 0, ai: 0 };
+  $('rows').innerHTML = VETS.map((v) => {
+    const unit = div > 0 ? Math.ceil(v.base / div * rate * 100) / 100 : 0;
+    const min = perCase * v.cases, saved = min / 60 * unit, aiYen = ai * v.cases;
+    T.base += v.base; T.ot += v.ot; T.cases += v.cases; T.min += min; T.saved += saved; T.ai += aiYen;
+    return `<tr><td>${v.name}</td><td>${yen(v.base)}</td><td>${v.ot}時間</td><td>${yen(unit)}</td><td>${v.cases}件</td><td>${hm(min)}</td><td>${yen(saved)}</td><td>${yen(aiYen)}</td><td>${yen(saved - aiYen)}</td></tr>`;
+  }).join('');
+  $('tot').innerHTML = `<td>合計</td><td>${yen(T.base)}</td><td>${T.ot}時間</td><td></td><td>${T.cases}件</td><td>${hm(T.min)}</td><td>${yen(T.saved)}</td><td>${yen(T.ai)}</td><td>${yen(T.saved - T.ai)}</td>`;
+  $('sumSaved').textContent = yen(T.saved - T.ai);
+  $('sumNote').textContent = `短くなった時間 ${hm(T.min)}（1件あたり約${perCase.toFixed(1)}分）× 各獣医師の残業単価 − AI費用 ${yen(T.ai)}`;
+}
+document.querySelectorAll('input').forEach((i) => i.addEventListener('input', render));
+render();
+</script>
+</body>
+</html>
