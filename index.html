@@ -206,8 +206,9 @@
         t.dataset.tag = '院内のみ';
       } else if (url) {
         t.href = url;
-        t.target = '_blank';
-        t.rel = 'noopener';
+        // 同じアプリは前に開いたタブを使い回す（押すたびにタブが増えないように・2026-10-22）。名前付きの target は noopener を付けると使い回されないので付けない
+        t.target = 'app-' + t.dataset.guide.replace('.html', '');
+        t.removeAttribute('rel');
         delete t.dataset.tag;
       } else {
         t.href = t.dataset.guide;
