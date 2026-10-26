@@ -507,17 +507,6 @@ a.chip {
   justify-content: center;
   text-decoration: none;
 }
-.inapp-note {
-  margin: 0 5px 14px;
-  padding: 8px 12px;
-  border-left: 4px solid #D9782A;
-  border-radius: 8px;
-  background: rgba(255,255,255,.1);
-  color: var(--guide-white);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.5;
-}
 .mode-note {
   margin: -8px 5px 16px;
   color: var(--guide-white);
