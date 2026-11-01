@@ -10,7 +10,7 @@
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="apple-mobile-web-app-title" content="院内アプリ">
+<meta name="apple-mobile-web-app-title" content="LAMARCK">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -205,8 +205,8 @@
   </div>
   <div class="chips chips-sub chips-foot" role="group" aria-label="アイコンの見た目を選ぶ">
     <span class="chips-label">アイコン</span>
-    <button class="chip" type="button" data-icons="guide" aria-pressed="false">いつもの</button>
-    <button class="chip" type="button" data-icons="home" aria-pressed="true">ホーム画面の</button>
+    <button class="chip" type="button" data-icons="guide" aria-pressed="false">線画</button>
+    <button class="chip" type="button" data-icons="home" aria-pressed="true">カラー</button>
   </div>
     <a class="more" href="admin.html" style="opacity:.55;font-size:12.5px" title="管理者用（院長）">
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
@@ -265,7 +265,7 @@
   });
   chips.forEach(function(c){ c.addEventListener('click', function(){ apply(c.dataset.mode); }); });
 
-  // アイコンの見た目＝いつもの（線画）／ホーム画面の（各アプリをホーム画面に追加したときの絵・2026-10-31）
+  // アイコンの見た目＝線画／カラー（2026-11-01 院長：表記を変更・カラー＝各アプリをホーム画面に追加したときの絵・2026-10-31）
   var iconChips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-icons]'));
   var IKEY = 'clinic-app-guides.icons';
   function applyIcons(kind){
