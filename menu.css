@@ -1,0 +1,89 @@
+/* アプリ一覧の並べ方と見出し（2026-11-01・試作の layout.css＋final.css） */
+/* 並べ方の比較用（2026-11-01）：?desc=1 で説明文あり・?group=1 で役職ごと
+   第2版（院長「アプリが多くて何が何か分かりにくい」）＝説明文なしでも3列のまま・アイコン60px・名前を大きく・カードの間を広く */
+.no-desc .tile-copy { display: none; }
+.no-desc .tile { min-height: 0; padding: 22px 8px 18px; }
+.no-desc .grid, .flat.no-desc .app-groups { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.no-desc .lb { font-size: 17px; }
+.flat .role-group { display: contents; }
+.flat .group-title { display: none; }
+.flat .grid { display: contents; }
+.flat .app-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 18px; margin-top: 6px; }
+.flat .tile[data-lan=""] { order: 1; }   /* 開く画面の無い項目（ガイドだけ）は最後へ */
+@media (max-width: 760px) {
+  .no-desc .grid, .flat.no-desc .app-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 10px; }
+  .no-desc .tile { padding: 18px 4px 14px; }
+  .no-desc .lb { font-size: 13.5px; letter-spacing: .02em; line-height: 1.35; }
+  .no-desc .ic img, .no-desc.icons-home .tile:not([data-icon]) .ic { width: 60px; height: 60px; border-radius: 14px; }
+  .no-desc.icons-home .tile[data-icon] .ic, .no-desc.icons-home .tile:not([data-icon]) .ic { margin-bottom: 10px; }
+  .flat .app-groups { gap: 12px 10px; }
+}
+/* 段の見出しの横に細い罫線（G1・G3 から） */
+.group-title { right: 20px; }
+.group-title::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .18; }
+/* 第3版：「アイコン いつもの／ホーム画面の」は既定がホーム画面になったので一番下へ（上を ChatGPT の絵と同じ並びに） */
+.chips-foot { justify-content: center; margin: 4px 0 14px; padding: 0; }
+.no-desc .lb { letter-spacing: 0; }
+
+/* 決定版の試作（2026-11-01 院長）：色は G2 既定・G3 に切替／字体はどちらも A と同じ Zen Kaku Gothic New／業務の種類で分ける */
+:root { --font: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif; }
+.eyebrow, .hero h1, .hero h1 small, .group-title { font-family: var(--font); }
+.hero h1 { font-weight: 700; letter-spacing: .06em; }
+.hero h1 small { font-weight: 500; }
+.role-group + .role-group { margin-top: 6px; }
+/* 「ガイド」の段の中では「ガイド」の札は要らない */
+.is-guides .tile[data-tag]::before { display: none; }
+.chips-foot .chip { height: 28px; padding: 0 14px; font-size: 11px; }
+
+/* 第2版（院長 11/01「PCで見るとタイトルがスッキリしすぎてつまらない」）＝PC の幅では修正前の見出しの要素を戻す
+   ✦つきの病院名・大きく太い「院内アプリ」・2行目に金の「使用方法ガイド」・金の太い線・右上の大きな弧。スマホは今の細い見出しのまま */
+.eyebrow::before { content: "✦"; color: #EE9E4C; font-size: 1.15em; }
+@media (min-width: 761px) {
+  .hero { padding: calc(52px + env(safe-area-inset-top)) 20px 36px; }
+  .hero-in { max-width: 984px; margin: 0 auto; }   /* 見出しの左端を下のボタン・カードの左端にそろえる */
+  .eyebrow { gap: 12px; margin: 0 0 24px; font-size: 18px; font-weight: 700; letter-spacing: .1em; }
+  .hero h1 { display: block; font-size: clamp(46px, 5.2vw, 60px); font-weight: 900; letter-spacing: .04em; line-height: 1.08; }
+  .hero h1 small { display: block; margin-top: 12px; font-size: clamp(24px, 2.7vw, 32px); font-weight: 700; letter-spacing: .12em; }
+  .rule { display: block; width: 110px; height: 4px; margin-top: 18px; border-radius: 999px; background: linear-gradient(90deg, #EA9746, #F4AF55); }
+  .deco .arc-top { width: min(720px, 62vw); top: -6px; right: -24px; }
+  .deco .arc-top path:nth-child(1) { stroke-width: 2.2; }
+  .deco .arc-top path:nth-child(2) { stroke-width: 1.2; }
+  .deco .arc-top path:nth-child(3) { stroke-width: 1.2; }
+  /* 切替・カードも PC の大きさに */
+  .chips:not(.chips-sub) { max-width: 640px; }
+  .chips:not(.chips-sub) .chip { height: 42px; padding: 0 22px; font-size: 15px; flex: 0 1 auto; }
+  .mode-note { font-size: 14px; }
+  .howto summary { padding: 14px 18px; font-size: 15px; }
+  .group-title { font-size: 19px; }
+  .role-group { padding-top: 42px; }
+  .no-desc .tile { padding: 28px 10px 24px; }
+  .ic img, .no-desc .ic img, .icons-home .tile:not([data-icon]) .ic { width: 76px; height: 76px; border-radius: 18px; }
+  .icons-home .tile:not([data-icon]) .ic svg { width: 44px; height: 44px; }
+  .no-desc .lb { font-size: 19px; }
+}
+/* 右上の弧が深緑でページ幅の端で切れていた＝見出しは画面の端まで広げ、下の一覧だけ 1024px に */
+.page { width: 100%; }
+.sheet { max-width: 1024px; margin: 0 auto; }
+
+/* 第3版（院長 11/01）＝ラマルクのロゴと「ラマルク院内アプリ 使用ガイド」。病院名は線の下に小さく。
+   ロゴのマークは深緑の地に沈むので、白い角丸の台に載せる（ホーム画面のアイコンと同じ形） */
+.brand { display: flex; align-items: center; gap: 12px; }
+.mark { flex: 0 0 auto; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 11px; background: #fff; box-shadow: 0 3px 10px rgba(0,20,16,.35); }
+.mark img { width: 62%; height: auto; display: block; }
+.hero h1 { margin: 0; }
+.clinic { display: flex; align-items: center; gap: 7px; margin: 10px 0 0; color: #fff; opacity: .88; font-size: 11.5px; font-weight: 500; letter-spacing: .12em; }
+.clinic::before { content: "✦"; color: #EE9E4C; }
+@media (max-width: 760px) {
+  .hero h1 { font-size: 24px; letter-spacing: .03em; }
+  .hero h1 small { font-size: 12px; }
+}
+@media (min-width: 761px) {
+  .brand { gap: 26px; }
+  .mark { width: 104px; height: 104px; border-radius: 24px; }
+  .hero h1 { font-size: clamp(42px, 4.6vw, 56px); }
+  .clinic { margin-top: 18px; font-size: 16px; font-weight: 700; }
+}
+/* ロゴの白い余白を上下左右で同じに（マークを正方形の中央に置き直し、台の 72% の大きさに） */
+.mark img { width: 72%; }
+/* 英字の見出し（案）＝ロゴの「LAMARCK」と同じく字間を広くとった細めの大文字 */
+.hero h1.en { font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; letter-spacing: .14em; }

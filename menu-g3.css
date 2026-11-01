@@ -1,0 +1,42 @@
+/* G3＝ChatGPT Images の g3.png を実測して再現（2026-11-01 第2版・画像1024px＝画面430pxで換算）
+   帯 #02543A→#024832（高さ約90px）／地 #EFF3F1／選択 #07543B・非選択 白 枠 #CAD9D3 文字 #002B14
+   たたみ 白 文字 #032C1B／見出し #02210E 点 #57D6B7／カード 白・名前 #111・説明 #35413F／銅 #F8A43B（小見出し）・#F98F2A（弧）・#F08E35（✦） */
+:root { --font: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif; --lg: #07543B; }
+html, body { color: #02210E; background: #EFF3F1; }
+.page { width: 100%; }
+.hero { padding: calc(22px + env(safe-area-inset-top)) 20px 18px; background: linear-gradient(90deg, #02543A 0%, #024832 55%, #025037 100%); margin-bottom: 20px; }
+.hero-in { max-width: 984px; }
+.sheet { max-width: 1024px; padding: 0 17px calc(24px + env(safe-area-inset-bottom)); }
+.deco .arc-top { width: 300px; right: -30px; top: -40px; }
+.deco .arc-top path:nth-child(1) { stroke: #F98F2A; stroke-width: 1.8; }
+.deco .arc-top path:nth-child(2) { stroke: #2F7A5C; stroke-width: 1; opacity: 1; }
+.deco .arc-top path:nth-child(3) { stroke: #F98F2A; stroke-width: .7; opacity: .55; }
+.eyebrow { margin-bottom: 8px; color: #fff; font-size: 10px; font-weight: 500; letter-spacing: .08em; }
+.eyebrow::before { content: none; }
+.hero h1 { color: #fff; font-size: 21.5px; font-weight: 700; letter-spacing: .06em; gap: 2px 10px; }
+.hero h1 small { color: #F8A43B; font-size: 10px; font-weight: 500; letter-spacing: .14em; }
+.rule { display: none; }
+.chips:not(.chips-sub) { gap: 10px; margin: 0 0 8px; padding: 0; }
+.chip { height: 31px; padding: 0 16px; border: 1px solid #CAD9D3; background: #fff; color: #002B14; font-size: 11px; box-shadow: none; display: inline-flex; align-items: center; justify-content: center; }
+.chips:not(.chips-sub) .chip { min-width: 0; flex: 0 1 auto; }
+.chip[aria-pressed="true"] { color: #fff; background: #07543B; border-color: #07543B; box-shadow: none; }
+.chip[aria-pressed="true"]::before { color: #F08E35; }
+.mode-note, .chips-label { color: #35413F; opacity: 1; }
+.howto { margin: 0 0 18px; border: 0; border-radius: 9px; background: #fff; box-shadow: 0 1px 4px rgba(2,33,14,.06); }
+.howto summary { padding: 11px 14px; color: #032C1B; font-size: 13px; font-weight: 700; }
+.howto-body { color: #02210E; }
+.howto-h { color: #F08E35 !important; }
+.howto-body a { color: #07543B; }
+.role-group { padding: 30px 0 6px; border: 0; background: transparent; box-shadow: none; }
+.group-title { left: 0; right: 0; top: 2px; color: #02210E; font-size: 14px; font-weight: 700; }
+.group-title::before { background: #57D6B7; box-shadow: none; }
+.tile { border: 0; border-radius: 9px; background: #fff; box-shadow: 0 1px 4px rgba(2,33,14,.06); color: #111; }
+.tile:hover, .tile:focus-visible { background: #fff; box-shadow: 0 6px 16px rgba(2,33,14,.12); }
+.lb { color: #111; font-weight: 700; text-shadow: none; }
+.tile-copy { color: #35413F; }
+.tile[data-tag]::before { color: #F08E35; border-color: rgba(240,142,53,.45); }
+.more { color: #07543B; background: #fff; border-color: #CAD9D3; }
+.more svg { color: #F08E35; }
+.tile { min-height: 0; padding: 12px 6px 12px; }
+.tile-copy { font-size: 9.5px; line-height: 1.5; }
+.ic img { width: 50px; height: 50px; border-radius: 12px; }

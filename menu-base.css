@@ -1,0 +1,37 @@
+/* アプリ一覧（index.html）の共通の上書き＝ホーム画面のアイコン・見出しの高さ（2026-11-01・試作 04-output/…/2026-11-01_guide-redesign の common.css） */
+/* 3案共通：ホーム画面のアイコンを主役にする（大きめ・iOS と同じ角丸） */
+.ic img { width: 64px; height: 64px; border-radius: 15px; }
+.icons-home .tile:not([data-icon]) .ic { width: 64px; height: 64px; border-radius: 15px; }
+.icons-home .tile[data-icon] .ic, .icons-home .tile:not([data-icon]) .ic { margin-bottom: 14px; }
+@media (max-width: 760px) {
+  .ic img, .icons-home .tile:not([data-icon]) .ic { width: 56px; height: 56px; border-radius: 13px; }
+  .icons-home .tile:not([data-icon]) .ic svg { width: 32px; height: 32px; }
+  .icons-home .tile[data-icon] .ic, .icons-home .tile:not([data-icon]) .ic { margin-bottom: 9px; }
+}
+/* 「ガイド」の札がアイコンに重なるので、ホーム画面の表示ではカードの一番下に回す */
+.icons-home .tile[data-tag]::before { position: static; order: 1; margin-top: 8px; }
+/* 見出しの下の説明文（院内で利用するアプリを…）は外した（院長 2026-11-01）＝見出しの高さを詰める */
+.hero { min-height: 0; padding-bottom: 28px; }
+.rule { margin-bottom: 0; }
+@media (max-width: 760px) { .hero { min-height: 0; padding-bottom: 22px; } }
+/* 飾りの弧を見出しの中に収める（説明文を外して見出しが低くなり、弧がボタンの上にはみ出したため） */
+.hero { position: relative; overflow: hidden; }
+.hero .deco { position: absolute; inset: 0; height: auto; }
+.hero-in { position: relative; z-index: 1; }
+
+/* 第3版（院長 2026-11-01「タイトルの幅が太い」）＝見出しを細く低く。病院名は小さく、「院内アプリ」と「使用方法ガイド」を1行に */
+.hero { min-height: 0; padding: calc(26px + env(safe-area-inset-top)) 52px 22px; }
+.eyebrow { margin: 0 0 10px; font-size: 13px; font-weight: 500; letter-spacing: .14em; gap: 8px; }
+.eyebrow::before { font-size: 14px; }
+.hero h1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-size: 34px; font-weight: 700; letter-spacing: .06em; line-height: 1.2; text-shadow: none; }
+.hero h1 small { display: inline; margin: 0; font-size: 16px; font-weight: 500; letter-spacing: .16em; }
+.rule { width: 44px; height: 3px; margin: 14px 0 0; }
+.deco .arc-top { width: min(420px, 60vw); top: -40px; }
+@media (max-width: 760px) {
+  .hero { padding: calc(20px + env(safe-area-inset-top)) 20px 18px; }
+  .eyebrow { font-size: 11.5px; margin-bottom: 8px; }
+  .hero h1 { font-size: 27px; gap: 2px 10px; }
+  .hero h1 small { font-size: 13px; }
+  .rule { width: 36px; margin-top: 11px; }
+  .deco .arc-top { width: 300px; right: -60px; top: -50px; }
+}

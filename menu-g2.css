@@ -1,0 +1,48 @@
+/* G2＝ChatGPT Images の g2.png を実測して再現（2026-11-01 第2版・画像1024px＝画面430pxで換算）
+   地 #012C23（右上だけ #004635 に明るむ）／カード #0F4B3C 枠 #588A77／切替の帯 #01352A 枠 #406B5A・選択 #004432 枠 #E7D07F
+   たたみ #084435 枠 #336F5D／銅 #F4AF55（小見出し）・#EA9746（線）・#EE9E4C（✦）・罫線 #675E30／文字 白 */
+:root { --font: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif; --cu: #F4AF55; }
+html { background: #012C23; }
+body { color: #fff; background: radial-gradient(60% 22% at 100% 0%, #004635 0%, rgba(0,70,53,0) 100%), #012C23; }
+.hero { padding: calc(26px + env(safe-area-inset-top)) 20px 16px; }
+.deco .arc-top { width: 300px; right: -40px; top: -30px; }
+.deco .arc-top path:nth-child(1) { stroke: #DD8C3D; stroke-width: 1.6; }
+.deco .arc-top path:nth-child(2) { stroke: #2E6B58; stroke-width: 1; opacity: 1; }
+.deco .arc-top path:nth-child(3) { stroke: #DD8C3D; stroke-width: .8; opacity: .7; }
+.eyebrow { margin-bottom: 6px; color: #fff; font-size: 10.5px; font-weight: 500; letter-spacing: .1em; }
+.eyebrow::before { content: none; }
+.hero h1 { font-family: "Shippori Mincho B1", serif; font-size: 27px; font-weight: 500; letter-spacing: .08em; color: #fff; gap: 2px 12px; }
+.hero h1 small { font-family: "Shippori Mincho B1", serif; font-size: 12.5px; font-weight: 500; letter-spacing: .2em; color: var(--cu); }
+.rule { width: 30px; height: 1.5px; margin-top: 10px; background: #EA9746; box-shadow: none; }
+.sheet { padding: 0 20px calc(24px + env(safe-area-inset-bottom)); }
+/* 切替＝1本の帯 */
+.chips:not(.chips-sub) { display: flex; gap: 0; margin: 4px 0 10px; padding: 0; border: 1px solid #406B5A; border-radius: 999px; background: #01352A; overflow: hidden; }
+.chips:not(.chips-sub) .chip { flex: 1 1 0; min-width: 0; height: 31px; padding: 0 4px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #E3EAD2; font-size: 11px; box-shadow: none; display: inline-flex; align-items: center; justify-content: center; }
+.chips:not(.chips-sub) .chip + .chip { border-left-color: transparent; }
+.chips:not(.chips-sub) .chip[aria-pressed="true"] { color: #fff; background: #004432; border-color: #E7D07F; }
+.chips:not(.chips-sub) .chip[aria-pressed="true"]::before { color: #EE9E4C; }
+.mode-note, .chips-label { color: #E3EAD2; opacity: .75; }
+.chips-sub .chip { height: 28px; padding: 0 14px; color: #E3EAD2; border-color: #406B5A; background: #01352A; font-size: 11px; }
+.chips-sub .chip[aria-pressed="true"] { color: #fff; background: #004432; border-color: #E7D07F; }
+.chips-sub .chip[aria-pressed="true"]::before { color: #EE9E4C; }
+.howto { margin: 0 0 18px; border: 1px solid #336F5D; border-radius: 8px; background: #084435; }
+.howto summary { padding: 10px 14px; color: #fff; font-size: 12px; font-weight: 700; }
+.howto-body { color: #fff; }
+.howto-h, .howto-body a { color: var(--cu) !important; }
+/* 段の見出し＝銅の✦＋罫線 */
+.role-group { padding: 32px 0 6px; border: 0; background: transparent; box-shadow: none; }
+.group-title { left: 0; right: 0; top: 2px; color: #fff; font-size: 15px; font-weight: 700; }
+.group-title::before { content: "✦"; width: auto; height: auto; background: none; box-shadow: none; color: #EE9E4C; font-size: 14px; }
+.group-title::after { background: #675E30; opacity: 1; }
+/* カード */
+.tile { border: 1px solid #588A77; border-radius: 8px; background: #0F4B3C; box-shadow: none; }
+.tile:hover, .tile:focus-visible { border-color: #E7D07F; background: #11523F; }
+.lb { color: #fff; font-weight: 700; text-shadow: none; }
+.tile-copy { color: #FFFFF5; opacity: .9; }
+.tile[data-tag]::before { color: var(--cu); border-color: #675E30; }
+.more { color: #E3EAD2; border-color: #406B5A; background: #01352A; }
+.more svg { color: var(--cu); }
+/* 説明文ありのときは ChatGPT の絵と同じく小さく2行・カードを低く */
+.tile { min-height: 0; padding: 12px 6px 12px; }
+.tile-copy { font-size: 9.5px; line-height: 1.5; }
+.ic img { width: 50px; height: 50px; border-radius: 12px; }
