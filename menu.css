@@ -87,3 +87,8 @@
 .mark img { width: 72%; }
 /* 英字の見出し（案）＝ロゴの「LAMARCK」と同じく字間を広くとった細めの大文字 */
 .hero h1.en { font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; letter-spacing: .14em; }
+/* 院長 2026-11-01「アイコンが左右の中央じゃない・文字が重なりそう」＝枠（.ic）が絵より小さく、絵が右下へはみ出していた。
+   カラーのときは枠を絵の大きさに合わせ、絵と名前の間を空ける */
+.icons-home .tile[data-icon] .ic { width: auto; height: auto; }
+.no-desc.icons-home .tile .ic { margin-bottom: 12px; }
+@media (min-width: 761px) { .no-desc.icons-home .tile .ic { margin-bottom: 14px; } }
