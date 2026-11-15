@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>歯科カルテ 使い方ガイド（獣医師・動物看護師向け）</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="院内アプリ">
+<style>
+  :root {
+    --rose: #e11d48; --rose-bg: #fff1f2;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #173f35, #24584a); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid #24584a; padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--rose-bg); color: var(--rose); border: 1px solid #fecdd3; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #fda4af; background: var(--rose-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 760px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--rose-bg); border: 1px solid #fecdd3; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>歯科カルテ 使い方ガイド
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>獣医師・動物看護師向け ｜ 2026年11月15日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+歯科の記録だけを書くアプリです。<b>VetLink の中にあった歯科カルテを、独立したアプリにしました</b>（2026-11-15〜）。予約から<b>今日の歯科</b>が自動で並び、開くと<b>歯の図・歯周の表・口と顎・模式図</b>に記録できます。飼い主様への<b>立ち会いの説明を録音</b>すると、報告書の文の下書きができます。最後に<b>飼い主様の報告書（両面1枚）</b>と<b>院内カルテ</b>を印刷します。
+<div style="margin-top:8px">
+<span class="badge b-vet">獣医師・動物看護師が使う画面です</span>
+<span class="badge b-auto">緑 = 自動（予約・AI）</span>
+</div>
+<p style="margin:10px 0 0;font-size:.92rem">📦 <b>11/15 までの VetLink の歯科の記録（約390件）は、このアプリへ移してあります。</b>カルテ番号が空だったものなど数件だけ VetLink に残っています。</p>
+</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:30%">場所</th><th>アドレス</th></tr>
+<tr><td><b>院内</b>（iPad・PC）</td><td><a class="applink" href="https://giiv6wcx.lamarck-lan.com:14700/" target="_blank" rel="noopener">https://giiv6wcx.lamarck-lan.com:14700/</a></td></tr>
+<tr><td>院外（Tailscale の入った端末だけ）</td><td><a class="applink" href="http://100.111.66.29:4700/" target="_blank" rel="noopener">http://100.111.66.29:4700/</a>（録音は使えません）</td></tr>
+</table>
+<h3>1.1 合言葉</h3>
+<p style="margin-top:0">初めて開くと<b>合言葉</b>を聞かれます。<b>入院カルテと同じ合言葉</b>です。一度入れると、その端末は<b>30日</b>覚えています。</p>
+<img class="shot" style="max-width:420px" src="dental-chart-login.png" alt="合言葉の画面">
+<div class="cap">合言葉の画面</div>
+<h3>1.2 記入者</h3>
+<p style="margin-top:0">右上の<b>「記入者」</b>に自分の名前を入れてください。端末が覚えます。録音のまとめを確定したときなどに、この名前が残ります。</p>
+<div class="note"><b>iPad で録音するときは、院内のアドレス（https）で開いてください。</b>http のアドレスでは、ブラウザがマイクを使わせてくれません。ホーム画面に追加すると、アプリのように開けます。</div>
+</div>
+
+<h2>2. 全体の流れ</h2>
+<div class="card">
+<h3>2.1 1件の歯科の流れ</h3>
+<div class="flow">
+<div class="fbox auto"><b>予約から「今日の歯科」に並ぶ</b>歯科処置・歯科初診・歯科チェックの予約が自動で出ます。</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>「開く」でカルテを始める</b>歯ごと（図・表）→ 歯以外（口・顔・顎、模式図）を入れます。</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>お迎えのときの説明を録音</b>（任意）</div><div class="farrow">↓</div>
+<div class="fbox auto"><b>文字にして、まとめの下書きを作る</b>話していないことは書きません。</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>下書きを直して確定 →「確定する」</b></div><div class="farrow">↓</div>
+<div class="fbox vet"><b>飼い主様の報告書を印刷（両面）・院内カルテを印刷</b></div>
+</div>
+<h3>2.2 カルテの画面のタブ</h3>
+<table>
+<tr><th style="width:18%">まとまり</th><th style="width:22%">タブ</th><th>入れるもの</th></tr>
+<tr><td rowspan="2"><b>歯ごと</b></td><td>図で入力</td><td>歯を押して、所見・処置（歯性不正咬合も）</td></tr>
+<tr><td>表で入力</td><td>歯周ポケット・出血・動揺度・根分岐部・歯肉炎指数・歯石指数・歯肉退縮・ステージ</td></tr>
+<tr><td rowspan="2"><b>歯以外</b></td><td>口・顔・顎</td><td>口全体（かみ合わせ等）・顔（口の外）・リンパ節・舌・口蓋・頬の粘膜・咽頭・上顎・下顎</td></tr>
+<tr><td>模式図</td><td>頭の骨などの図に、指やペンで書き込む（腫瘍の位置と大きさ等）</td></tr>
+<tr><td rowspan="3"><b>説明・まとめ</b></td><td>説明の録音</td><td>立ち会いの説明を録って、報告書の文の下書きを作る</td></tr>
+<tr><td>まとめ</td><td>全部を1枚で見る（見るだけ）</td></tr>
+<tr><td>追記</td><td>あとから届いた病理検査の結果・確定診断名</td></tr>
+</table>
+</div>
+
+<h2>3. 今日の歯科と患者さんの記録</h2>
+<div class="card">
+<img class="shot" src="dental-chart-home.png" alt="今日の歯科の画面">
+<div class="cap">今日の歯科（画面は見本の患者です）</div>
+<ul>
+<li>予約から<b>歯科処置・歯科初診・歯科チェック</b>に分けて並びます。<b>◀ 前の日／次の日 ▶</b>で日を変えられます。</li>
+<li><b>「開く」</b>＝その日のカルテを開きます（まだなら始めます）。<b>「記録」</b>＝その子の歯科の記録の一覧へ。</li>
+<li>予約に無い子は、右上の<b>「カルテ番号で開く」</b>から開けます。</li>
+<li><b>「台帳に無い番号」</b>と出たら、アーミックスにまだ無いカルテ番号です。番号を確かめてください。</li>
+<li>患者さんの記録の画面には、<b>今の歯の状態</b>・<b>歯科の来院</b>の一覧・<b>歯科治療指針書</b>が出ます。「今日の来院を始める」「指針書を作る」もここからです。</li>
+</ul>
+</div>
+
+<h2>4. 歯ごとに入れる（図で入力・表で入力）</h2>
+<div class="card">
+<h3>4.1 図で入力</h3>
+<img class="shot" src="dental-chart-fig.png" alt="図で入力の画面">
+<div class="cap">歯（または歯番）を押すと、右に所見・処置のボタンが出ます</div>
+<ul>
+<li>歯か歯番を押して、右の欄で<b>所見・処置</b>を押していきます。◀ ▶ で隣の歯へ移れます。</li>
+<li><b>「乳歯を表示」</b>で乳歯の列が出ます。2本指で拡大・縮小できます。</li>
+<li>下の<b>「今回の記録（歯ごと）」</b>に、入れた歯が並びます。前回の処置もその下に出ます。</li>
+<li><b>歯性不正咬合</b>（ベースナロー・交叉咬合・回転・叢生など）は、ここで歯ごとに入れます。</li>
+</ul>
+<h3>4.2 表で入力（歯周の検査）</h3>
+<img class="shot" src="dental-chart-tbl.png" alt="表で入力の画面">
+<ul>
+<li>上の<b>右上 101〜／左上 201〜／左下 301〜／右下 401〜</b>で区画を切り替えます。</li>
+<li>ポケットは<b>読み上げの順に Enter で次へ</b>進みます。</li>
+<li><b>薄い数字＝前回の値</b>。<b>灰色の歯＝前回までに抜歯・歯冠切除</b>（とばします）。</li>
+<li>項目名の <b>ⓘ</b> を押すと、点数の付け方が出ます。</li>
+</ul>
+</div>
+
+<h2>5. 歯以外（口・顔・顎／模式図）</h2>
+<div class="card">
+<h3>5.1 口・顔・顎</h3>
+<img class="shot" src="dental-chart-area.png" alt="口・顔・顎の画面">
+<ul>
+<li>上から<b>口全体 → 顔（口の外）→ 口の中の各場所 → 顎の骨</b>の順です。</li>
+<li>場所ごとに<b>「正常」か「異常」</b>を押します。異常なら、同じ枠の中に<b>位置（右頬・左鼻など）・所見・大きさ・疑い・検査・処置</b>をまとめて入れます。</li>
+<li><b>口全体</b>＝1か所に決められないこと（骨格性の不正咬合のクラス0〜Ⅳ・よだれ・開口障害／閉口障害）と、口全体の処置（矯正など）。クラスの上にマウスを置くと説明が出ます。</li>
+<li>病名は<b>「〜の疑い」まで</b>です。確定診断は、病理検査の結果が届いてから<b>「追記」</b>で書きます（→ 7）。</li>
+</ul>
+<h3>5.2 模式図</h3>
+<img class="shot" src="dental-chart-sk.png" alt="模式図の画面">
+<ul>
+<li><b>「＋ 図を足す」</b>から図を選び、指やペンで書き込みます（犬8枚・猫8枚）。</li>
+<li>腫瘍は位置・大きさ・色・硬さなどを記録できます。書き込んだ図は緑の枠で上に並びます。</li>
+</ul>
+</div>
+
+<h2>6. 立ち会いの説明の録音</h2>
+<div class="card">
+<img class="shot" src="dental-chart-exp.png" alt="説明の録音の画面">
+<div class="cap">録音すると、報告書へ入れる文の下書きができます（画面は見本です）</div>
+<ol>
+<li>お迎えで飼い主様に説明するときに、<b>「● 録音を始める」</b>を押します（iPad は院内の https のアドレスで）。</li>
+<li>説明が終わったら<b>「■ 止めて送る」</b>。<b>受け取りました → 文字にしています… → まとめを作っています… → 下書きができました</b>と進みます。</li>
+<li>下書きは<b>「今回の処置内容について（報告書へ）」「今後の方針（報告書へ）」</b>と院内の記録に分かれています。読んで直します。</li>
+<li><b>「確定して報告書へ入れる」</b>を押すと、報告書と院内の記録に入ります。</li>
+</ol>
+<div class="imp"><b>下書きは、獣医師が確定するまでどこにも載りません。</b>説明で話していないことは下書きに入りません。聞き取れなかった所・あいまいな所は、下書きに入れずに別の枠に出ます。</div>
+<div class="note">文字にするのは院内の機械で行い、音声は院外に出しません。まとめを作るときは、文字だけを AI（Claude）に送ります。</div>
+</div>
+
+<h2>7. まとめ・確定・追記</h2>
+<div class="card">
+<ul>
+<li><b>まとめ</b>＝図・表・口と顎・模式図・説明を1枚で見られます（見るだけ。直すときは各タブへ）。<b>「印刷の画面へ」</b>で院内カルテの印刷へ進めます。</li>
+<li>書き終わったら右上の<b>「確定する」</b>。確定した来院は<b>「編集を開く」</b>を押すまで変わりません。</li>
+<li><b>追記</b>＝あとから届いた<b>病理検査の結果を添付</b>して、<b>確定診断名</b>を書き足します。確定した来院にも書けます（元の記録は変わりません）。</li>
+</ul>
+</div>
+
+<h2>8. 飼い主様の報告書</h2>
+<div class="card">
+<h3>8.1 入力</h3>
+<img class="shot" src="dental-chart-report.png" alt="報告書の入力画面">
+<ul>
+<li>カルテの<b>「飼い主様の報告書」</b>から開きます。<b>口腔内の状況・検査・治療内容は歯科カルテから自動で入ります</b>。カルテを直したら<b>「歯科カルテから読み直す」</b>。</li>
+<li><b>過ごし方</b>は押すだけ：お水とご飯の時刻（18:00〜22:00）・ご飯の量・ふやかし・エリザベスカラー・歯みがきを始める目安。</li>
+<li><b>次回の来院</b>は目安（1週間後〜半年後）を押すと、処置日から日にちが自動で入ります。休診日などは直してください。</li>
+<li>「明日以降」の説明と緊急受診の目安は、犬・猫や処置の内容に合わせて自動で出ます。</li>
+</ul>
+<h3>8.2 印刷（両面で1枚）</h3>
+<img class="shot" src="dental-chart-print.png" alt="報告書の印刷見本">
+<ul>
+<li><b>「印刷の見本」→「印刷する」</b>。印刷の画面で<b>「両面」</b>を選ぶと、表と裏で1枚になります。「PDF に保存」もできます。</li>
+<li>印刷すると、状態が<b>「印刷済み」</b>になります。</li>
+</ul>
+</div>
+
+<h2>9. 院内カルテの印刷・歯科治療指針書</h2>
+<div class="card">
+<ul>
+<li><b>院内カルテの印刷</b>＝カルテの上の「院内カルテの印刷」から。歯の図・歯周・口と顎・模式図・説明まで、A4縦で何枚でも出ます。<b>確定前の来院は、その旨が出ます。</b></li>
+<li><b>歯科治療指針書（初診）</b>＝患者さんの記録の画面の<b>「指針書を作る」</b>から。疑われる口腔内疾患・抜歯の方針・当日の連絡の希望を入れ、「印刷の見本」から印刷します。状態（下書き／お渡し待ち／印刷済み／お渡し済み／要確認）を付けられます。</li>
+</ul>
+<img class="shot" src="dental-chart-guideline.png" alt="歯科治療指針書の画面">
+</div>
+
+<h2>10. よくある質問・困ったとき</h2>
+<div class="card">
+<table>
+<tr><th style="width:36%">こんなとき</th><th>こうしてください</th></tr>
+<tr><td><b>合言葉を聞かれた</b></td><td>入院カルテと同じ合言葉です。30日たつと、もう一度聞かれます。</td></tr>
+<tr><td><b>今日の歯科に出てこない</b></td><td>予約システムで歯科の予約になっているかを確かめてください。予約が無い子は「カルテ番号で開く」から開けます。</td></tr>
+<tr><td><b>録音のボタンを押しても始まらない</b></td><td>院内の https のアドレス（:14700）で開いているかを確かめてください。最初の1回は、マイクを使ってよいかを聞かれるので「許可」を押します。</td></tr>
+<tr><td><b>「うまくいきませんでした」と出た</b></td><td>録音は残っています。カードのボタンからやり直せます。続くときは院長へ。</td></tr>
+<tr><td><b>確定した来院を直したい</b></td><td>カルテの上の「編集を開く」を押してから直し、もう一度「確定する」を押します。病理の結果だけなら「追記」で足せます。</td></tr>
+<tr><td><b>前の歯科の記録（VetLink の頃）を見たい</b></td><td>11/15 までの分はこのアプリに移してあります。患者さんの「記録」から見られます。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>院長に伝えてください。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>記録と録音は院内のサーバーに保管されます。<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべて見本の患者で、実在の患者情報は含みません）</div>
+
+<footer>荻窪ツイン動物病院 ｜ 歯科カルテ 使い方ガイド（2026年11月15日版）<br>不明点・改善要望は院長まで</footer>
+</div>
+</body>
+</html>
