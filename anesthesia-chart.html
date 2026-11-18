@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>麻酔カルテ 使い方ガイド（獣医師・動物看護師向け）</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="院内アプリ">
+<style>
+  :root {
+    --rose: #e11d48; --rose-bg: #fff1f2;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #7a3b2e, #a5543f); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid #a5543f; padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--rose-bg); color: var(--rose); border: 1px solid #fecdd3; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #fda4af; background: var(--rose-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 760px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 6px; font-size: .8rem; font-weight: 700; white-space: nowrap; border: 1px solid #cbd5e1; background: #fff; }
+  .chip.al { border-color: #f87171; background: #fef2f2; }
+  .chip.dr { border-color: #5eead4; background: #f0fdfa; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>麻酔カルテ 使い方ガイド
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>獣医師・動物看護師向け ｜ 2026年11月18日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+手術・麻酔の予定、導入薬の準備、麻酔の記録をつけるアプリです。<b>VetLink の中にあった「手術・麻酔」を、独立したアプリにしました。</b>予約から<b>本日の麻酔</b>が自動で並び、カードから<b>導入準備</b>（体重から液量を計算）→<b>麻酔カルテ</b>（モニター・薬・輸液/CRI・手術イベントを1本の時間の図に）→<b>麻酔記録の印刷</b>・<b>入院カルテに送る</b>まで、このアプリだけで進みます。
+<div style="margin-top:8px">
+<span class="badge b-vet">獣医師・動物看護師が使う画面です</span>
+<span class="badge b-auto">緑 = 自動（予約から読み込み）</span>
+</div>
+</div>
+
+<div class="imp"><b>📅 2026年11月21日（土）の朝から使います。</b>
+<ul style="margin:6px 0 0">
+<li><b>11月20日（金）までは、今までどおり VetLink</b> で手術・麻酔をつけてください。</li>
+<li><b>11月21日から</b>、手術・麻酔の<b>予定・導入薬の準備・麻酔の記録・麻酔の薬の設定</b>は全部この麻酔カルテで行います。</li>
+<li><b>同意書と麻酔前注意事項は、今までどおり「院内書類」（旧 VetLink）</b>で作ります（<a href="vet-link.html" style="color:#1d4ed8;text-decoration:underline">院内書類のガイド</a>）。麻酔カルテのカードには、その状態が札で出ます。</li>
+<li><b>VetLink の過去の手術・麻酔の記録は、このアプリへ移してあります</b>（「VetLink から移した記録」の札）。<b>見るだけ</b>で、直したり記録を足したりはできません。紙の印刷はできます。</li>
+</ul></div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:30%">場所</th><th>アドレス</th></tr>
+<tr><td><b>院内</b>（iPad・PC）</td><td><a class="applink" href="https://giiv6wcx.lamarck-lan.com:14800/" target="_blank" rel="noopener">https://giiv6wcx.lamarck-lan.com:14800/</a></td></tr>
+<tr><td>院外（Tailscale の入った端末だけ）</td><td><a class="applink" href="http://100.111.66.29:4800/" target="_blank" rel="noopener">http://100.111.66.29:4800/</a></td></tr>
+</table>
+<h3>1.1 合言葉</h3>
+<p style="margin-top:0">初めて開くと<b>合言葉</b>を聞かれます。<b>入院カルテと同じ合言葉</b>です。一度入れると、その端末は<b>30日</b>覚えています。</p>
+<img class="shot" style="max-width:520px" src="anes-login.png" alt="合言葉の画面">
+<div class="cap">合言葉の画面</div>
+<h3>1.2 記入者</h3>
+<p style="margin-top:0">右上の<b>「記入者」</b>で自分の名前を選んでください。<b>その日のあいだ</b>端末が覚えます。<b>記入者を選んでいないと、麻酔カルテの記録を書く・直す・消すことはできません</b>（だれが記録したかを残すためです）。</p>
+<div class="note">iPad ではホーム画面に追加すると、アプリのように開けます。上のメニューの<b>「薬の設定」「緊急薬」「設定」「ここが不便」</b>は、どの画面からでも押せます。</div>
+</div>
+
+<h2>2. 全体の流れ</h2>
+<div class="card">
+<h3>2.1 1件の手術・麻酔の流れ</h3>
+<div class="flow">
+<div class="fbox auto"><b>予約から「本日の麻酔」に並ぶ</b>歯科処置・歯科処置（立会）・避妊去勢・手術の予約が自動で出ます。</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>導入準備</b>当日体重を入れて、導入薬を選ぶ → 準備する液量が出る → 準備したら「準備済み」</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>麻酔カルテ</b>「麻酔記録開始」→ モニター・薬剤・輸液/CRI・手術イベントを記録 →「麻酔記録終了」</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>術後管理</b>ICU帰室 → 体温チェック → 術後管理終了</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>麻酔記録を印刷・入院カルテに送る</b></div>
+</div>
+<h3>2.2 画面の全体像</h3>
+<table>
+<tr><th style="width:28%">画面</th><th>すること</th></tr>
+<tr><td><b>本日の麻酔</b></td><td>その日の手術・麻酔のカード。状態・導入薬・同意書の札を見て、次のボタンを押す（→ 3）</td></tr>
+<tr><td><b>予定の登録・直す</b></td><td>予約に無い手術を足す・担当や時刻を直す・当日体重（→ 4）</td></tr>
+<tr><td><b>導入準備</b></td><td>1頭ずつ、導入薬を選んで液量を出す（→ 5）</td></tr>
+<tr><td><b>まとめて薬を準備</b></td><td>その日の何頭分かを、薬ごとにまとめて準備する（→ 6）</td></tr>
+<tr><td><b>麻酔カルテ</b></td><td>麻酔中の記録・時間の図・術後管理・印刷・入院カルテに送る（→ 7）</td></tr>
+<tr><td><b>緊急薬の計算</b></td><td>麻酔カルテの「緊急薬」から。体重から量を出し、投薬記録に入れる（→ 8）</td></tr>
+<tr><td><b>薬の設定・緊急薬の設定</b></td><td>導入準備・麻酔カルテ・緊急薬の計算で使う薬と用量（→ 9）</td></tr>
+</table>
+</div>
+
+<h2>3. 本日の麻酔</h2>
+<div class="card">
+<img class="shot" src="anes-board.png" alt="本日の麻酔の画面">
+<div class="cap">本日の麻酔（画面は見本の患者です）</div>
+<ul>
+<li>その日の手術・麻酔が<b>時刻の順</b>にカードで並びます。<b>◀ 前日／今日／翌日 ▶</b>で日を変えられます。<b>カードを押すと麻酔カルテ</b>が開きます。</li>
+<li>カードの左に<b>状態</b>が出ます：<b>麻酔前</b>／<b>麻酔中</b>（経過時間が進みます）／<b>麻酔終了</b>（麻酔時間）。</li>
+</ul>
+<h3>3.1 導入薬の札とボタン</h3>
+<p style="margin-top:0">麻酔前のカードには導入薬の札が出て、<b>次にすることのボタンが1つ</b>だけ出ます。</p>
+<table>
+<tr><th style="width:36%">札</th><th>ボタン</th></tr>
+<tr><td><span class="chip al">導入薬：未登録</span></td><td>「導入薬を登録」→ 導入準備へ</td></tr>
+<tr><td><span class="chip dr">導入薬：未準備</span></td><td>「導入薬を準備」→ 導入準備へ</td></tr>
+<tr><td><span class="chip dr">導入薬：途中</span></td><td>「続きを準備」→ 導入準備へ</td></tr>
+<tr><td><span class="chip">導入薬：準備済み ✓</span></td><td>「麻酔カルテへ」</td></tr>
+</table>
+<h3>3.2 同意書・麻酔前注意事項の札</h3>
+<ul style="margin-top:0">
+<li>院内書類（旧 VetLink）の状態を読んで、手術内容の横に札を出します：<span class="chip al">同意書：未取得</span>　<span class="chip">同意書：下書き</span>　<span class="chip al">麻酔前注意事項：未作成</span>。</li>
+<li><b>署名が済んだものは札が消えます。</b>歯科の予定は歯科の同意書、それ以外は麻酔の同意書を見ています。</li>
+<li>同意書と麻酔前注意事項を作るのは<b>院内書類</b>です（麻酔カルテでは作りません）。</li>
+</ul>
+<h3>3.3 予約から読み込む・印刷・まとめて準備</h3>
+<ul style="margin-top:0">
+<li><b>予約から自動で読み込みます</b>（間隔と最後に読んだ時刻は上の帯に出ます）。今すぐ反映したいときは<b>「予約から読み込む」</b>を押します（見ている日だけ）。</li>
+<li>帯に<b>「予約にあるが取り込めない：カルテ ○○・台帳に無い」</b>と出たら、まだ電子カルテの台帳に無い子です。台帳に入ると次の読み込みで並びます。</li>
+<li>予約に無い手術は<b>「＋ 麻酔予定を追加」</b>から足せます（→ 4）。</li>
+<li><b>「一覧を印刷」</b>＝その日の麻酔の一覧（A4 横）。印刷の画面で「横」を選びます。</li>
+<li><b>「まとめて薬を準備」</b>＝未準備・途中の子をまとめて準備します（→ 6）。カードの左のチェックを外した子は入りません。</li>
+</ul>
+</div>
+
+<h2>4. 予定の登録・直す</h2>
+<div class="card">
+<img class="shot" src="anes-edit.png" alt="麻酔の予定を直す画面">
+<div class="cap">麻酔の予定を直す（画面は見本です）</div>
+<ul>
+<li><b>登録</b>：「＋ 麻酔予定を追加」→ カルテ番号・名前・飼い主で患者を探して選ぶ → 手術日・時刻・手術内容・担当を入れて「登録する」。</li>
+<li><b>動物種は 犬／猫／その他</b>から選びます。患者を選ぶと台帳の種が入ります（犬・猫以外は「その他」）。緊急薬の計算は、この動物種で出す薬を絞ります。</li>
+<li><b>担当</b>は<b>担当獣医師・担当看護師・麻酔担当</b>の3人。<b>歯科</b>のチェック・気管チューブ（Fr）・メモ（注意事項）も入れられます。</li>
+<li><b>直す</b>：麻酔カルテの上の<b>「予定を直す」</b>で予定の画面が開きます。「直す」で上の画面、「消す」は2回押すと消えます。</li>
+<li><b>当日体重</b>：予定の画面の「当日体重」に入れて「保存」。<b>「アーミクスから最新を取得」</b>を押すと、アーミクスの直近の体重が欄に入ります（保存は自分で押します。受付PCが動いている時間だけ）。患者の台帳の体重は書き換えません。</li>
+</ul>
+</div>
+
+<h2>5. 導入準備</h2>
+<div class="card">
+<img class="shot" src="anes-induction.png" alt="導入準備の画面">
+<div class="cap">導入準備（計算式を表示 ON・画面は見本です）</div>
+<ol>
+<li>右上の<b>当日体重</b>を入れます（欄を離れると保存）。体重を変えたら<b>「薬剤量に反映」</b>で、予定の薬の量を全部計算し直します。</li>
+<li>右の<b>「お気に入りの薬」</b>で用量のボタンを押して選び、<b>「選んだ薬を追加」</b>。決まった用量・経路で入ります。追加済みの薬は選べません。</li>
+<li>お気に入りに無い薬・用量を変えたい薬は<b>「1剤ずつ詳しく追加」</b>から。濃度・用量・経路を選ぶと、その場で計算します。設定に無い薬も手で入れられます。</li>
+<li>左の表に<b>準備する液量</b>が大きく出ます。液量を押すと直せます（手で直した量は印が付きます）。</li>
+<li>準備したら<b>「準備済み」</b>にチェック。本日の麻酔の札が 未準備 → 途中 → 準備済み に変わります。</li>
+</ol>
+<ul>
+<li><b>「計算式を表示」</b>の ON／OFF は、<b>その端末が覚えます</b>（次に開いても同じ表示。まとめて準備も同じ）。</li>
+<li>用量の下に小さく<b>「薬剤マスタ 3〜6 mg/kg」</b>のように、院内の共通薬剤マスタで承認された範囲が出ます。外れているときは<span class="chip al">薬剤マスタの範囲外</span>の札が出ます。<b>量は自動では変えません</b>。</li>
+<li><b>液量の表示の決まり</b>：<b>1.0 mL 以上は小数第一位</b>（例 2.1 mL）、<b>1.0 mL 未満は小数第二位</b>（例 0.56 mL）まで出します。</li>
+</ul>
+<div class="imp">出る量は<b>投与量の目安</b>です。自動で投与・確定はしません。準備の前に、体重・濃度・量を必ず確かめてください。</div>
+</div>
+
+<h2>6. まとめて薬を準備</h2>
+<div class="card">
+<img class="shot" src="anes-prep.png" alt="まとめて薬を準備の画面">
+<div class="cap">まとめて薬を準備（画面は見本です）</div>
+<ul>
+<li>本日の麻酔の<b>「まとめて薬を準備」</b>から開きます。<b>1つの薬ずつ</b>、その薬を使う子が並びます。</li>
+<li>左の<b>薬剤</b>の一覧で薬を選ぶか、下の<b>「前の薬」「次の薬」</b>で移ります。各薬に「準備 2 / 2」のように数が出ます。</li>
+<li>行の左の四角を押すと<b>準備済み</b>になります。<b>各子の導入準備と同じ記録</b>です（どちらで付けても同じ）。</li>
+<li>行の札は<b>その子の全部の薬</b>の進み具合です：<b>この子：未準備／この子：途中／この子：準備済み ✓</b>。名前を押すとその子の導入準備が開きます。</li>
+</ul>
+</div>
+
+<h2>7. 麻酔カルテ</h2>
+<div class="card">
+<img class="shot" src="anes-chart.png" alt="麻酔カルテの画面">
+<div class="cap">麻酔カルテ（麻酔中・画面は見本です）</div>
+<h3>7.1 上の帯と、始める・終える</h3>
+<ul style="margin-top:0">
+<li>上に患者・体重（当日）・手術内容・担当・状態が出ます。</li>
+<li><b>「麻酔記録開始」</b>を押すと麻酔が始まり、経過時間が進みます。終わったら<b>「麻酔記録終了」</b>（確かめが出ます）。</li>
+<li><b>麻酔開始・麻酔終了の時刻</b>は、時刻の横の ✎ で直せます（少し待つと自動で保存・麻酔時間も計算し直し）。<b>気管チューブ</b>（Fr）も入れるだけで保存されます。</li>
+<li>左上の<b>最新のモニター値</b>は、目安を外れると薄い朱の地と「低め／高め」の札が出ます。</li>
+</ul>
+<h3>7.2 1本の時間の図</h3>
+<img class="shot" style="max-width:720px" src="anes-timechart.png" alt="時間の図">
+<div class="cap">モニターの項目・薬剤・輸液/CRI・手術イベントが同じ時間軸に並びます</div>
+<ul>
+<li><b>HR・SpO₂・EtCO₂・RR・MAP・体温</b>などの段と、<b>薬剤・輸液/CRI・手術イベント</b>の段が<b>1本の時間軸</b>に並びます。上下に時刻と麻酔経過（分）、「麻酔開始」「現在」の線が出ます。人工換気 ON の間は帯で出ます。</li>
+<li>はじめは<b>「自動」</b>：麻酔開始を左端にして、経過に合わせて 30分 → 1時間 → 2時間 → 全体 と広がります。<b>30分／1時間／2時間／全体</b>を押すとその幅で止まり、<b>‹ 前・次 ›・最新</b>で動かせます。</li>
+<li>項目のボタン（HR・SpO₂ …）で段を出す／隠す。選んだ表示は<b>端末が覚えます</b>。図を触ると、その時刻のいちばん近い値や印の中身が出ます。</li>
+<li>輸液・CRI の帯の右端に、名前ごとの<b>計（mL・mL/kg・µg/kg）</b>が出ます。麻酔終了の前は<b>「計（暫定）」</b>です。</li>
+</ul>
+<h3>7.3 準備した薬をタイムラインへ</h3>
+<img class="shot" style="max-width:440px" src="anes-planned.png" alt="準備した薬">
+<ul>
+<li>右上の<b>「準備した薬」</b>に、導入準備の薬のうち<b>まだ記録していない薬</b>が出ます。</li>
+<li>1つずつ<b>「タイムラインに入れる」</b>か、チェックして<b>「選んだ薬を入れる」</b>。時刻を変えなければ<b>押した時の時刻</b>で入ります（時刻の欄を変えると、その時刻で入ります）。</li>
+<li>記録した薬は「記録した準備の薬」に移ります。もう一度入れるときは確かめが出ます。</li>
+</ul>
+<h3>7.4 下の6つのボタンで記録する</h3>
+<img class="shot" src="anes-monitor.png" alt="モニター記録の入力">
+<div class="cap">モニター記録（画面は見本です）</div>
+<table>
+<tr><th style="width:26%">ボタン</th><th>入れるもの</th></tr>
+<tr><td><b>モニター記録</b></td><td>HR・SpO₂・EtCO₂・RR・MAP・SYS・DIA・体温・Et麻酔濃度、血圧の測り方（NIBP／IBP）、人工換気（自発呼吸／人工換気ON）、メモ。測り方と換気は前の記録を引き継ぎます。</td></tr>
+<tr><td><b>薬剤投与</b></td><td>薬・量・経路。薬用量計算の補助も使えます。</td></tr>
+<tr><td><b>輸液・CRI</b></td><td>輸液の名前・変更前と変更後の流量・CRI の調製濃度（µg/kg/min は自動で計算）。</td></tr>
+<tr><td><b>緊急薬</b></td><td>緊急薬の計算（→ 8）。</td></tr>
+<tr><td><b>手術イベント</b></td><td>挿管・切皮・抜管など（よく使う／軟部外科／歯科のボタン、または自由に入力）。</td></tr>
+<tr><td><b>メモ</b></td><td>そのときのメモ（時間の図に四角の印で出ます）。</td></tr>
+</table>
+<p class="note">iPad では数字の欄を押すと<b>専用のテンキー</b>が出ます。入力の途中で閉じようとすると「入力内容を破棄しますか？」と確かめます。</p>
+<h3>7.5 タイムライン（直す・消す・絞り込み）</h3>
+<ul style="margin-top:0">
+<li>右の<b>タイムライン</b>に記録が時刻の順で並びます（<b>新しい順／古い順</b>）。</li>
+<li><b>全部／モニター／薬剤／輸液／手術</b>で絞り込めます。選んだ絞り込みは<b>端末が覚えます</b>。</li>
+<li>各行の ✎ で直す、🗑 で消す（確かめが出ます）。</li>
+<li>別の端末で記録が足されると<b>「新しい記録があります」</b>と出ます。<b>「最新の記録を読み込む」</b>を押したときだけ画面が変わります。</li>
+</ul>
+<h3>7.6 術後管理</h3>
+<ol style="margin-top:0">
+<li>麻酔が終わったら下の<b>「ICU帰室を記録」</b>。</li>
+<li>帰室後は<b>「体温チェックを足す」</b>で体温（とメモ）を記録します。</li>
+<li>終わったら<b>「術後管理終了」</b>で状態が「完了」になります。</li>
+</ol>
+<h3>7.7 麻酔記録の印刷・入院カルテに送る</h3>
+<img class="shot" style="max-width:600px" src="anes-print.png" alt="麻酔記録の紙">
+<div class="cap">麻酔記録（A4 縦・見本）</div>
+<ul>
+<li>上の<b>「麻酔記録 PDF・印刷」</b>で紙の見本が開きます。<b>「印刷の画面を開く」</b>で印刷（「PDF に保存」もできます）。<b>「両面で印刷（プリンターへ直接）」</b>が出ているときは、それを押すと両面でそのまま印刷されます。</li>
+<li>紙には患者・手術情報、麻酔サマリ、麻酔経過タイムライン、術後管理が載ります（時間の図・CRI の計・予定の薬は載りません）。</li>
+<li><b>「入院カルテに送る」</b>：手術・麻酔の時刻・使った薬・点滴/CRI・血圧・体温を入院カルテへ送ります。<b>押したときだけ送り</b>、送り直すと新しい中身に置き換わります。「送りました（入院カルテの治療シートに出ます）」と出たら完了です。入院の登録がまだなら、登録すると出ます。</li>
+</ul>
+</div>
+
+<h2>8. 緊急薬の計算</h2>
+<div class="card">
+<img class="shot" src="anes-emergency-calc.png" alt="緊急薬の計算">
+<div class="cap">緊急薬の計算（画面は見本です）</div>
+<ul>
+<li>麻酔カルテの下の<b>「緊急薬」</b>で開きます。<b>計算用体重</b>（当日体重が入っています）から、各薬の<b>計算量（mL）</b>や<b>流量（mL/hr）</b>が出ます。</li>
+<li>予定の<b>動物種</b>で絞ります（犬なら犬に使う薬だけ・その他なら全部）。<b>薬の名前で探す</b>・分類（CPR／循環作動薬／抗不整脈／補正薬／その他）でも絞れます。</li>
+<li><b>実際の投与量</b>を入れると、mg/kg などに戻した値と、範囲の内か外か（上限を超えています 等）が出ます。</li>
+<li><b>「投薬記録に反映」</b>で、今の時刻の薬剤投与としてタイムラインに入ります。CRI の薬は、続けて輸液・CRI の入力が開きます。</li>
+</ul>
+<div class="imp">計算の補助（参考）です。<b>投与の前に必ず獣医師が確かめてください。</b>確定の量ではありません。</div>
+</div>
+
+<h2>9. 薬の設定・緊急薬の設定</h2>
+<div class="card">
+<img class="shot" src="anes-drugs.png" alt="薬の設定の画面">
+<div class="cap">薬の設定（値は見本です）</div>
+<ul>
+<li><b>薬の設定</b>（上のメニュー）＝導入準備と麻酔カルテで使う薬。行を押すと直せます。名前・分類・濃度・標準用量・経路・用量の候補・経路の候補・一般名・検索の言葉・注意メモ、<b>よく使う薬</b>（導入準備の「お気に入りの薬」に出る）・<b>使う</b>（外すと候補に出ない）。</li>
+<li><b>薬剤マスタの成分</b>を結ぶと、承認済みの用量の範囲が出て、標準用量や候補が範囲の外なら<span class="chip al">薬剤マスタの範囲外</span>と知らせます（量は変えません）。</li>
+<li><b>緊急薬の設定</b>（上のメニュー「緊急薬」）＝緊急薬の計算で使う薬。ふだんは<b>薬の名前・分類・用量・濃度・経路・メモ</b>と<b>計算の方法</b>（1回量／持続（CRI）／調製して持続／メモだけ）だけ。一般名・希釈後の濃度・丸め・対象動物などは<b>「詳しい設定」</b>の中です。使わない薬は消さずに「表示する」を外します。</li>
+</ul>
+<div class="note">薬の濃度・用量は医院で決めた値です。変えるときは獣医師が確かめてから保存してください。</div>
+</div>
+
+<h2>10. 「ここが不便」を送る</h2>
+<div class="card">
+<img class="shot" src="anes-feedback.png" alt="ここが不便の入力">
+<div class="cap">「ここが不便」の入力（画面は見本です）</div>
+<ul>
+<li>右上の<b>「ここが不便」</b>から、使いにくい所をそのまま書いて<b>「送る」</b>。<b>今の画面の名前が一緒に届きます</b>。</li>
+<li><b>飼い主様・動物の名前は書かないでください。</b></li>
+<li>下に、これまでに届いているものと状態（受付・作業中・反映済み など）が出ます。直ったら送った方へ LINE WORKS でお知らせします。</li>
+</ul>
+</div>
+
+<h2>11. よくある質問・困ったとき</h2>
+<div class="card">
+<table>
+<tr><th style="width:36%">こんなとき</th><th>こうしてください</th></tr>
+<tr><td><b>合言葉を聞かれた</b></td><td>入院カルテと同じ合言葉です。30日たつと、もう一度聞かれます。</td></tr>
+<tr><td><b>11/20 までの手術はどちらで？</b></td><td>11月20日（金）までは VetLink で記録してください。11月21日（土）の朝からこのアプリです。</td></tr>
+<tr><td><b>記録しようとすると「記入者を選んでから」と出る</b></td><td>右上の「記入者」で自分の名前を選んでください（その日のあいだ覚えます）。</td></tr>
+<tr><td><b>手術の予約が本日の麻酔に出てこない</b></td><td>予約のメニューが 歯科処置・歯科処置（立会）・避妊去勢・手術 かを確かめ、「予約から読み込む」を押してください。帯に「台帳に無い」と出た子は、電子カルテの台帳に入ってからです。急ぐときは「＋ 麻酔予定を追加」。</td></tr>
+<tr><td><b>同意書の札が消えない</b></td><td>院内書類（旧 VetLink）で署名まで済んでいるかを確かめてください。札は少し遅れて変わることがあります（画面を開き直すと読み直します）。</td></tr>
+<tr><td><b>VetLink の頃の記録を見たい</b></td><td>このアプリに移してあります。本日の麻酔で日を戻すとカードが出ます（「VetLink から移した記録」の札・見るだけ）。</td></tr>
+<tr><td><b>「別の端末でこの○○が直されていました」と出た</b></td><td>別の端末で同じ記録が直されています。<b>「読み直す」</b>を押してから、もう一度入れてください（古い内容で上書きしないための止めです）。</td></tr>
+<tr><td><b>体重を変えたのに量が変わらない</b></td><td>導入準備の「薬剤量に反映」を押すと、その体重で量を計算し直します。</td></tr>
+<tr><td><b>入院カルテに出ない</b></td><td>麻酔カルテの「入院カルテに送る」を押したかを確かめてください。入院の登録がまだなら、登録すると出ます。診察券番号の無い仮患者は送れません。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>右上の「ここが不便」から送ってください（→ 10）。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>この画面には患者名・飼い主様の名前が出ます。<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべて見本の患者で、実在の患者情報は含みません）</div>
+
+<footer>荻窪ツイン動物病院 ｜ 麻酔カルテ 使い方ガイド（2026年11月18日版）<br>使いにくい点は右上の「ここが不便」から送れます（不明点は院長まで）</footer>
+</div>
+</body>
+</html>
