@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ホテル予約と問診票 使い方ガイド（受付・トリマー・スタッフ向け）</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="院内アプリ">
+<style>
+  :root {
+    --sky: #0369a1; --sky-bg: #f0f9ff;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #075985, #0ea5e9); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid var(--sky); padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-staff { background: var(--sky-bg); color: var(--sky); border: 1px solid #bae6fd; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.staff { border-color: #7dd3fc; background: var(--sky-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 300px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .shotw { display: block; width: 100%; max-width: 640px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .tip { background: var(--sky-bg); border: 1px solid #bae6fd; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .c-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid #99f6e4; }
+  .c-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+  .c-amber{ background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+  .steps { counter-reset: st; list-style: none; padding: 0; margin: 10px 0; }
+  .steps > li { counter-increment: st; position: relative; padding: 10px 14px 10px 52px; margin: 8px 0; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+  .steps > li::before { content: counter(st); position: absolute; left: 12px; top: 10px; width: 28px; height: 28px; border-radius: 50%; background: var(--sky); color: #fff; font-weight: 700; text-align: center; line-height: 28px; }
+  .who { display: inline-block; font-size: .75rem; font-weight: 700; padding: 0 8px; border-radius: 999px; margin-right: 6px; border: 1px solid; }
+  .who.o { color: #b45309; background: #fffbeb; border-color: #fde68a; }
+  .who.s { color: var(--sky); background: var(--sky-bg); border-color: #bae6fd; }
+  .who.a { color: var(--green); background: var(--green-bg); border-color: #bbf7d0; }
+  .pics { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .pics figure { margin: 0; flex: 0 1 260px; }
+  .pics .shot { max-width: 260px; }
+  .printbar { text-align: right; margin: 6px 0 0; }
+  .printbar button { font-size: .9rem; padding: 6px 14px; border: 1.5px solid var(--sky); color: var(--sky); background: #fff; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  /* 印刷（A4 縦）＝院長 2026-11-25「印刷用も」 */
+  @page { size: A4; margin: 11mm 12mm; }
+  @media print {
+    body { background: #fff; font-size: 10.5pt; }
+    .wrap { max-width: none; padding: 0; }
+    h1 { background: none; color: #111; border: 2px solid #075985; padding: 10px 14px; }
+    h1 small a, .printbar, .noprint { display: none !important; }
+    h1 small { color: #333; }
+    h2 { margin: 18px 0 8px; break-after: avoid; }
+    .card, .steps > li, table, tr, figure, .note, .imp, .tip { break-inside: avoid; }
+    .shot { box-shadow: none; max-width: 200px; }
+    .pics figure { flex-basis: 200px; }
+    .pics .shot { max-width: 200px; }
+    a.applink { color: #111; text-decoration: none; }
+    footer { margin-top: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>ホテル予約と問診票 使い方ガイド
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>受付・トリマー・スタッフ向け ｜ 2026年11月25日版 ｜ 荻窪ツイン動物病院</small></h1>
+<div class="printbar noprint"><a href="hotel-flow-print.html"><button type="button">🖨 印刷用（A4・配る用）を開く</button></a></div>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+飼い主さまが<b>LINE でホテルを予約</b>すると、まず<b>仮予約</b>になります。<b>ホテルの問診票が届くと予約が確定</b>し、予約表のホテルの欄に<b>「問診票あり」</b>が付きます。スタッフは予約表で<b>問診票を開いて確かめ、A5 で印刷</b>します。問診票の答えは<b>入院カルテのホテル台帳に自動で入ります</b>。お預かり中のトリミング・診察の予約は、<b>台帳の上の帯と印刷した問診票の両方</b>に出ます。
+<div style="margin-top:8px">
+<span class="who o">飼い主さま</span><span class="who s">スタッフ</span><span class="who a">自動</span>
+</div>
+</div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">使う画面</th><th>開き方</th></tr>
+<tr><td>予約表（予約管理アプリ）</td><td>院内：<a class="applink" href="https://giiv6wcx.lamarck-lan.com:14000" target="_blank" rel="noopener">https://giiv6wcx.lamarck-lan.com:14000</a><br>くわしい使い方は <a href="resv.html">予約管理アプリ 使い方ガイド</a></td></tr>
+<tr><td>入院カルテ（ホテル台帳）</td><td>くわしい使い方は <a href="nyuin.html">入院カルテ 使い方ガイド</a></td></tr>
+<tr><td>飼い主さまの LINE</td><td>公式LINE のメニュー「ご予約」「マイページ」から。スタッフが操作する画面ではありません（見え方は 3章）。</td></tr>
+</table>
+<p style="margin:6px 0 0">パスコードは各アプリと同じです（院内掲示・不明なら院長へ）。</p>
+</div>
+
+<h2>2. 全体の流れ</h2>
+<h3>2-1. 流れ</h3>
+<ol class="steps">
+<li><span class="who o">飼い主さま</span>LINE でホテルを予約する → <b>仮予約</b>になります（はじめてホテルを使う子は、ホテル前健診もいっしょに予約）。</li>
+<li><span class="who o">飼い主さま</span><b>ホテルの問診票</b>を書いて送る。ふりがな・混合ワクチン・ノミダニは<b>当院のカルテから自動で入ります</b>（直せます）。</li>
+<li><span class="who a">自動</span>問診票が届くと<b>予約が確定</b>し、飼い主さまに確定の LINE が届きます。<b>1時間たっても届かないと仮予約は自動で取り消し</b>になります。</li>
+<li><span class="who s">スタッフ</span>予約表のホテルの欄の<b>「問診票あり」</b>を見て、予約を開き<b>「📋 ホテルの問診票」</b>でお薬・アレルギー・はみがきを確かめる（→ 4章）。</li>
+<li><span class="who s">スタッフ</span><b>「🖨 問診票を印刷（A5）」</b>で印刷する。お預かり中の予約（トリミング・診察など）も載ります（→ 5章）。</li>
+<li><span class="who a">自動</span>入院カルテのホテル台帳に答えが入り、上の帯「ホテル中の予定」に<b>トリミング・診察・ワクチンなど</b>が出ます（→ 6章）。</li>
+</ol>
+<h3>2-2. だれが何をするか</h3>
+<table>
+<tr><th style="width:24%">だれ</th><th>すること</th></tr>
+<tr><td><span class="who o">飼い主さま</span></td><td>LINE で予約・問診票を送る。日にちの変更はお預かり日の前日まで、キャンセルはキャンセル料がかかる前まで LINE のマイページから。</td></tr>
+<tr><td><span class="who s">受付・トリマー</span></td><td>問診票を確かめる・印刷する。お預かり中のトリミング・診察の予約は、<b>予約表に入れておく</b>と台帳と印刷に自動で出ます。</td></tr>
+<tr><td><span class="who a">自動</span></td><td>仮予約→確定・1時間で取り消し・カルテからの自動入力・台帳への取り込み・お預かり中の予約の表示。</td></tr>
+</table>
+
+<h2>3. 飼い主さまの LINE での見え方</h2>
+<div class="pics">
+<figure><img class="shot" src="hotelflow-line-mine.png" alt="マイページの仮予約"><div class="cap">▲ マイページ：仮予約と「問診票を書く」</div></figure>
+<figure><img class="shot" src="hotelflow-line-auto.png" alt="問診票の自動入力"><div class="cap">▲ カルテから入った欄の案内</div></figure>
+</div>
+<div class="card">
+<table>
+<tr><th style="width:32%">ところ</th><th>見え方</th></tr>
+<tr><td>仮予約</td><td>マイページに「仮予約です。○時までに問診票がそろうと確定します」と出ます。</td></tr>
+<tr><td>自動で入る欄</td><td><b>飼い主さまのフリガナ</b>（カルテのフリガナ）・<b>混合ワクチン</b>（当院で最後に打った日・接種済み・当院）・<b>ノミ・ダニ予防</b>（当院で処方した予防薬が今月まで効いていれば「使用中」）。入った後も飼い主さまが直せます。当院に記録が無い欄は空のままです。</td></tr>
+<tr><td>前回の内容を入れる</td><td>前にホテルの問診票を送った方には「前回の内容を入れる」ボタンが出ます。</td></tr>
+</table>
+</div>
+<div class="pics">
+<figure><img class="shot" src="hotelflow-line-items.png" alt="お預かり中のこと"><div class="cap">▲ ごはんの補足・持ち込みのその他・お薬の内容</div></figure>
+<figure><img class="shot" src="hotelflow-line-hope.png" alt="ホテル中のご希望"><div class="cap">▲ はみがき「はい」→ 種類を選ぶ</div></figure>
+</div>
+<div class="card">
+<table>
+<tr><th style="width:32%">質問</th><th>答え方（2026年11月25日〜）</th></tr>
+<tr><td>ごはんの回数</td><td>選択肢（1日1〜3回）に加えて、<b>補足を自由に</b>書けます（時間・選択肢に無い回数など）。</td></tr>
+<tr><td>お持ち込みの物</td><td>「その他」を選ぶと<b>内容を書く欄</b>が出ます。</td></tr>
+<tr><td>お薬・サプリ</td><td>「あり／なし」。<b>「あり」なら内容が必須</b>です（名前・朝/夜/両方・1回の量）。</td></tr>
+<tr><td>はみがき</td><td>「はい」にすると<b>「スタッフによるはみがき（550円・税込）」「獣医師によるはみがき（1,100円・税込）」</b>から選びます。</td></tr>
+<tr><td>ホテル中の診察・トリミング</td><td><b>問診票では聞きません。</b>ご希望はお電話・受付・LINE の予約で<b>予約表に入れてください</b>（入れると台帳と印刷に出ます）。</td></tr>
+</table>
+</div>
+
+<h2>4. 予約表で問診票を確かめる</h2>
+<div class="card">
+<ol>
+<li>予約表の<b>Hotel タブ</b>で、その子の宿泊の行を見ます。問診票が届いていると<b>「問診票あり」</b>の印が付いています（仮予約のあいだは問診票待ち）。</li>
+<li>行を押して予約を開くと、<b>「📋 ホテルの問診票」</b>の欄に<b>お薬・サプリ／アレルギー／はみがき</b>が短く出ます。</li>
+<li><b>「📝 問診票を開く」</b>で全部の答えが見られます。</li>
+</ol>
+<div class="tip">💡 以前は「📋 来院理由」の見出しで「問診票に来院理由の記載がありません」と出ていました。ホテルの問診票には来院理由の質問が無いためで、2026年11月25日から「ホテルの問診票」の見出しに変わりました。</div>
+<div class="note">📞 お電話で問診票の内容を伺ったときは、予約を開くと出る仮予約の帯の［確定にする］で確定できます（1時間での取り消しが止まります）。</div>
+</div>
+
+<h2>5. 問診票を印刷する（A5）</h2>
+<div class="card">
+<ol>
+<li>予約を開き、「📝 問診票を開く」の横の<b>「🖨 問診票を印刷（A5）」</b>を押します。</li>
+<li>別のタブに印刷の画面が出ます。<b>用紙は A5（縦）</b>を選んで印刷します。</li>
+</ol>
+<figure style="margin:8px 0"><img class="shot" src="hotelflow-a5-1.png" alt="A5 の問診票" style="max-width:340px"><div class="cap">▲ A5 の1枚目（架空のデータ）。答えが多いと2枚になります</div></figure>
+<table>
+<tr><th style="width:32%">載るもの</th><th>中身</th></tr>
+<tr><td>上の囲み</td><td>カルテ番号・飼い主（姓）・ペット・お預かり〜お迎え・記入日時</td></tr>
+<tr><td>お預かり中の予約（予約表）</td><td>その子の、お預かりの日〜お迎えの日に予約表に入っている<b>トリミング・診察（再診・初診・健康診断・避妊相談など）・ワクチン・狂犬病・フィラリア・歯科検診</b>。無ければ「入っていません」。</td></tr>
+<tr><td>問診票の答え</td><td>飼い主さまが送った答えの全部</td></tr>
+</table>
+<div class="imp">⚠ 印刷した問診票には飼い主さま・ペットの情報が載ります。<b>受付の外に置いたままにしない・持ち出さない</b>でください。</div>
+</div>
+
+<h2>6. 入院カルテのホテル台帳</h2>
+<div class="card">
+<table>
+<tr><th style="width:32%">ところ</th><th>どう入るか</th></tr>
+<tr><td>台帳の欄</td><td>問診票の答えが<b>空の欄にだけ自動で入ります</b>（スタッフが直した欄は上書きしません）。ごはんの回数は補足とつないで、持ち込みは「その他（内容）」で入ります。</td></tr>
+<tr><td>はみがき</td><td>飼い主さまが選んだとおり<b>「先生はみがき」／「スタッフはみがき」</b>が入り、<b>お迎えの前に「帰る前」の予定</b>が1本入ります（先生はみがきは入院ボードにも出ます）。</td></tr>
+<tr><td>ホテル中の予定（上の帯）</td><td>予約表に入っている<b>トリミング・診察・ワクチンなど</b>が日付つきで出ます。済んだら✓。当日は一覧の札にも「今日 ○○」と出ます。</td></tr>
+</table>
+</div>
+
+<h2>7. 「ここが不便」を送る</h2>
+<div class="card">
+使いにくいところ・こうしてほしいところは、予約表・入院カルテの画面の<b>「💬 ここが不便」</b>から送ってください（くわしくは <a href="resv.html">予約管理アプリ ガイド</a> の「ここが不便」）。院長にすぐ届きます。
+</div>
+
+<h2>8. よくある質問・困ったとき</h2>
+<div class="card">
+<table>
+<tr><th style="width:38%">質問</th><th>答え</th></tr>
+<tr><td>仮予約のまま問診票が届かない</td><td>1時間で自動で取り消しになり、飼い主さまに LINE が届きます（夜 21時〜朝9時は朝9時に）。お電話で内容を伺ったら、予約を開いて仮予約の帯の［確定にする］。</td></tr>
+<tr><td>自動で入ったワクチンの日付が違う</td><td>当院の会計の記録から入れています。他院で打った場合などは飼い主さまが直して送ります。届いた問診票の内容が正です。</td></tr>
+<tr><td>ノミ・ダニの「前回予防日」が空</td><td>当院で数か月分をお渡ししたときは、最後に飲ませた日が分からないので空けています。飼い主さまに書いていただきます。</td></tr>
+<tr><td>お預かり中のトリミングが印刷に出ない</td><td>予約表にその子（枝番まで同じ診察券番号）の予約が入っているか確かめてください。取消・予約待ちは出ません。</td></tr>
+<tr><td>「予約表を読めませんでした」と出た</td><td>印刷はできます。お預かり中の予約は予約表で確かめてください。</td></tr>
+</table>
+</div>
+
+<div class="imp noprint"><b>⚠ 患者情報の取り扱い：</b>このガイドの画像はすべてテストデータで、実在の患者情報は含みません。</div>
+
+<footer>荻窪ツイン動物病院 ｜ ホテル予約と問診票 使い方ガイド（2026年11月25日版）<br>不明点・改善要望は院長まで</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ホテル予約と問診票の流れ（印刷用・A4）</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; color: #111; background: #f3f4f6; line-height: 1.5; font-size: 10pt; }
+  .bar { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #ccc; padding: 10px 14px; display: flex; gap: 12px; align-items: center; font-size: 14px; }
+  .bar button { font-size: 15px; padding: 7px 16px; border: 1.5px solid #075985; color: #075985; background: #fff; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  .page { width: 186mm; margin: 10px auto; background: #fff; padding: 0; }
+  h1 { font-size: 16pt; margin: 0 0 1mm; padding-bottom: 1.5mm; border-bottom: 2.5px solid #075985; }
+  .sub { font-size: 9pt; color: #444; margin: 0 0 3mm; }
+  h2 { font-size: 11pt; margin: 3mm 0 1.2mm; padding-left: 2.5mm; border-left: 4px solid #075985; }
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+  ol.steps li { counter-increment: s; position: relative; padding: 1.2mm 2.5mm 1.2mm 11mm; border: 1px solid #bbb; border-radius: 2mm; margin: 1.1mm 0; break-inside: avoid; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 2.5mm; top: 1.6mm; width: 6mm; height: 6mm; border-radius: 50%; background: #075985; color: #fff; font-weight: 700; text-align: center; line-height: 6mm; font-size: 9.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .who { display: inline-block; font-size: 8pt; font-weight: 700; padding: 0 2mm; border-radius: 3mm; margin-right: 1.5mm; border: 1px solid #888; }
+  .o { border-color: #b45309; color: #b45309; } .s { border-color: #075985; color: #075985; } .a { border-color: #15803d; color: #15803d; }
+  table { width: 100%; border-collapse: collapse; margin: 1mm 0; }
+  th, td { border: 1px solid #999; padding: 1mm 2mm; text-align: left; vertical-align: top; }
+  th { background: #eef2f7; width: 30%; font-weight: 700; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  tr { break-inside: avoid; }
+  .two { display: flex; gap: 4mm; align-items: flex-start; }
+  .two > div { flex: 1; }
+  .warn { border: 1.5px solid #b91c1c; border-radius: 2mm; padding: 1.5mm 2.5mm; margin-top: 2mm; font-size: 9.5pt; }
+  .foot { margin-top: 3mm; font-size: 8.5pt; color: #555; text-align: right; }
+  @media print { body { background: #fff; } .bar { display: none; } .page { margin: 0; width: auto; } }
+</style>
+</head>
+<body>
+<div class="bar"><button type="button" onclick="window.print()">🖨 印刷する（A4）</button><span>用紙は A4（縦）。<a href="hotel-flow.html">← ガイドに戻る</a></span></div>
+<div class="page">
+
+<h1>ホテル予約と問診票の流れ</h1>
+<p class="sub">受付・トリマー・スタッフ向け ｜ 2026年11月25日版 ｜ 荻窪ツイン動物病院　くわしくは「院内アプリ 使い方ガイド」→ ホテル予約と問診票</p>
+
+<h2>流れ</h2>
+<ol class="steps">
+<li><span class="who o">飼い主さま</span>LINE でホテルを予約 → <b>仮予約</b>（はじめての子はホテル前健診もいっしょに予約）。</li>
+<li><span class="who o">飼い主さま</span><b>ホテルの問診票</b>を送る。<b>ふりがな・混合ワクチン・ノミダニは当院のカルテから自動で入る</b>（飼い主さまが直せる）。</li>
+<li><span class="who a">自動</span>問診票が届くと<b>予約が確定</b>（確定の LINE が届く）。<b>1時間たっても届かなければ自動で取り消し</b>。</li>
+<li><span class="who s">スタッフ</span>予約表 <b>Hotel タブ</b>で<b>「問診票あり」</b>を確認 → 予約を開き<b>「📋 ホテルの問診票」</b>でお薬・アレルギー・はみがきを見る → <b>「📝 問診票を開く」</b>で全部。</li>
+<li><span class="who s">スタッフ</span><b>「🖨 問診票を印刷（A5）」</b>→ 用紙 <b>A5（縦）</b>で印刷。<b>お預かり中の予約（トリミング・診察など）</b>も載る。</li>
+<li><span class="who a">自動</span>入院カルテの<b>ホテル台帳</b>に答えが入る（空の欄だけ）。上の帯<b>「ホテル中の予定」</b>にトリミング・診察・ワクチンなどが出る。</li>
+</ol>
+
+<h2>スタッフが気をつけること</h2>
+<table>
+<tr><th>トリミング・診察の希望</th><td>問診票では聞きません。<b>予約表に予約を入れる</b>と、台帳の帯と印刷した問診票に自動で出ます。</td></tr>
+<tr><th>電話で問診票を伺った</th><td>予約を開くと出る仮予約の帯の<b>［確定にする］</b>（1時間での取り消しが止まる）。</td></tr>
+<tr><th>はみがき</th><td>飼い主さまが<b>スタッフ（550円・税込）／獣医師（1,100円・税込）</b>を選ぶ → 台帳に<b>スタッフはみがき／先生はみがき</b>と<b>お迎え前の予定</b>が入る（先生はみがきは入院ボードにも）。</td></tr>
+<tr><th>お薬・サプリ</th><td>「あり」なら内容が必須（名前・朝/夜/両方・1回の量）。持ってきたお薬と見比べる。</td></tr>
+<tr><th>自動で入る欄</th><td>ワクチン＝当院で最後に打った日。ノミダニ＝当院で処方した予防薬が今月まで効いていれば「使用中」（数か月分のお渡しは前回予防日を空ける）。<b>届いた問診票の内容が正</b>。</td></tr>
+</table>
+
+<h2>困ったとき</h2>
+<table>
+<tr><th>仮予約のまま届かない</th><td>1時間で自動取り消し・飼い主さまに LINE（夜 21時〜朝9時は朝9時）。</td></tr>
+<tr><th>お預かり中の予約が印刷に出ない</th><td>予約表にその子（枝番まで同じ診察券番号）の予約があるか確認。取消・予約待ちは出ない。</td></tr>
+<tr><th>「予約表を読めませんでした」</th><td>印刷はできる。お預かり中の予約は予約表で確かめる。</td></tr>
+<tr><th>使いにくい・こうしてほしい</th><td>予約表・入院カルテの<b>「💬 ここが不便」</b>から送る。</td></tr>
+</table>
+
+<div class="warn">⚠ 印刷した問診票には飼い主さま・ペットの情報が載ります。<b>受付の外に置いたままにしない・持ち出さない。</b></div>
+<div class="foot">荻窪ツイン動物病院 ｜ ホテル予約と問診票の流れ（印刷用）2026年11月25日版</div>
+</div>
+</body>
+</html>
