@@ -16,6 +16,7 @@ window.CLINIC = {
     'vet-link': { lan: 'https://giiv6wcx.lamarck-lan.com:13007', wan: 'https://serverpc.tail2de5bb.ts.net:8450' },
     'dental-chart': { lan: 'https://giiv6wcx.lamarck-lan.com:14700/', wan: 'http://100.111.66.29:4700/' },
     'anesthesia-chart': { lan: 'https://giiv6wcx.lamarck-lan.com:14800/', wan: 'http://100.111.66.29:4800/' },
+    'narc-ledger': { lan: 'https://giiv6wcx.lamarck-lan.com:14900/', wan: 'http://100.111.66.29:4900/' },   // 麻薬帳簿（2026-11-27）
     'kintai': { lan: 'https://giiv6wcx.lamarck-lan.com:14100/my', wan: 'https://serverpc.tail2de5bb.ts.net:8453/my' },
     'petty-cash': { lan: 'https://giiv6wcx.lamarck-lan.com:13400', wan: 'https://serverpc.tail2de5bb.ts.net:8445' },
     'inventory': { lan: 'https://giiv6wcx.lamarck-lan.com:14200', wan: 'https://serverpc.tail2de5bb.ts.net' },

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>麻薬帳簿 使い方ガイド（院長・獣医師・動物看護師向け）</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="院内アプリ">
+<style>
+  :root {
+    --rose: #e11d48; --rose-bg: #fff1f2;
+    --teal: #0d9488; --teal-bg: #f0fdfa;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --amber: #b45309; --amber-bg: #fffbeb;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; margin: 0; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; background: linear-gradient(135deg, #1f5f5b, #2f7d76); color: #fff; padding: 20px 24px; border-radius: 16px; margin: 0 0 8px; }
+  h1 small { display: block; font-size: .8rem; font-weight: normal; opacity: .9; margin-top: 6px; }
+  h2 { font-size: 1.2rem; border-left: 6px solid #2f7d76; padding-left: 10px; margin: 40px 0 12px; }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; background: #fff; font-size: .92rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+  .b-auto { background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0; }
+  .b-vet  { background: var(--rose-bg); color: var(--rose); border: 1px solid #fecdd3; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 14px 0; }
+  .fbox { border: 2px solid var(--border); border-radius: 12px; padding: 12px 16px; background: #fff; }
+  .fbox.vet  { border-color: #fda4af; background: var(--rose-bg); }
+  .fbox.auto { border-color: #86efac; background: var(--green-bg); }
+  .fbox b { display: block; margin-bottom: 2px; }
+  .farrow { text-align: center; color: #94a3b8; font-size: 1.2rem; line-height: 1.4; }
+  .shot { display: block; width: 100%; max-width: 760px; margin: 8px auto 0; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cap { font-size: .78rem; color: #64748b; text-align: center; margin-top: 4px; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .imp { background: var(--red-bg); border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: .92rem; }
+  .chip { display: inline-block; padding: 0 8px; border-radius: 6px; font-size: .8rem; font-weight: 700; white-space: nowrap; border: 1px solid #cbd5e1; background: #fff; }
+  .chip.al { border-color: #f87171; background: #fef2f2; }
+  .chip.dr { border-color: #5eead4; background: #f0fdfa; }
+  footer { margin-top: 50px; color: #64748b; font-size: .85rem; text-align: center; }
+  a.applink{color:#1d4ed8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+</style>
+<body>
+<div class="wrap">
+
+<h1>麻薬帳簿 使い方ガイド
+<small><a href="classic.html" style="color:#fff;text-decoration:underline">← ガイド一覧へ</a></small>
+<small>院長・獣医師・動物看護師向け ｜ 2026年11月27日版 ｜ 荻窪ツイン動物病院</small></h1>
+
+<div class="card">
+<b>30秒まとめ</b><br>
+麻薬（レミフェンタニル・デュロテップMTパッチなど）の<b>受け入れ・施用・廃棄・在庫確認</b>を書く帳簿のアプリです。<b>品目（品名・剤型・濃度）ごとに1冊</b>あり、残はいつも自動で出ます。麻酔カルテで使った麻薬は<b>「下書き」</b>に出るので、量を確かめて書くだけです。<b>発注の紙（FAX）・麻薬譲受証・年間届</b>もこのアプリで作れます。
+<div style="margin-top:8px">
+<span class="badge b-vet">書いた行は消せません（直すときは「訂正」）</span>
+<span class="badge b-auto">緑 = 自動（残・下書き・年間届の数字）</span>
+</div>
+</div>
+
+<div class="imp"><b>📅 2026年11月27日から、麻酔カルテとは別のアプリになりました。</b>
+<ul style="margin:6px 0 0">
+<li>麻酔カルテの上のメニューの<b>「麻薬帳簿」</b>から開けます（別のタブで開きます）。</li>
+<li>前の日に書いた行の<b>訂正・取消は、麻薬施用者（院長）だけ</b>ができます。その日のうちなら、書いた人が直せます。</li>
+</ul></div>
+
+<h2>1. アプリを開く</h2>
+<div class="card">
+<table>
+<tr><th style="width:30%">場所</th><th>アドレス</th></tr>
+<tr><td><b>院内</b>（iPad・PC）</td><td><a class="applink" href="https://giiv6wcx.lamarck-lan.com:14900/" target="_blank" rel="noopener">https://giiv6wcx.lamarck-lan.com:14900/</a></td></tr>
+<tr><td>院外（Tailscale の入った端末だけ）</td><td><a class="applink" href="http://100.111.66.29:4900/" target="_blank" rel="noopener">http://100.111.66.29:4900/</a></td></tr>
+<tr><td>麻酔カルテから</td><td>上のメニューの<b>「麻薬帳簿」</b></td></tr>
+</table>
+<h3>1.1 合言葉</h3>
+<p style="margin-top:0">初めて開くと<b>合言葉</b>を聞かれます。<b>麻酔カルテと同じ合言葉</b>です。一度入れると、その端末は<b>30日</b>覚えています。</p>
+<img class="shot" style="max-width:520px" src="narc-login.png" alt="合言葉の画面">
+<div class="cap">合言葉の画面</div>
+<h3>1.2 記入者</h3>
+<p style="margin-top:0">右上の<b>「記入者」</b>で自分の名前を選んでください。<b>記入者を選んでいないと、帳簿に書く・訂正する・発注を作ることはできません</b>（だれが書いたかを帳簿に残すためです）。</p>
+</div>
+
+<h2>2. 全体の流れ</h2>
+<div class="card">
+<h3>2.1 麻薬の1つの流れ</h3>
+<div class="flow">
+<div class="fbox vet"><b>発注</b>「発注」で発注の紙を作り、卸へ FAX（→ 6）</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>受け入れ</b>届いたら、品目の帳簿に「受入」（譲渡証の番号・製品番号）。麻薬譲受証を印刷して卸へ（→ 4・6）</div><div class="farrow">↓</div>
+<div class="fbox auto"><b>麻酔カルテで使う → 「下書き」に出る</b>麻酔カルテで投与した麻薬が、まだ書いていない施用として並びます（→ 5）</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>施用を書く</b>払い出した数（アンプル・枚）と、残液を捨てたら量（mL）と立会者（→ 4）</div><div class="farrow">↓</div>
+<div class="fbox vet"><b>在庫確認</b>ときどき現品を数えて書く。帳簿の残と合わないときは、わけを書く（→ 4）</div><div class="farrow">↓</div>
+<div class="fbox auto"><b>年間届（毎年 10月1日〜11月30日）</b>数字は帳簿から自動。都の様式の紙に刷って出す（→ 7）</div>
+</div>
+<h3>2.2 画面の全体像</h3>
+<table>
+<tr><th style="width:28%">画面（上のメニュー）</th><th>すること</th></tr>
+<tr><td><b>品目</b></td><td>品目の一覧と帳簿の残・品目を作る・施設の形（→ 3）。品名を押すとその帳簿（→ 4）</td></tr>
+<tr><td><b>下書き</b></td><td>麻酔カルテで使って、まだ帳簿に書いていない麻薬（→ 5）</td></tr>
+<tr><td><b>発注</b></td><td>発注の紙・FAX・麻薬譲受証・卸の設定（→ 6）</td></tr>
+<tr><td><b>年間届</b></td><td>1年分の数字と、届の紙（→ 7）。提出の時期は赤い点とお知らせが出ます</td></tr>
+<tr><td><b>ここが不便</b></td><td>使いにくい所を送る（→ 8）</td></tr>
+</table>
+</div>
+
+<h2>3. 品目の一覧</h2>
+<div class="card">
+<img class="shot" src="narc-list.png" alt="品目の一覧">
+<div class="cap">品目の一覧（画面は見本です）</div>
+<ul>
+<li>帳簿は<b>品名・剤型・濃度ごとに1冊</b>です。<b>帳簿の残</b>と<b>最後の在庫確認</b>（一致・合わない）が並びます。</li>
+<li>新しい麻薬を扱うときは<b>「商品の一覧から選ぶ」</b>（国内の麻薬の商品の一覧から選ぶと、品名・剤型・規格が入ります）。一覧に無いときは<b>「一覧に無いものを作る」</b>。</li>
+<li><b>「品目を直す」</b>：品名・単位のほか、<b>麻酔カルテの薬の名前</b>（下書きに出すための名前）と<b>薬剤マスタの成分</b>を結べます。</li>
+<li>下の<b>「施設の形」</b>：当院は<b>麻薬施用者が1人（麻薬管理者はいない）</b>の形です。免許の番号・業務所の名称と所在地は、年間届と譲受証に使われます。</li>
+</ul>
+<img class="shot" style="max-width:640px" src="narc-catalog.png" alt="商品の一覧から選ぶ">
+<div class="cap">商品の一覧から選ぶ</div>
+</div>
+
+<h2>4. 品目の帳簿（書く・訂正）</h2>
+<div class="card">
+<img class="shot" src="narc-ledger-form.png" alt="帳簿に書く">
+<div class="cap">帳簿に書く（画面は見本の患者です）</div>
+<h3>4.1 帳簿に書く</h3>
+<ol>
+<li>上のボタンで種類を選ぶ：<b>施用・受入・廃棄・譲渡・事故・返却・在庫確認</b>。</li>
+<li><b>年月日</b>を確かめる。</li>
+<li>種類ごとの欄を入れる：
+<ul>
+<li><b>施用</b>：患者（カルテ番号か、飼い主の姓・ペット名で「探す」／<b>今日の麻酔</b>・<b>今日の予約</b>から選ぶ）・数量・<b>残液を捨てたら量（mL）と立会者</b>。</li>
+<li><b>受入</b>：譲渡人（卸）・譲渡証の番号・<b>製品番号</b>・到着した日。</li>
+<li><b>廃棄</b>：立会者が要ります。</li>
+<li><b>在庫確認</b>：数えた現品の数。帳簿の残と合わないときは、わけを書きます。</li>
+</ul></li>
+<li><b>「帳簿に書く」</b>。</li>
+</ol>
+<div class="note">残がマイナスになる払い出しは書けません。注射の施用残を捨てたときは、<b>立会者</b>を必ず入れてください。</div>
+<h3>4.2 訂正・取消</h3>
+<img class="shot" src="narc-ledger-table.png" alt="帳簿の行と訂正">
+<div class="cap">訂正した行は二重線で残ります</div>
+<ul>
+<li>書いた行は<b>消せません</b>。間違えたら、その行の<b>「訂正」</b>から正しい内容と<b>訂正の理由</b>を入れます。前の行は<b>二重線</b>で残り、新しい行に「No.○ を訂正：理由」が付きます。</li>
+<li><b>その日のうち</b>は書いた人が直せます。<b>前の日に書いた行は、麻薬施用者（院長）だけ</b>が訂正・取消できます。</li>
+<li><b>「帳簿を印刷」</b>で紙の帳簿（A4）を出せます。立入検査のときに見せられるよう、ときどき印刷して1か所にまとめてください。</li>
+</ul>
+</div>
+
+<h2>5. 下書き（麻酔カルテから）</h2>
+<div class="card">
+<img class="shot" src="narc-drafts.png" alt="麻酔カルテからの下書き">
+<div class="cap">麻酔カルテからの下書き（この見本では、まだ書いていない投与はありません）</div>
+<ul>
+<li>麻酔カルテで投与した薬のうち、品目の<b>「麻酔カルテの薬の名前」</b>（または薬剤マスタの成分）に当たり、<b>まだ施用を書いていないもの</b>が並びます。</li>
+<li>払い出した数（アンプルなど）と、残液を捨てたときはその量と立会者を入れて<b>「帳簿に書く」</b>。</li>
+<li>貼り薬（デュロテップMTパッチ）は麻酔カルテの注射と結びません。施用は帳簿から書いてください。</li>
+</ul>
+</div>
+
+<h2>6. 発注・FAX・麻薬譲受証</h2>
+<div class="card">
+<img class="shot" src="narc-orders.png" alt="発注の一覧と卸の設定">
+<div class="cap">発注の一覧と卸の設定（画面は見本の卸です）</div>
+<h3>6.1 発注の紙を作って FAX で送る</h3>
+<ol>
+<li><b>「＋ 発注を作る」</b>で、商品と数量・納品希望日を入れて保存（1枚に5つまで）。</li>
+<li>発注の一覧の<b>「発注の紙」</b>で紙を確かめる。</li>
+<li><b>「FAX で送る（卸の名前）」</b>を押し、もう一度押すと複合機から送ります。</li>
+<li>状態に<b>「複合機が送信済みと返答」</b>と出ます。これは<b>複合機が送った</b>という意味で、<b>相手に届いたかまでは分かりません</b>。初めての発注や急ぎのときは、卸に電話で確かめてください。</li>
+</ol>
+<img class="shot" src="narc-order-print.png" alt="麻薬発注連絡書">
+<div class="cap">麻薬発注連絡書（卸の用紙の形）</div>
+<h3>6.2 麻薬譲受証</h3>
+<p style="margin-top:0">発注の一覧の<b>「譲受証」</b>で麻薬譲受証を印刷できます。使わない行には斜線が入ります。</p>
+<img class="shot" style="max-width:640px" src="narc-joju.png" alt="麻薬譲受証">
+<div class="cap">麻薬譲受証（画面は見本です）</div>
+<h3>6.3 卸の設定</h3>
+<p style="margin-top:0">卸は何社でも足せます。<b>用紙の形</b>（どの卸にも使える「麻薬発注書」／「麻薬発注連絡書」）と、<b>いつもの卸</b>を選べます。FAX の送り先の番号は院の FAX の仕組みに登録したものが使われ、このアプリで番号を打つことはありません。</p>
+</div>
+
+<h2>7. 年間届</h2>
+<div class="card">
+<img class="shot" src="narc-annual.png" alt="年間届">
+<div class="cap">年間届（画面は見本です）</div>
+<ul>
+<li>麻薬の年間届は<b>毎年 10月1日〜11月30日</b>に、前の年の10月1日〜その年の9月30日の分を東京都に出します。<b>この時期になると、上に赤いお知らせ</b>と、メニューの「年間届」に<b>赤い点</b>が出ます。</li>
+<li>①10/1 の所有・②譲受・③施用・⑤9/30 の所有は<b>帳簿から自動</b>で出ます。届を書く前に、<b>譲渡証・この帳簿・実際の在庫</b>の3つが合っているか確かめてください。</li>
+<li>その期間に麻薬が無かった年も、<b>「所有なし」で届が要ります</b>。</li>
+<li>出したら、日付と出し方を入れて<b>「出した」</b>を押すと、その年のお知らせが消えます。</li>
+</ul>
+<h3>7.1 届の紙を刷って出す</h3>
+<img class="shot" style="max-width:600px" src="narc-annual-form.png" alt="年間届の紙">
+<div class="cap">年間届の紙（都のホームページの様式と同じ形・画面は見本です）</div>
+<ol>
+<li><b>「届の用紙に刷る」</b>→ 届の日付を入れる →<b>「白い紙に全部」</b>→<b>「印刷の画面を開く」</b>。</li>
+<li>都のホームページの様式（施用者の届）と同じ形で、白い A4 の紙に刷れます。<b>この紙をそのまま出せます</b>（押印は要りません）。</li>
+<li>出す前に<b>コピーを取り「控え」</b>にしてください。</li>
+<li>出し方：<b>郵送（簡易書留など記録の残る郵便）か窓口</b>。宛先は紙の下に刷ってあります。</li>
+</ol>
+<div class="note">東京都の年間届は、いまは郵送か窓口だけです（ネットでの提出はありません）。都から届いた用紙に数字だけ刷りたいときは「届いた用紙に数字だけ」。</div>
+</div>
+
+<h2>8. 「ここが不便」を送る</h2>
+<div class="card">
+<img class="shot" src="narc-feedback.png" alt="ここが不便の入力">
+<div class="cap">「ここが不便」の入力（画面は見本です）</div>
+<ul>
+<li>右上の<b>「ここが不便」</b>から、使いにくい所をそのまま書いて<b>「送る」</b>。<b>今の画面の名前が一緒に届きます</b>。</li>
+<li><b>飼い主様・動物の名前は書かないでください。</b></li>
+<li>下に、これまでに届いているものと状態（受付・作業中・反映済み など）が出ます。直ったら送った方へ LINE WORKS でお知らせします。</li>
+</ul>
+</div>
+
+<h2>9. よくある質問・困ったとき</h2>
+<div class="card">
+<table>
+<tr><th style="width:36%">こんなとき</th><th>こうしてください</th></tr>
+<tr><td><b>合言葉を聞かれた</b></td><td>麻酔カルテと同じ合言葉です。30日たつと、もう一度聞かれます。</td></tr>
+<tr><td><b>書こうとすると「記入者を選んでから」と出る</b></td><td>右上の「記入者」で自分の名前を選んでください。</td></tr>
+<tr><td><b>前の日の行を直せない</b></td><td>前の日に書いた行の訂正・取消は、麻薬施用者（院長）だけです。院長に伝えてください。</td></tr>
+<tr><td><b>麻酔カルテで使ったのに下書きに出ない</b></td><td>その品目の「品目を直す」で、麻酔カルテの薬の名前が入っているか確かめてください。貼り薬は下書きに出ません。</td></tr>
+<tr><td><b>在庫確認で数が合わない</b></td><td>わけを書いて残してください。なくなった・壊れた・盗まれた疑いのときは、すぐ院長へ（事故の届が要ります）。</td></tr>
+<tr><td><b>FAX が届いたか分からない</b></td><td>アプリの「送信済み」は複合機が送ったという意味です。卸に電話で確かめるか、複合機の送信履歴を見てください。</td></tr>
+<tr><td>使いにくい・こうしてほしい</td><td>右上の「ここが不便」から送ってください（→ 8）。</td></tr>
+</table>
+</div>
+
+<div class="imp"><b>⚠ 患者情報の取り扱い：</b>施用の行には患者の番号と名前が出ます。<b>院外で画面を開いたまま席を離れない・画面の写真をSNS等に載せない</b>でください。（このガイドの画像はすべて見本のデータで、実在の患者情報は含みません）</div>
+
+<footer>荻窪ツイン動物病院 ｜ 麻薬帳簿 使い方ガイド（2026年11月27日版）<br>使いにくい点は右上の「ここが不便」から送れます（不明点は院長まで）</footer>
+</div>
+</body>
+</html>
